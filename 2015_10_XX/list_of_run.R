@@ -11,7 +11,7 @@ stor_cap            = seq( 0.5,1.5,0.5)
 min_soil_depth_frac = seq( 0.5,1.5,1.0)
 log_ksat            = seq(-1.0,1.0,2.0)	
 log_recession_coef  = seq(-1.0,1.0,2.0)	
-stor_cap            = seq( 0.5,1.5,1.0)
+stor_cap            = c(1.0)
 
 # output folder name and numbering
 general_output_folder_name = 'code__a__'
@@ -25,12 +25,12 @@ existing_parameters = c(1.0, 0.0, 0.0, 1.0)                                     
 #~ existing_parameters = rbind(existing_parameters, read.table("table_27_june_2014_speedy.txt", header=T)[2:5])  # from the previous file/run
 
 # number of cores that will be used
-number_of_cores = 50
+number_of_cores = 8
 core_type = "normal"
 #~ if (number_of_cores > 32) {core_type = "fat"} else (core_type = "normal")
 
 # location of model script - NOTE: If jobs have not started, you should not update/pull the model script
-model_script = "/home/edwin/github/edwinkost/PCR-GLOBWB/model/deterministic_runner_glue_october_2015.py"
+model_script = "~/github/edwinkost/PCR-GLOBWB/model/deterministic_runner_glue_october_2015.py"
 
 # configuration/ini file
 ini_file = "setup_sensitivity_analysis.ini"
