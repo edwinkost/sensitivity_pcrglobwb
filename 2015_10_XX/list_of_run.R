@@ -25,7 +25,7 @@ existing_parameters = c(1.0, 0.0, 0.0, 1.0)                                     
 existing_parameters = rbind(existing_parameters, read.table("table_05_october_2015_speedy_and_rapid.txt", header=T)[2:5])  # from the previous file/run
 
 # number of cores that will be used
-number_of_cores = 32
+number_of_cores = 36
 core_type = "normal"
 #~ if (number_of_cores > 32) {core_type = "fat"} else (core_type = "normal")
 
