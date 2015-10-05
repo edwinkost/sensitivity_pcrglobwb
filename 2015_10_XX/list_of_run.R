@@ -8,24 +8,24 @@ log_recession_coef  = seq(-1.0,1.0,1.0)
 stor_cap            = seq( 0.5,1.5,0.5)
 
 # parameter lists (for speedy/rapid)
-min_soil_depth_frac = seq( 0.5,1.5,1.0)
-log_ksat            = seq(-1.0,1.0,2.0)	
-log_recession_coef  = seq(-1.0,1.0,2.0)	
-stor_cap            = c(1.0)
+min_soil_depth_frac = seq( 0.5,1.5,0.5)
+log_ksat            = seq(-1.0,1.0,1.0)	
+log_recession_coef  = seq(-1.0,1.0,1.0)	
+stor_cap            = seq( 0.5,1.5,0.5)
 
 # output folder name and numbering
 general_output_folder_name = 'code__a__'
-start_folder_index = 1 
+start_folder_index = 9 
 
 # file name for the output table that will contain new parameters
-new_parameter_table_file_name = "table_05_october_2015_speedy_and_rapid.txt"
+new_parameter_table_file_name = "table_05_october_2015_cartesius.txt"
 
 # list of existing parameters sets that have been defined in the previous runs
-existing_parameters = c(1.0, 0.0, 0.0, 1.0)                                                                      # reference run              
-#~ existing_parameters = rbind(existing_parameters, read.table("table_27_june_2014_speedy.txt", header=T)[2:5])  # from the previous file/run
+existing_parameters = c(1.0, 0.0, 0.0, 1.0)                                                                                # reference run              
+existing_parameters = rbind(existing_parameters, read.table("table_05_october_2015_speedy_and_rapid.txt", header=T)[2:5])  # from the previous file/run
 
 # number of cores that will be used
-number_of_cores = 8
+number_of_cores = 32
 core_type = "normal"
 #~ if (number_of_cores > 32) {core_type = "fat"} else (core_type = "normal")
 
@@ -33,7 +33,7 @@ core_type = "normal"
 model_script = "~/github/edwinkost/PCR-GLOBWB/model/deterministic_runner_glue_october_2015.py"
 
 # configuration/ini file
-ini_file = "setup_sensitivity_analysis.ini"
+ini_file = "setup_sensitivity_analysis_cartesius.ini"
 
 # name for job scripts:
 job_general_name = "calibration_a_" # example: "calibration_aa_001-022.sh"
