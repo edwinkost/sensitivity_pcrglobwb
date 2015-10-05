@@ -1,0 +1,9 @@
+output_folder min_soil_depth_frac log_ksat log_recession_coef degree_day_factor
+code__a__1 1 0 -1 0.5
+code__a__2 1 0 0 0.5
+code__a__3 1 0 1 0.5
+code__a__4 1 0 -1 1
+code__a__5 1 0 1 1
+code__a__6 1 0 -1 1.5
+code__a__7 1 0 0 1.5
+code__a__8 1 0 1 1.5
