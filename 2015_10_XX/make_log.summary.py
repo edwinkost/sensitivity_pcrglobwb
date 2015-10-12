@@ -9,11 +9,12 @@ import numpy as np
 # input log file based on the given system argurment
 log_file_name = sys.argv[1]
 log_file_name = glob.glob(log_file_name) # example: glob.glob("/scratch/edwin/IWMI_run_07_nov/natural_run/log/*.log")
-log_file_name = log_file_name[0]
+# - collection 
+log_file_names = log_file_name
 print log_file_name
 
 # default output summary file (in the current directory)
-txt_summary = str(os.path.basename)+".txt"
+txt_summary = str(os.path.basename())+".txt"
 
 # output summary file based on the given system argument
 if len(sys.argv) > 2: txt_summary = sys.argv[2]
