@@ -20,6 +20,9 @@ if len(sys.argv) > 2: txt_summary = sys.argv[2]
 
 # variables that will be reported
 variable_list = ['precipitation',\
+                 'evaporation',\
+                 'runoff',\
+                 'baseflow',\
                  'groundwater_recharge',\
                  'total_water_demand',\
                  'irrigation_demand',\
@@ -59,6 +62,21 @@ for i in range(len(lines)):
 		if "Accumulated precipitation" in line: 
 			year = int(line.split(" ")[11])
 			precipitation[year] = float(line.split(" ")[13])
+
+		# identify evaporation
+		if "Accumulated actualET" in line: 
+			year = int(line.split(" ")[11])
+			evaporation[year] = float(line.split(" ")[13])
+
+		# identify runoff
+		if "Accumulated runoff" in line: 
+			year = int(line.split(" ")[11])
+			runoff[year] = float(line.split(" ")[13])
+
+		# identify baseflow
+		if "Accumulated baseflow" in line: 
+			year = int(line.split(" ")[11])
+			baseflow[year] = float(line.split(" ")[13])
 
 		# identify annual groundwater recharge
 		if "Accumulated gwRecharge" in line: 
