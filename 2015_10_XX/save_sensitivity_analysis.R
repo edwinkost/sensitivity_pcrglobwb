@@ -31,7 +31,7 @@ parameters[,2:ncol(parameters)] <- lapply(parameters[,2:ncol(parameters)], as.nu
 # make table of average values 
 average_values = data.frame()
 
-for( i_run in seq(0,224,1)) {
+for( i_run in seq(0,404,1)) {
 
 # open the log_summary file
 file_name = paste(main_path , as.character(i_run), ".sum", sep = "")
