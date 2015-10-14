@@ -6,11 +6,11 @@ main_path = "~/github/edwinkost/sensitivity_pcrglobwb/2015_10_XX/summary_0to404/
 ########################################################################################################################
 # list of parameters
 parameters = data.frame()
-parameters = rbind(parameters, read.table("table_05_october_2015_speedy_and_rapid.txt", header=T)[1:5])            
-parameters = rbind(parameters, read.table("table_05_october_2015_cartesius.txt", header=T)[1:5])                   
-parameters = rbind(parameters, read.table("table_06_october_2015_cartesius_and_speedy_rapid.txt", header=T)[1:5])
-parameters = rbind(parameters, read.table("table_08_october_2015_cartesius.txt", header=T)[1:5])
-parameters = rbind(parameters, read.table("table_12_october_2015_cartesius.txt", header=T)[1:5])
+parameters = rbind(parameters, read.table("../table_05_october_2015_speedy_and_rapid.txt", header=T)[1:5])            
+parameters = rbind(parameters, read.table("../table_05_october_2015_cartesius.txt", header=T)[1:5])                   
+parameters = rbind(parameters, read.table("../table_06_october_2015_cartesius_and_speedy_rapid.txt", header=T)[1:5])
+parameters = rbind(parameters, read.table("../table_08_october_2015_cartesius.txt", header=T)[1:5])
+parameters = rbind(parameters, read.table("../table_12_october_2015_cartesius.txt", header=T)[1:5])
 
 # the first column is character
 parameters[,1] = as.character(parameters[,1])
