@@ -11,14 +11,14 @@ stor_cap            = seq( 0.5, 1.5, 0.5)
 min_soil_depth_frac = seq( 0.5, 1.5, 0.5)
 log_ksat            = seq(-1.0, 1.0, 0.25)	
 log_recession_coef  = seq(-1.0, 1.0, 0.5)	
-stor_cap            = seq( 0.5, 1.5, 0.5)
+stor_cap            = seq( 0.5, 1.5, 0.25)
 
 # output folder name and numbering
 general_output_folder_name = 'code__a__'
-start_folder_index = 225
+start_folder_index = 405
 
 # file name for the output table that will contain new parameters
-new_parameter_table_file_name = "table_12_october_2015_cartesius.txt"
+new_parameter_table_file_name = "table_14_october_2015_cartesius.txt"
 
 # list of existing parameters sets that have been defined in the previous runs
 existing_parameters = c(1.0, 0.0, 0.0, 1.0)                                                                                          # reference run              
@@ -26,6 +26,7 @@ existing_parameters = rbind(existing_parameters, read.table("table_05_october_20
 existing_parameters = rbind(existing_parameters, read.table("table_05_october_2015_cartesius.txt", header=T)[2:5])                   # from the previous file/runs
 existing_parameters = rbind(existing_parameters, read.table("table_06_october_2015_cartesius_and_speedy_rapid.txt", header=T)[2:5])  # from the previous file/runs
 existing_parameters = rbind(existing_parameters, read.table("table_08_october_2015_cartesius.txt", header=T)[2:5])                   # from the previous file/runs
+existing_parameters = rbind(existing_parameters, read.table("table_12_october_2015_cartesius.txt", header=T)[2:5])                   # from the previous file/runs
 
 # number of cores that will be used
 number_of_cores = 23
@@ -36,7 +37,7 @@ core_type = "normal"
 model_script = "~/github/edwinkost/PCR-GLOBWB/model/deterministic_runner_glue_october_2015.py"
 
 # configuration/ini file
-ini_file = "setup_sensitivity_analysis_cartesius.ini"
+ini_file = "setup_sensitivity_analysis_cartesius_from_405.ini"
 
 # name for job scripts:
 job_general_name = "calibration_a_" # example: "calibration_aa_001-022.sh"
