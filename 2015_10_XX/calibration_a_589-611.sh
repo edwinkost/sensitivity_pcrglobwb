@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -N 1
-#SBATCH -t 119:00:00
+#SBATCH -t 72:00:00
 #SBATCH -p normal
 
 python ~/github/edwinkost/PCR-GLOBWB/model/deterministic_runner_glue_october_2015.py setup_sensitivity_analysis_cartesius_from_405.ini no_debug code__a__589 1.5 -1 1 0.75 &  

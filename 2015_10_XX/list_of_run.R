@@ -115,7 +115,7 @@ job_filename = paste(job_general_name,sprintf("%03d",core_1st_job),"-",sprintf("
 
 cat("#!/bin/bash","\n",sep="",file=job_filename,append=FALSE)
 cat("#SBATCH -N 1","\n",sep="",file=job_filename,append=TRUE)
-cat("#SBATCH -t 119:00:00","\n",sep="",file=job_filename,append=TRUE)
+cat("#SBATCH -t 72:00:00","\n",sep="",file=job_filename,append=TRUE)
 cat("#SBATCH -p ",core_type,"\n",sep="",file=job_filename,append=TRUE)
 cat("\n",file=job_filename,append=TRUE)
 }
