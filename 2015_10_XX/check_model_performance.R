@@ -50,9 +50,9 @@ par(mfrow=c(4,1), mar=c(4,4,2,4))
 #for i_river in seq(1, length(river$name), 1){
 for (i_river in seq(1, 5, 1)){
 
-print()
+print("")
 print(i_river)
-print()
+print("")
 
 # initiate model performance indicators (all NA)
 ns_eff   = array(NA, length(parameters$code))
