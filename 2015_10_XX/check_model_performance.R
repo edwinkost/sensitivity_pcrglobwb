@@ -43,9 +43,9 @@ river = as.character(river$river_name[order(-river$grdc_catchment_area_in_km2)])
 
 
 # make scatter plots
-pdf("0Rtest.pdf", width=10, height=50, bg = "white")
+pdf("0Rtest.pdf", width=15, height=50, bg = "white")
 
-par(mfrow=c(length(river), 5), mar=c(0,0,0,0))
+par(mfrow=c(length(river), 4), mar=c(0,0,0,0))
 
 #~ par(mfrow=c(10, 4), mar=c(0,0,0,0))
 
@@ -90,10 +90,10 @@ R2[i_code][which(R2[i_code] < 0.0)] = 0.0
 
 }
 
-plot(parameters$min_soil_depth_frac, array(i_river, length(parameters$code)), cex = kge_2009 * 2., ann=FALSE)
-plot(parameters$log_ksat           , array(i_river, length(parameters$code)), cex = kge_2009 * 2., ann=FALSE)
-plot(parameters$log_recession_coef , array(i_river, length(parameters$code)), cex = kge_2009 * 2., ann=FALSE)
-plot(parameters$stor_cap           , array(i_river, length(parameters$code)), cex = kge_2009 * 2., ann=FALSE)
+plot(parameters$min_soil_depth_frac, array(i_river, length(parameters$code)), cex = kge_2009 * 3., ann=FALSE)
+plot(parameters$log_ksat           , array(i_river, length(parameters$code)), cex = kge_2009 * 3., ann=FALSE)
+plot(parameters$log_recession_coef , array(i_river, length(parameters$code)), cex = kge_2009 * 3., ann=FALSE)
+plot(parameters$stor_cap           , array(i_river, length(parameters$code)), cex = kge_2009 * 3., ann=FALSE)
 
 }
 
