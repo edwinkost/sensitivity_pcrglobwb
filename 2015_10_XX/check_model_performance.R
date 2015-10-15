@@ -103,7 +103,7 @@ R2[i_code][which(R2[i_code] < 0.0)] = 0.0
 #~ scale_size_area(limits = c(0, 1), breaks = seq(0,1,0.1), max_size = 10) + 
 #~ scale_y_continuous(limits = c(i_river - 0.01, i_river + 0.01), breaks = seq(i_river-1,i_river+1,1))
  
-plot(parameters$log_ksat, array(i_river, length(parameters$code)), cex = ns_eff * 5.)
+plot(parameters$log_ksat, array(i_river, length(parameters$code)), cex = kge_2009 * 5.)
 
 }
 
