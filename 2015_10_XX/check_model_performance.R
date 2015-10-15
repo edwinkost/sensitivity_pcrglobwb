@@ -49,7 +49,7 @@ par(mfrow=c(4,1), mar=c(4,4,2,4))
 
 # loop through all rivers to get model performances from all runs and their corresponding model parameters
 #for i_river in seq(1, length(river$name), 1){
-for i_river in seq(1, 5, 1){
+for (i_river in seq(1, 5, 1)){
 
 print()
 print(i_river)
