@@ -44,11 +44,11 @@ river = as.character(river$river_name[order(-river$grdc_catchment_area_in_km2)])
 
 # make scatter plots
 pdf("0Rtest.pdf", width=10, height=12, bg = "white")
-par(mfrow=c(4,1), mar=c(4,4,2,4))
+par(mfrow=c(5,1), mar=c(4,4,2,4))
 
 # loop through all rivers to get model performances from all runs and their corresponding model parameters
-#for i_river in seq(1, length(river$name), 1){
-for (i_river in seq(1, 5, 1)){
+for (i_river in seq(1, length(river$name), 1)) {
+#for (i_river in seq(1, 5, 1)){
 
 print("")
 print(i_river)
@@ -103,7 +103,7 @@ R2[i_code][which(R2[i_code] < 0.0)] = 0.0
 #~ scale_size_area(limits = c(0, 1), breaks = seq(0,1,0.1), max_size = 10) + 
 #~ scale_y_continuous(limits = c(i_river - 0.01, i_river + 0.01), breaks = seq(i_river-1,i_river+1,1))
  
-plot(parameters$log_ksat, array(i_river, length(parameters$code)), cex = ns_eff * 10.)
+plot(parameters$log_ksat, array(i_river, length(parameters$code)), cex = ns_eff * 5.)
 
 }
 
