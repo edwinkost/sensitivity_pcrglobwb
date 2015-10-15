@@ -47,8 +47,7 @@ pdf("0Rtest.pdf", width=10, height=12, bg = "white")
 
 #~ par(mfrow=c(length(river), 5), mar=c(4,4,2,4))
 
-#~ par(mfrow=c(10, 4), mar=c(4,4,2,4))
-par(mfrow=c(10, 4))
+par(mfrow=c(10, 4), mar=c(0,0,0,0))
 
 for (i_river in seq(1, 10, 1)){
 
