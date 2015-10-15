@@ -44,10 +44,10 @@ river = as.character(river$river_name[order(-river$grdc_catchment_area_in_km2)])
 
 # make scatter plots
 pdf("0Rtest.pdf", width=10, height=12, bg = "white")
-par(mfrow=c(length(river$name), 1), mar=c(4,4,2,4))
+par(mfrow=c(length(river), 1), mar=c(4,4,2,4))
 
 # loop through all rivers to get model performances from all runs and their corresponding model parameters
-for (i_river in seq(1, length(river$name), 1)) {
+for (i_river in seq(1, length(river), 1)) {
 #for (i_river in seq(1, 5, 1)){
 
 print("")
