@@ -47,7 +47,9 @@ pdf("0Rtest.pdf", width=10, height=12, bg = "white")
 
 #~ par(mfrow=c(length(river), 5), mar=c(4,4,2,4))
 
-par(mfrow=c(10, 4), mar=c(4,4,2,4))
+#~ par(mfrow=c(10, 4), mar=c(4,4,2,4))
+par(mfrow=c(10, 4))
+
 for (i_river in seq(1, 10, 1)){
 
 #~ # loop through all rivers to get model performances from all runs and their corresponding model parameters
@@ -95,5 +97,7 @@ plot(parameters$log_recession_coef , array(i_river, length(parameters$code)), ce
 plot(parameters$stor_cap           , array(i_river, length(parameters$code)), cex = kge_2009 * 2., axes = FALSE, ann=FALSE)
 
 }
+
+print(i_river)
 
 dev.off()
