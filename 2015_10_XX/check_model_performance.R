@@ -35,8 +35,21 @@ river = read.table(file_for_list_of_rivers, sep=";", header = T)
 river = river[which(river$num_of_month_pairs > 60), ]
 
 # sort river based on grdc catchment area 
-river[order(-river$grdc_catchment_area_in_km2),]
+river = river[order(-river$grdc_catchment_area_in_km2), ]
 
+# make a dictionary for all rivers with keys = river_name
+river_list = vector(mode = "list", length = length(river$river_name)) 
+names(river_list) <- river$river_name
+
+
+# loop through all model runs
+for i_code in seq(1, length(parameters$code), 1) {
+
+# read model performance
+
+file_name_for_model_performance = 
+
+}
 
 
 # loop through all rivers to get model performances from all runs and their corresponding model parameters
