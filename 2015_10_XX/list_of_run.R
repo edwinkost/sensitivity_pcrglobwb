@@ -8,10 +8,10 @@ log_recession_coef  = seq(-1.0, 1.0, 0.5)
 stor_cap            = seq( 0.5, 1.5, 0.25)
 
 # parameter lists (add)
-min_soil_depth_frac = seq( 0.5, 1.5, 0.5)
+min_soil_depth_frac = seq( 0.5, 1.5, 0.25)
 log_ksat            = seq(-1.0, 1.0, 0.25)	
 log_recession_coef  = seq(-1.0, 1.0, 0.5)	
-stor_cap            = seq( 0.5, 1.5, 0.125)
+stor_cap            = seq( 0.5, 1.5, 0.25)
 
 # output folder name and numbering
 general_output_folder_name = 'code__a__'
