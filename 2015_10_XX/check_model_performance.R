@@ -1,7 +1,5 @@
 
-# main path
-main_path = "~/github/edwinkost/sensitivity_pcrglobwb/2015_10_XX/summary_0to404/summary_"
-
+require(ggplot2)
 
 ########################################################################################################################
 # list of parameters
@@ -11,6 +9,7 @@ parameters = rbind(parameters, read.table("../table_05_october_2015_cartesius.tx
 parameters = rbind(parameters, read.table("../table_06_october_2015_cartesius_and_speedy_rapid.txt", header=T)[1:5])
 parameters = rbind(parameters, read.table("../table_08_october_2015_cartesius.txt", header=T)[1:5])
 parameters = rbind(parameters, read.table("../table_12_october_2015_cartesius.txt", header=T)[1:5])
+parameters = rbind(parameters, read.table("../table_14_october_2015_cartesius.txt", header=T)[1:5])
 
 # the first column is character
 parameters[,1] = as.character(parameters[,1])
@@ -26,43 +25,32 @@ parameters[,1] <- as.character(parameters[,1])
 parameters[,2:ncol(parameters)] <- lapply(parameters[,2:ncol(parameters)], as.numeric)
 ########################################################################################################################
 
+# packages needed and clear all available existing objects:
+require('ggplot2');require('RColorBrewer');require(scales)
+rm(list=ls()); # ls()
+
+# main path for the summary folder
+main_path = "/scratch-shared/edwin/sensitivity_analysis/2015_10_XX/"
 
 # get the list of all rivers/stations used
-file_for_list_of_rivers = "/scratch-shared/edwin/sensitivity_analysis/2015_10_XX/code__a__0/analysis/calibration/monthly_discharge/summary.txt"
+file_for_list_of_rivers = paste(main_path, "code__a__", as.character(0), "/analysis/monthly_discharge/summary.txt", sep = "")
 river = read.table(file_for_list_of_rivers, sep=";", header = T)
 
-# select rivers with number of months > 60
-river = river[which(river$num_of_month_pairs > 60), ]
+# select rivers with number of months > 12
+river = river[which(river$num_of_month_pairs > 12), ]
 
-# sort river based on grdc catchment area 
-river = river[order(-river$grdc_catchment_area_in_km2), ]
-
-# make a dictionary for all rivers with keys = river_name
-river_list = vector(mode = "list", length = length(river$river_name)) 
-names(river_list) <- river$river_name
-
-
-# loop through all model runs
-for i_code in seq(1, length(parameters$code), 1) {
-
-# read model performance
-
-file_name_for_model_performance = 
-
-}
+# sort river based on grdc catchment area and use only the river name
+river = as.character(river$river_name[order(-river$grdc_catchment_area_in_km2)])
 
 
 # loop through all rivers to get model performances from all runs and their corresponding model parameters
 for i_river in seq(1, length(river$name, 1)){
 
-# model parameters and model performance indicators
+print()
+print(i_river)
+print()
 
-min_soil_depth_frac = array(NA, length(parameters$code))
-log_ksat            = array(NA, length(parameters$code))
-log_recession_coef  = array(NA, length(parameters$code))
-stor_cap            = array(NA, length(parameters$code))
-
-# 
+# initiate model performance indicators (all NA)
 ns_eff   = array(NA, length(parameters$code))
 ns_log   = array(NA, length(parameters$code))
 kge_2009 = array(NA, length(parameters$code))
@@ -70,35 +58,46 @@ kge_2012 = array(NA, length(parameters$code))
 R2       = array(NA, length(parameters$code))
 
 # loop through all model runs
-for i_code in seq(1, ) {
+for (i_code in seq(1, length(parameters$code), 1)) {
 
-# model parameters
-min_soil_depth_frac = parameters$min_soil_depth_frac[i_code]
-log_ksat            = parameters$log_ksat[i_code]          
-log_recession_coef  = parameters$log_recession_coef[i_code]
-stor_cap            = parameters$stor_cap[i_code]          
+# open/read file 
+file_name = paste(main_path, "code__a__", as.character(i_code-1), "/analysis/monthly_discharge/summary.txt", sep = "")
+print(file_name)
+performance_table = read.table(file_name, sep=";", header = T)
 
-# open/read parameter 
-file_for_list_of_rivers = "/scratch-shared/edwin/sensitivity_analysis/2015_10_XX/code__a__0/analysis/calibration/monthly_discharge/summary.txt"
-river = read.table(file_for_list_of_rivers, sep=";", header = T)
- 
+# model performance indicators
+ns_eff[i_code]   = performance_table$ns_efficiency[which(performance_table$river_name == river[i_river])]
+ns_log[i_code]   = performance_table$ns_efficiency_log[which(performance_table$river_name == river[i_river])]
+kge_2009[i_code] = performance_table$kge_2009[which(performance_table$river_name == river[i_river])]
+kge_2012[i_code] = performance_table$kge_2012[which(performance_table$river_name == river[i_river])]
+R2[i_code]       = performance_table$R2[which(performance_table$river_name == river[i_river])]
 
-
-
-
-ns_eff   = array(NA, length(parameters$code))
-ns_log   = array(NA, length(parameters$code))
-kge_2009 = array(NA, length(parameters$code))
-kge_2012 = array(NA, length(parameters$code))
-R2       = array(NA, length(parameters$code))
-
-# add to existing data frame
-
-
+# set minimum value of model performance indicator
+ns_eff[i_code][which(ns_eff[i_code] < 0.0)] = 0.0
+ns_log[i_code][which(ns_log[i_code] < 0.0)] = 0.0
+kge_2009[i_code][which(kge_2009[i_code] < 0.0)] = 0.0
+kge_2012[i_code][which(kge_2012[i_code] < 0.0)] = 0.0
+R2[i_code][which(R2[i_code] < 0.0)] = 0.0      
 
 }
 
-# plot for every indicator
+# plot using ggplot2
+plot_table = data.frame(parameters$min_soil_depth_frac, parameters$log_ksat, parameters$log_recession_coef, parameters$stor_cap, ns_eff, ns_log, kge_2009, kge_2012, R2, array(i_river, length(parameters$code)))
+names(plot_table)[1]  <- "min_soil_depth_frac"
+names(plot_table)[2]  <- "log_ksat"
+names(plot_table)[3]  <- "log_recession_coef"
+names(plot_table)[4]  <- "stor_cap"
+names(plot_table)[5]  <- "ns_eff"
+names(plot_table)[6]  <- "ns_log"
+names(plot_table)[7]  <- "kge_2009"
+names(plot_table)[8]  <- "kge_2012"
+names(plot_table)[9]  <- "R2"
+names(plot_table)[10] <- "i_river"
+
+
+qplot(log_ksat, i_river, data = plot_table, size = R2) ; dev.off()
+ 
+
 
 
 }
