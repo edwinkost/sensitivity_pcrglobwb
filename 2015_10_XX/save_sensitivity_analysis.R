@@ -1,6 +1,6 @@
 
 # main path
-main_path = "~/github/edwinkost/sensitivity_pcrglobwb/2015_10_XX/summary_0to404/summary_"
+main_path = "~/github/edwinkost/sensitivity_pcrglobwb/2015_10_XX/summary_0to674/summary_"
 
 
 ########################################################################################################################
