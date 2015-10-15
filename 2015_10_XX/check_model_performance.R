@@ -43,7 +43,7 @@ river = as.character(river$river_name[order(-river$grdc_catchment_area_in_km2)])
 
 
 # make scatter plots
-pdf("0Rtest.pdf", width=10, height=12, bg = "white")
+pdf("0Rtest.pdf", width=5, height=12, bg = "white")
 
 #~ par(mfrow=c(length(river), 5), mar=c(4,4,2,4))
 
