@@ -1,0 +1,2 @@
+args <- commandArgs()
+print(args)

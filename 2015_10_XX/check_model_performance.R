@@ -29,8 +29,66 @@ parameters[,2:ncol(parameters)] <- lapply(parameters[,2:ncol(parameters)], as.nu
 
 # get the list of all rivers/stations used
 file_for_list_of_rivers = "/scratch-shared/edwin/sensitivity_analysis/2015_10_XX/code__a__0/analysis/calibration/monthly_discharge/summary.txt"
-list_of_rivers = read.table(file_for_list_of_rivers, sep=";", header = T)
+river = read.table(file_for_list_of_rivers, sep=";", header = T)
 
+# select rivers with number of months > 60
+river = river[which(river$num_of_month_pairs > 60), ]
+
+# sort river based on grdc catchment area 
+river[order(-river$grdc_catchment_area_in_km2),]
+
+
+
+# loop through all rivers to get model performances from all runs and their corresponding model parameters
+for i_river in seq(1, length(river$name, 1)){
+
+# model parameters and model performance indicators
+
+min_soil_depth_frac = array(NA, length(parameters$code))
+log_ksat            = array(NA, length(parameters$code))
+log_recession_coef  = array(NA, length(parameters$code))
+stor_cap            = array(NA, length(parameters$code))
+
+# 
+ns_eff   = array(NA, length(parameters$code))
+ns_log   = array(NA, length(parameters$code))
+kge_2009 = array(NA, length(parameters$code))
+kge_2012 = array(NA, length(parameters$code))
+R2       = array(NA, length(parameters$code))
+
+# loop through all model runs
+for i_code in seq(1, ) {
+
+# model parameters
+min_soil_depth_frac = parameters$min_soil_depth_frac[i_code]
+log_ksat            = parameters$log_ksat[i_code]          
+log_recession_coef  = parameters$log_recession_coef[i_code]
+stor_cap            = parameters$stor_cap[i_code]          
+
+# open/read parameter 
+file_for_list_of_rivers = "/scratch-shared/edwin/sensitivity_analysis/2015_10_XX/code__a__0/analysis/calibration/monthly_discharge/summary.txt"
+river = read.table(file_for_list_of_rivers, sep=";", header = T)
+ 
+
+
+
+
+ns_eff   = array(NA, length(parameters$code))
+ns_log   = array(NA, length(parameters$code))
+kge_2009 = array(NA, length(parameters$code))
+kge_2012 = array(NA, length(parameters$code))
+R2       = array(NA, length(parameters$code))
+
+# add to existing data frame
+
+
+
+}
+
+# plot for every indicator
+
+
+}
 
 
 
