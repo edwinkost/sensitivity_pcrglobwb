@@ -47,9 +47,9 @@ pdf("0Rtest.pdf", width=10, height=12, bg = "white")
 
 #~ par(mfrow=c(length(river), 5), mar=c(4,4,2,4))
 
-par(mfrow=c(10, 4), mar=c(0,0,0,0))
+par(mfrow=c(5, 4), mar=c(0,0,0,0))
 
-for (i_river in seq(1, 10, 1)){
+for (i_river in seq(1, 5, 1)){
 
 #~ # loop through all rivers to get model performances from all runs and their corresponding model parameters
 #~ for (i_river in seq(1, length(river), 1)) {
@@ -90,10 +90,10 @@ R2[i_code][which(R2[i_code] < 0.0)] = 0.0
 
 }
 
-plot(parameters$min_soil_depth_frac, array(i_river, length(parameters$code)), cex = kge_2009 * 2., axes = FALSE, ann=FALSE)
-plot(parameters$log_ksat           , array(i_river, length(parameters$code)), cex = kge_2009 * 2., axes = FALSE, ann=FALSE)
-plot(parameters$log_recession_coef , array(i_river, length(parameters$code)), cex = kge_2009 * 2., axes = FALSE, ann=FALSE)
-plot(parameters$stor_cap           , array(i_river, length(parameters$code)), cex = kge_2009 * 2., axes = FALSE, ann=FALSE)
+plot(parameters$min_soil_depth_frac, array(i_river, length(parameters$code)), cex = kge_2009 * 2., ann=FALSE)
+plot(parameters$log_ksat           , array(i_river, length(parameters$code)), cex = kge_2009 * 2., ann=FALSE)
+plot(parameters$log_recession_coef , array(i_river, length(parameters$code)), cex = kge_2009 * 2., ann=FALSE)
+plot(parameters$stor_cap           , array(i_river, length(parameters$code)), cex = kge_2009 * 2., ann=FALSE)
 
 }
 
