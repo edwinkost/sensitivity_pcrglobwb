@@ -85,26 +85,25 @@ R2[i_code][which(R2[i_code] < 0.0)] = 0.0
 
 }
 
-# plot using ggplot2
-plot_table = data.frame(parameters$min_soil_depth_frac, parameters$log_ksat, parameters$log_recession_coef, parameters$stor_cap, ns_eff, ns_log, kge_2009, kge_2012, R2, array(i_river, length(parameters$code)))
-names(plot_table)[1]  <- "min_soil_depth_frac"
-names(plot_table)[2]  <- "log_ksat"
-names(plot_table)[3]  <- "log_recession_coef"
-names(plot_table)[4]  <- "stor_cap"
-names(plot_table)[5]  <- "ns_eff"
-names(plot_table)[6]  <- "ns_log"
-names(plot_table)[7]  <- "kge_2009"
-names(plot_table)[8]  <- "kge_2012"
-names(plot_table)[9]  <- "R2"
-names(plot_table)[10] <- "i_river"
-
-
-qplot(log_ksat, i_river, data = plot_table, size = ns_eff*1) + 
-scale_size_area(limits = c(0, 1), breaks = seq(0,1,0.1), max_size = 10) + 
-scale_y_continuous(limits = c(i_river - 0.01, i_river + 0.01), breaks = seq(i_river-1,i_river+1,1))
+#~ # plot using ggplot2
+#~ plot_table = data.frame(parameters$min_soil_depth_frac, parameters$log_ksat, parameters$log_recession_coef, parameters$stor_cap, ns_eff, ns_log, kge_2009, kge_2012, R2, array(i_river, length(parameters$code)))
+#~ names(plot_table)[1]  <- "min_soil_depth_frac"
+#~ names(plot_table)[2]  <- "log_ksat"
+#~ names(plot_table)[3]  <- "log_recession_coef"
+#~ names(plot_table)[4]  <- "stor_cap"
+#~ names(plot_table)[5]  <- "ns_eff"
+#~ names(plot_table)[6]  <- "ns_log"
+#~ names(plot_table)[7]  <- "kge_2009"
+#~ names(plot_table)[8]  <- "kge_2012"
+#~ names(plot_table)[9]  <- "R2"
+#~ names(plot_table)[10] <- "i_river"
+#~ 
+#~ 
+#~ qplot(log_ksat, i_river, data = plot_table, size = ns_eff*1) + 
+#~ scale_size_area(limits = c(0, 1), breaks = seq(0,1,0.1), max_size = 10) + 
+#~ scale_y_continuous(limits = c(i_river - 0.01, i_river + 0.01), breaks = seq(i_river-1,i_river+1,1))
  
-
-
+plot(parameters$log_ksat, array(i_river, length(parameters$code)), cex = ns_eff * 10.)
 
 }
 
