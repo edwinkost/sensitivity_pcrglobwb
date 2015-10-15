@@ -11,6 +11,7 @@ parameters = rbind(parameters, read.table("../table_05_october_2015_cartesius.tx
 parameters = rbind(parameters, read.table("../table_06_october_2015_cartesius_and_speedy_rapid.txt", header=T)[1:5])
 parameters = rbind(parameters, read.table("../table_08_october_2015_cartesius.txt", header=T)[1:5])
 parameters = rbind(parameters, read.table("../table_12_october_2015_cartesius.txt", header=T)[1:5])
+parameters = rbind(parameters, read.table("../table_14_october_2015_cartesius.txt", header=T)[1:5])
 
 # the first column is character
 parameters[,1] = as.character(parameters[,1])
@@ -31,7 +32,7 @@ parameters[,2:ncol(parameters)] <- lapply(parameters[,2:ncol(parameters)], as.nu
 # make table of average values 
 average_values = data.frame()
 
-for( i_run in seq(0,404,1)) {
+for( i_run in seq(0,674,1)) {
 
 # open the log_summary file
 file_name = paste(main_path , as.character(i_run), ".sum", sep = "")
