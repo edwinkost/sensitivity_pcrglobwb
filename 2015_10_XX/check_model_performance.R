@@ -1,5 +1,8 @@
 
-require(ggplot2)
+# packages needed and clear all available existing objects:
+require('ggplot2');require('RColorBrewer');require(scales)
+rm(list=ls()); # ls()
+
 
 ########################################################################################################################
 # list of parameters
@@ -24,10 +27,6 @@ names(parameters)[1] <- "code"
 parameters[,1] <- as.character(parameters[,1])
 parameters[,2:ncol(parameters)] <- lapply(parameters[,2:ncol(parameters)], as.numeric)
 ########################################################################################################################
-
-# packages needed and clear all available existing objects:
-require('ggplot2');require('RColorBrewer');require(scales)
-rm(list=ls()); # ls()
 
 # main path for the summary folder
 main_path = "/scratch-shared/edwin/sensitivity_analysis/2015_10_XX/"
