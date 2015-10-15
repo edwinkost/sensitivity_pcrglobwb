@@ -95,7 +95,7 @@ names(plot_table)[9]  <- "R2"
 names(plot_table)[10] <- "i_river"
 
 
-qplot(log_ksat, i_river, data = plot_table, size = R2) ; dev.off()
+qplot(log_ksat, i_river, data = plot_table, size = ns_eff*1) + scale_size(range = c(0,10)); dev.off()
  
 
 
