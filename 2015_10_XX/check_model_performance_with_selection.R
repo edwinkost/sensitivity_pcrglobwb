@@ -142,7 +142,7 @@ R2[i_code][which(R2[i_code] < 0.0)] = 0.0
 
 in_criteria = TRUE
 
-# if (!(parameters$log_ksat[i_code] %in% c(-0.5, 0.25))) {in_criteria = FALSE}
+if (!(parameters$log_ksat[i_code] %in% c(-0.5, -0.25))) {in_criteria = FALSE}
 
 if (parameters$avg_runoff[i_code] < 35000) {in_criteria = FALSE}
 if (parameters$avg_runoff[i_code] > 50000) {in_criteria = FALSE}
