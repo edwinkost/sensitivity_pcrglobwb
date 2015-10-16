@@ -70,8 +70,9 @@ average_values[,2:ncol(average_values)] <- lapply(average_values[,2:ncol(average
 average_values[,2:ncol(average_values)] <- lapply(average_values[,2:ncol(average_values)], as.numeric)
 ########################################################################################################################
 
-# merge two data frame
+# merge two data frames
 table = merge(parameters, average_values, by = "code")
+
 
 # value for the reference run
 evaporation_ref = table$avg_evaporation[which(table$code == "code__a__0")]
