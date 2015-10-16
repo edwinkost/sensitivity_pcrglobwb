@@ -149,7 +149,7 @@ if (as.numeric(parameters$avg_runoff[i_code]) > 50000) {in_criteria = FALSE}
 if (parameters$avg_baseflow[i_code] < 15000) {in_criteria = FALSE}
 if (parameters$avg_baseflow[i_code] > 35000) {in_criteria = FALSE}
 
-if (in_criteria == TRUE) {
+if (in_criteria == FALSE) {
 
 ns_eff[i_code] = 0.0
 ns_log[i_code] = 0.0
