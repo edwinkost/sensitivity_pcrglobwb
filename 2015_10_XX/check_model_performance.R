@@ -43,9 +43,9 @@ river = as.character(river$river_name[order(-river$grdc_catchment_area_in_km2)])
 
 
 # make scatter plots
-pdf("0Rtest.pdf", width=30, height=70, bg = "white")
+pdf("0Rtest.pdf", width=30, height=1.2*length(river), bg = "white")
 
-par(mfrow=c(length(river), 4), mar=c(1,10,1,1))
+par(mfrow=c(length(river), 4), mar=c(1,1,1,1))
 
 #~ # loop through all rivers to get model performances from all runs and their corresponding model parameters
 for (i_river in seq(1, length(river), 1)) {
@@ -87,7 +87,7 @@ R2[i_code][which(R2[i_code] < 0.0)] = 0.0
 }
 
 plot(parameters$min_soil_depth_frac, array(i_river, length(parameters$code)), cex = ns_eff * 7., yaxt = 'n', ylab = substr(as.character(river[i_river]), 1, 5), ylim = c(i_river - 0.5, i_river + 0.5))
-text(min(parameters$min_soil_depth_frac), i_river + 0.5, labels = substr(as.character(river[i_river]), 1, 5), cex = 2)
+text(mean(parameters$min_soil_depth_frac), i_river + 0.25, labels = as.character(river[i_river]), cex = 2.5)
 plot(parameters$log_ksat           , array(i_river, length(parameters$code)), cex = ns_eff * 7., yaxt = 'n', ylab = "")
 plot(parameters$log_recession_coef , array(i_river, length(parameters$code)), cex = ns_eff * 7., yaxt = 'n', ylab = "")
 plot(parameters$stor_cap           , array(i_river, length(parameters$code)), cex = ns_eff * 7., yaxt = 'n', ylab = "")
