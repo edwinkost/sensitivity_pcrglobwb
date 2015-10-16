@@ -202,6 +202,12 @@ dev.off()
 # make scatter plots
 table = parameters
 
+# value for the reference run
+evaporation_ref = table$avg_evaporation[which(table$code == "code__a__0")]
+runoff_ref      = table$avg_runoff[which(table$code == "code__a__0")]
+baseflow_ref    = table$avg_baseflow[which(table$code == "code__a__0")]
+recharge_ref    = table$avg_groundwater_recharge[which(table$code == "code__a__0")]
+
 pdf("scatter_plot.pdf", width=10, height=12, bg = "white")
 par(mfrow=c(4,4), mar=c(4,4,2,4))
 
