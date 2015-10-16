@@ -90,7 +90,7 @@ R2[i_code][which(R2[i_code] < 0.0)] = 0.0
 
 }
 
-plot(parameters$min_soil_depth_frac, array(i_river, length(parameters$code)), cex = ns_eff * 5., yaxt = 'n', ylab = as.character(river[i_river])
+plot(parameters$min_soil_depth_frac, array(i_river, length(parameters$code)), cex = ns_eff * 5., yaxt = 'n', ylab = as.character(river[i_river]))
 plot(parameters$log_ksat           , array(i_river, length(parameters$code)), cex = ns_eff * 5., yaxt = 'n', ylab = "")
 plot(parameters$log_recession_coef , array(i_river, length(parameters$code)), cex = ns_eff * 5., yaxt = 'n', ylab = "")
 plot(parameters$stor_cap           , array(i_river, length(parameters$code)), cex = ns_eff * 5., yaxt = 'n', ylab = "")
