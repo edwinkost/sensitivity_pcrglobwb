@@ -101,8 +101,8 @@ pdf("ns_eff.pdf", width=30, height=1.2*length(river), bg = "white")
 par(mfrow=c(length(river), 4), mar=c(1,1,1,1))
 
 #~ # loop through all rivers to get model performances from all runs and their corresponding model parameters
-#~ for (i_river in seq(1, length(river), 1)) {
-for (i_river in seq(1, 5, 1)) {
+for (i_river in seq(1, length(river), 1)) {
+#~ for (i_river in seq(1, 5, 1)) {
 
 
 print("")
@@ -147,7 +147,7 @@ if (as.numeric(parameters$avg_runoff[i_code]) < 35000) {in_criteria = FALSE}
 if (as.numeric(parameters$avg_runoff[i_code]) > 50000) {in_criteria = FALSE}
 
 if (parameters$avg_baseflow[i_code] < 15000) {in_criteria = FALSE}
-if (parameters$avg_baseflow[i_code] > 35000) {in_criteria = FALSE}
+if (parameters$avg_baseflow[i_code] > 25000) {in_criteria = FALSE}
 
 if (in_criteria == FALSE) {
 
