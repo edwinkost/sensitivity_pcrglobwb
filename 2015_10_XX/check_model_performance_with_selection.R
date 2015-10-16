@@ -148,7 +148,7 @@ if (parameters$avg_runoff[i_code] < 35000) {in_criteria = FALSE}
 if (parameters$avg_runoff[i_code] > 50000) {in_criteria = FALSE}
 
 if (parameters$avg_baseflow[i_code] < 15000) {in_criteria = FALSE}
-if (parameters$avg_baseflow[i_code] > 25000) {in_criteria = FALSE}
+if (parameters$avg_baseflow[i_code] > 35000) {in_criteria = FALSE}
 
 if (in_criteria == TRUE) {
 
