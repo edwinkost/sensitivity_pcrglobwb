@@ -197,3 +197,50 @@ plot(parameters$stor_cap           , array(i_river, length(parameters$code)), ce
 print(i_river)
 
 dev.off()
+
+########################################################################################################################
+# make scatter plots
+table = parameters
+
+pdf("scatter_plot.pdf", width=10, height=12, bg = "white")
+par(mfrow=c(4,4), mar=c(4,4,2,4))
+
+plot(table$min_soil_depth_frac, table$avg_evaporation)
+abline(h = evaporation_ref)
+plot(table$log_ksat           , table$avg_evaporation)
+abline(h = evaporation_ref)
+plot(table$log_recession_coef , table$avg_evaporation)
+abline(h = evaporation_ref)
+plot(table$stor_cap           , table$avg_evaporation)
+abline(h = evaporation_ref)
+
+plot(table$min_soil_depth_frac, table$avg_runoff)
+abline(h = runoff_ref)
+plot(table$log_ksat           , table$avg_runoff)
+abline(h = runoff_ref)
+plot(table$log_recession_coef , table$avg_runoff)
+abline(h = runoff_ref)
+plot(table$stor_cap           , table$avg_runoff)
+abline(h = runoff_ref)
+
+plot(table$min_soil_depth_frac, table$avg_baseflow)
+abline(h = baseflow_ref)
+plot(table$log_ksat           , table$avg_baseflow)
+abline(h = baseflow_ref)
+plot(table$log_recession_coef , table$avg_baseflow)
+abline(h = baseflow_ref)
+plot(table$stor_cap           , table$avg_baseflow)
+abline(h = baseflow_ref)
+
+plot(table$min_soil_depth_frac, table$avg_groundwater_recharge)
+abline(h = recharge_ref)
+plot(table$log_ksat           , table$avg_groundwater_recharge)
+abline(h = recharge_ref)
+plot(table$log_recession_coef , table$avg_groundwater_recharge)
+abline(h = recharge_ref)
+plot(table$stor_cap           , table$avg_groundwater_recharge)
+abline(h = recharge_ref)
+
+dev.off()
+########################################################################################################################
+
