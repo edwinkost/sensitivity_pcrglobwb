@@ -138,21 +138,28 @@ kge_2009[i_code][which(kge_2009[i_code] < 0.0)] = 0.0
 kge_2012[i_code][which(kge_2012[i_code] < 0.0)] = 0.0
 R2[i_code][which(R2[i_code] < 0.0)] = 0.0      
 
-}
 
 in_criteria = TRUE
 
-# if (!(parameters$log_ksat[i_code] %in% c(-0.5, -0.25))) {in_criteria = FALSE}
-
-print(as.numeric(parameters$avg_runoff[i_code])) 
+if (!(parameters$log_ksat[i_code] %in% c(-0.5, -0.25))) {in_criteria = FALSE}
 
 if (as.numeric(parameters$avg_runoff[i_code]) < 35000) {in_criteria = FALSE}
-#~ if (as.numeric(parameters$avg_runoff[i_code]) > 50000) {in_criteria = FALSE}
+if (as.numeric(parameters$avg_runoff[i_code]) > 50000) {in_criteria = FALSE}
 
-#~ if (parameters$avg_baseflow[i_code] < 15000) {in_criteria = FALSE}
-#~ if (parameters$avg_baseflow[i_code] > 35000) {in_criteria = FALSE}
+if (parameters$avg_baseflow[i_code] < 15000) {in_criteria = FALSE}
+if (parameters$avg_baseflow[i_code] > 35000) {in_criteria = FALSE}
 
 if (in_criteria == TRUE) {
+
+ns_eff[i_code] = 0.0
+ns_log[i_code] = 0.0
+kge_2009[i_code] = 0.0
+kge_2012[i_code] = 0.0
+R2[i_code] = 0.0      
+
+}
+
+}
 
 plot(parameters$min_soil_depth_frac, array(i_river, length(parameters$code)), cex = ns_eff * 7., yaxt = 'n', ylab = substr(as.character(river[i_river]), 1, 5), ylim = c(i_river - 0.5, i_river + 0.5))
 text(mean(parameters$min_soil_depth_frac), i_river + 0.25, labels = as.character(river[i_river]), cex = 2.5)
@@ -184,7 +191,6 @@ plot(parameters$stor_cap           , array(i_river, length(parameters$code)), ce
 #~ plot(parameters$log_recession_coef , array(i_river, length(parameters$code)), cex = R2 * 7., yaxt = 'n', ylab = "")
 #~ plot(parameters$stor_cap           , array(i_river, length(parameters$code)), cex = R2 * 7., yaxt = 'n', ylab = "")
 
-}
 
 }
 
