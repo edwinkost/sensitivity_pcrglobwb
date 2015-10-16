@@ -90,10 +90,10 @@ R2[i_code][which(R2[i_code] < 0.0)] = 0.0
 
 }
 
-plot(parameters$min_soil_depth_frac, array(as.character(river[i_river]), length(parameters$code)), cex = ns_eff * 5.)
-plot(parameters$log_ksat           , array(as.character(river[i_river]), length(parameters$code)), cex = ns_eff * 5.)
-plot(parameters$log_recession_coef , array(as.character(river[i_river]), length(parameters$code)), cex = ns_eff * 5.)
-plot(parameters$stor_cap           , array(as.character(river[i_river]), length(parameters$code)), cex = ns_eff * 5.)
+plot(parameters$min_soil_depth_frac, array(i_river, length(parameters$code)), cex = ns_eff * 5., xlab = as.character(river[i_river]), xlim = c(i_river-0.25, i_river+0.25), breaks = seq(i_river, i_river, 1))
+plot(parameters$log_ksat           , array(i_river, length(parameters$code)), cex = ns_eff * 5., xlab = as.character(river[i_river]), xlim = c(i_river-0.25, i_river+0.25), breaks = seq(i_river, i_river, 1))
+plot(parameters$log_recession_coef , array(i_river, length(parameters$code)), cex = ns_eff * 5., xlab = as.character(river[i_river]), xlim = c(i_river-0.25, i_river+0.25), breaks = seq(i_river, i_river, 1))
+plot(parameters$stor_cap           , array(i_river, length(parameters$code)), cex = ns_eff * 5., xlab = as.character(river[i_river]), xlim = c(i_river-0.25, i_river+0.25), breaks = seq(i_river, i_river, 1))
 
 }
 
