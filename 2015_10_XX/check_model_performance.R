@@ -42,11 +42,15 @@ river = river[which(river$num_of_month_pairs > 12), ]
 river = as.character(river$river_name[order(-river$grdc_catchment_area_in_km2)])
 
 
-pdf("0Rtest.pdf", width=30, height=1.2*length(river), bg = "white")
+#~ pdf("0Rtest.pdf", width=30, height=1.2*length(river), bg = "white")
+
+pdf("0Rtest.pdf", width=30, height=1.2*5, bg = "white")
+
 par(mfrow=c(length(river), 4), mar=c(1,1,1,1))
 
 # loop through all rivers to get model performances from all runs and their corresponding model parameters
-for (i_river in seq(1, length(river), 1)) {
+#for (i_river in seq(1, length(river), 1)) {
+for (i_river in seq(1, 5, 1)) {
 
 
 print("")
@@ -115,11 +119,11 @@ R2[i_code][which(R2[i_code] < 0.0)] = 0.0
 #~ plot(parameters$stor_cap           , array(i_river, length(parameters$code)), cex = R2 * 7., yaxt = 'n', ylab = "")
 
 
-symbols(parameters$min_soil_depth_frac, array(i_river, length(parameters$code)), circles = kge_2009 * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), bg=NULL, fg="black")
+symbols(parameters$min_soil_depth_frac, array(i_river, length(parameters$code)), circles = kge_2009 * 1., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), bg=NULL, fg="black")
 text(mean(parameters$min_soil_depth_frac), i_river + 0.25, labels = as.character(river[i_river]), cex = 2.5)
-symbols(parameters$log_ksat           , array(i_river, length(parameters$code)), circles = kge_2009 * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), bg=NULL, fg="black")
-symbols(parameters$log_recession_coef , array(i_river, length(parameters$code)), circles = kge_2009 * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), bg=NULL, fg="black")
-symbols(parameters$stor_cap           , array(i_river, length(parameters$code)), circles = kge_2009 * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), bg=NULL, fg="black")
+symbols(parameters$log_ksat           , array(i_river, length(parameters$code)), circles = kge_2009 * 1., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), bg=NULL, fg="black")
+symbols(parameters$log_recession_coef , array(i_river, length(parameters$code)), circles = kge_2009 * 1., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), bg=NULL, fg="black")
+symbols(parameters$stor_cap           , array(i_river, length(parameters$code)), circles = kge_2009 * 1., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), bg=NULL, fg="black")
 
 
 }
