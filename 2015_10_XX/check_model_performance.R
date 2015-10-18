@@ -42,7 +42,7 @@ river = river[which(river$num_of_month_pairs > 12), ]
 river = as.character(river$river_name[order(-river$grdc_catchment_area_in_km2)])
 
 
-pdf("0Rtest.pdf", width=30, height=1.2*length(river), bg = "white")
+pdf("0Rtest.pdf", width=150, height=5*length(river), bg = "white")
 
 #~ pdf("0Rtest.pdf", width=30, height=1.2*5, bg = "white")
 
