@@ -115,11 +115,11 @@ R2[i_code][which(R2[i_code] < 0.0)] = 0.0
 #~ plot(parameters$stor_cap           , array(i_river, length(parameters$code)), cex = R2 * 7., yaxt = 'n', ylab = "")
 
 
-symbols(parameters$min_soil_depth_frac, array(i_river, length(parameters$code)), circles = kge_2009 * 7., yaxt = 'n', ylab = substr(as.character(river[i_river]), 1, 5), ylim = c(i_river - 0.5, i_river + 0.5), bg=NULL, fg="black")
+symbols(parameters$min_soil_depth_frac, array(i_river, length(parameters$code)), circles = kge_2009 * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), bg=NULL, fg="black")
 text(mean(parameters$min_soil_depth_frac), i_river + 0.25, labels = as.character(river[i_river]), cex = 2.5)
-symbols(parameters$log_ksat           , array(i_river, length(parameters$code)), cex = kge_2009 * 7., yaxt = 'n', ylab = "", bg=NULL, fg="black")
-symbols(parameters$log_recession_coef , array(i_river, length(parameters$code)), cex = kge_2009 * 7., yaxt = 'n', ylab = "", bg=NULL, fg="black")
-symbols(parameters$stor_cap           , array(i_river, length(parameters$code)), cex = kge_2009 * 7., yaxt = 'n', ylab = "", bg=NULL, fg="black")
+symbols(parameters$log_ksat           , array(i_river, length(parameters$code)), circles = kge_2009 * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), bg=NULL, fg="black")
+symbols(parameters$log_recession_coef , array(i_river, length(parameters$code)), circles = kge_2009 * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), bg=NULL, fg="black")
+symbols(parameters$stor_cap           , array(i_river, length(parameters$code)), circles = kge_2009 * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), bg=NULL, fg="black")
 
 
 }
