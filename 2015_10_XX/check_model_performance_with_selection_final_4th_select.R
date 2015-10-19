@@ -119,7 +119,7 @@ parameters = parameters[which(parameters$log_ksat == -0.50), ]
 parameters = parameters[which(parameters$stor_cap >= 1.00), ]
 
 # stor_cap should be 1.25
-parameters = parameters[which(parameters$stor_cap >= 1.25), ]
+parameters = parameters[which(parameters$stor_cap == 1.25), ]
 
 #~ # min_soil_depth_frac should be 0.75
 #~ parameters = parameters[which(parameters$min_soil_depth_frac == 0.75), ]
