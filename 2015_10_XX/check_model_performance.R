@@ -42,7 +42,7 @@ river = river[which(river$num_of_month_pairs > 12), ]
 river = as.character(river$river_name[order(-river$grdc_catchment_area_in_km2)])
 
 
-pdf("0Rtest.pdf", width = 30, height=length(river), bg = "white")
+pdf("0Rtest.pdf", width = 15, height = 1.25 * length(river), bg = "white")
 par(mfrow=c(length(river), 4), mar=c(1,1,1,1))
 
 # loop through all rivers to get model performances from all runs and their corresponding model parameters
@@ -123,11 +123,11 @@ R2[i_code][which(R2[i_code] < 0.0)] = 0.0
 #~ symbols(parameters$stor_cap           , array(i_river, length(parameters$code)), circles = kge_2009, yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), bg=NULL, fg="black")
 
 
-plot(parameters$min_soil_depth_frac, kge_2009, ylab = "", ylim = c(0, 1.5), bg=NULL, fg="black")
-text(mean(parameters$min_soil_depth_frac), 1.25, labels = as.character(river[i_river]), cex = 1.5)
-plot(parameters$log_ksat           , kge_2009, ylab = "", ylim = c(0, 1.5), bg=NULL, fg="black")
-plot(parameters$log_recession_coef , kge_2009, ylab = "", ylim = c(0, 1.5), bg=NULL, fg="black")
-plot(parameters$stor_cap           , kge_2009, ylab = "", ylim = c(0, 1.5), bg=NULL, fg="black")
+plot(parameters$min_soil_depth_frac, ns_eff, ylab = "", ylim = c(0, 1), bg=NULL, fg="black")
+text(mean(parameters$min_soil_depth_frac), 1, labels = as.character(river[i_river]), cex = 2.)
+plot(parameters$log_ksat           , ns_eff, ylab = "", ylim = c(0, 1), bg=NULL, fg="black")
+plot(parameters$log_recession_coef , ns_eff, ylab = "", ylim = c(0, 1), bg=NULL, fg="black")
+plot(parameters$stor_cap           , ns_eff, ylab = "", ylim = c(0, 1), bg=NULL, fg="black")
 
 
 }
