@@ -46,8 +46,8 @@ pdf("0Rtest.pdf", width=30, height=length(river), bg = "white")
 par(mfrow=c(length(river), 4), mar=c(1,1,1,1))
 
 # loop through all rivers to get model performances from all runs and their corresponding model parameters
-for (i_river in seq(1, length(river), 1)) {
-#for (i_river in seq(1, 5, 1)) {
+or (i_river in seq(1, length(river), 1)) {
+#~ for (i_river in seq(1, 5, 1)) {
 
 
 print("")
@@ -83,11 +83,11 @@ kge_2009[i_code][which(kge_2009[i_code] < 0.0)] = 0.0
 kge_2012[i_code][which(kge_2012[i_code] < 0.0)] = 0.0
 R2[i_code][which(R2[i_code] < 0.0)] = 0.0      
 
-ns_eff[i_code]   = 5 * ns_eff[i_code]  
-ns_log[i_code]   = 5 * ns_log[i_code]  
-kge_2009[i_code] = 5 * kge_2009[i_code]
-kge_2012[i_code] = 5 * kge_2012[i_code]
-R2[i_code]       = 5 * R2[i_code]      
+ns_eff[i_code]   = 0.2 * ns_eff[i_code]  
+ns_log[i_code]   = 0.2 * ns_log[i_code]  
+kge_2009[i_code] = 0.2 * kge_2009[i_code]
+kge_2012[i_code] = 0.2 * kge_2012[i_code]
+R2[i_code]       = 0.2 * R2[i_code]      
 
 }
 
@@ -123,7 +123,7 @@ R2[i_code]       = 5 * R2[i_code]
 
 
 symbols(parameters$min_soil_depth_frac, array(i_river, length(parameters$code)), circles = kge_2009, yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), bg=NULL, fg="black")
-text(mean(parameters$min_soil_depth_frac), i_river + 0.25, labels = as.character(river[i_river]), cex = 1.25)
+text(mean(parameters$min_soil_depth_frac), i_river + 0.25, labels = as.character(river[i_river]), cex = 1.5)
 symbols(parameters$log_ksat           , array(i_river, length(parameters$code)), circles = kge_2009, yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), bg=NULL, fg="black")
 symbols(parameters$log_recession_coef , array(i_river, length(parameters$code)), circles = kge_2009, yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), bg=NULL, fg="black")
 symbols(parameters$stor_cap           , array(i_river, length(parameters$code)), circles = kge_2009, yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), bg=NULL, fg="black")
