@@ -118,7 +118,7 @@ parameters = parameters[which(parameters$log_ksat == -0.50), ]
 # stor_cap should be at least 1.00
 parameters = parameters[which(parameters$stor_cap >= 1.00), ]
 
-# min_soil_depth_frac should be 0.75
+# min_soil_depth_frac should be at least 0.75
 parameters = parameters[which(parameters$min_soil_depth_frac == 0.75), ]
 
 #~ # log_recession_coef should be -0.50
