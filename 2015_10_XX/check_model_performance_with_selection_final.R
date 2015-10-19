@@ -183,7 +183,7 @@ river = as.character(river$river_name[order(-river$grdc_catchment_area_in_km2)])
 # loop through all model performances:
 performance_indi = c("ns_efficiency", "ns_efficiency_log", "kge_2009", "kge_2012", "R2")
 
-for (i_indi in seq(1, length(performance_indi), 1) {
+for (i_indi in seq(1, length(performance_indi), 1)) {
 
 performance_used = performance_indi[i_indi]
 performance_colm = which(names(performance_table) == performance_used)
