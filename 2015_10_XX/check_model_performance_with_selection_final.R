@@ -127,7 +127,7 @@ file_name = paste("scatter_plot_parameters_", file_name_selection, ".pdf", sep =
 pdf(file_name, width=10, height=12, bg = "white")
 par(mfrow=c(4,4), mar=c(4,4,2,4))
 
-plot(parameters$min_soil_depth_frac, parameters$avg_evaporation, xlim = c(0.5, 1.5), ylim = c(30000, 80000))
+plot(parameters$min_soil_depth_frac, parameters$avg_evaporation)
 abline(h = evaporation_ref)
 plot(parameters$log_ksat           , parameters$avg_evaporation, xlim = c(-1, 1), ylim = c(30000, 80000))
 abline(h = evaporation_ref)
