@@ -209,7 +209,7 @@ print(file_name)
 performance_table = read.table(file_name, sep=";", header = T)
 
 # model performance indicators
-indicator_value[[i_code] = performance_table[which(performance_table$river_name == river[i_river]), performance_colm]
+indicator_value[[i_code] = performance_table[which(performance_table$river_name == as.character(river[i_river])), performance_colm]
 
 # set minimum value of model performance indicator
 indicator_value[[i_code][which(indicator_value[[i_code] < 0.0)] = 0.0
