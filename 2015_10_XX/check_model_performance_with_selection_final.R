@@ -192,7 +192,7 @@ performance_colm = which(names(performance_table) == performance_used)
 file_name_indi = paste(performance_used, "_", file_name_selection, ".pdf", sep = "")
 
 pdf(file_name_indi, width = 30, height = 1.2 * length(river), bg = "white")
-par(mfrow=c(length(river), ), mar=c(1,1,1,1))
+par(mfrow=c(length(river), 4), mar=c(1,1,1,1))
 
 # loop through all rivers to get model performances from all runs and their corresponding model parameters
 #~ for (i_river in seq(1, length(river), 1)) {
