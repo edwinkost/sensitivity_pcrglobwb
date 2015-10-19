@@ -122,7 +122,7 @@ parameters = parameters[which(parameters$stor_cap >= 1.00), ]
 parameters = parameters[which(parameters$stor_cap == 1.25), ]
 
 # min_soil_depth_frac should be 1.25
-parameters = parameters[which(parameters$min_soil_depth_frac == 0.75), ]
+parameters = parameters[which(parameters$min_soil_depth_frac == 1.25), ]
 
 # log_recession_coef should be -1.00
 parameters = parameters[which(parameters$log_recession_coef == -1.00), ]
