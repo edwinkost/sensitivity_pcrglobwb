@@ -191,7 +191,7 @@ performance_colm = which(names(performance_table) == performance_used)
 
 file_name_indi = paste(performance_used, "_", file_name_selection, ".pdf", sep = "")
 
-pdf(file_name_indi, width = 20, height = 1.2 * length(river), bg = "white")
+pdf(file_name_indi, width = 16, height = 1.2 * length(river), bg = "white")
 par(mfrow=c(length(river), 4), mar=c(1,1,1,1))
 
 # loop through all rivers to get model performances from all runs and their corresponding model parameters
@@ -225,11 +225,11 @@ print("")
 
 }
 
-plot(c(parameters$min_soil_depth_frac, 10), array(i_river, length(parameters$code) + 1), cex = c(indicator_value, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c(min(parameters$min_soil_depth_frac), max(parameters$min_soil_depth_frac)))
+plot(c(parameters$min_soil_depth_frac, 10), array(i_river, length(parameters$code) + 1), cex = c(indicator_value, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c(-0.5, 1.5))
 text(mean(parameters$min_soil_depth_frac), i_river + 0.25, labels = as.character(river[i_river]), cex = 1.5)
-plot(c(parameters$log_ksat           , 10), array(i_river, length(parameters$code) + 1), cex = c(indicator_value, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c(min(parameters$log_ksat           ), max(parameters$log_ksat           )))
-plot(c(parameters$log_recession_coef , 10), array(i_river, length(parameters$code) + 1), cex = c(indicator_value, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c(min(parameters$log_recession_coef ), max(parameters$log_recession_coef )))
-plot(c(parameters$stor_cap           , 10), array(i_river, length(parameters$code) + 1), cex = c(indicator_value, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c(min(parameters$stor_cap           ), max(parameters$stor_cap           )))
+plot(c(parameters$log_ksat           , 10), array(i_river, length(parameters$code) + 1), cex = c(indicator_value, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c(-0.5, 1.5))
+plot(c(parameters$log_recession_coef , 10), array(i_river, length(parameters$code) + 1), cex = c(indicator_value, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c(-0.5, 1.5))
+plot(c(parameters$stor_cap           , 10), array(i_river, length(parameters$code) + 1), cex = c(indicator_value, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c(-0.5, 1.5))
 
 }
 
