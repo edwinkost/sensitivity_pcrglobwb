@@ -83,11 +83,11 @@ kge_2009[i_code][which(kge_2009[i_code] < 0.0)] = 0.0
 kge_2012[i_code][which(kge_2012[i_code] < 0.0)] = 0.0
 R2[i_code][which(R2[i_code] < 0.0)] = 0.0      
 
-ns_eff[i_code]   = 0.02 * ns_eff[i_code]  
-ns_log[i_code]   = 0.02 * ns_log[i_code]  
-kge_2009[i_code] = 0.02 * kge_2009[i_code]
-kge_2012[i_code] = 0.02 * kge_2012[i_code]
-R2[i_code]       = 0.02 * R2[i_code]      
+ns_eff[i_code]   = 0.0002 * ns_eff[i_code]  
+ns_log[i_code]   = 0.0002 * ns_log[i_code]  
+kge_2009[i_code] = 0.0002 * kge_2009[i_code]
+kge_2012[i_code] = 0.0002 * kge_2012[i_code]
+R2[i_code]       = 0.0002 * R2[i_code]      
 
 }
 
