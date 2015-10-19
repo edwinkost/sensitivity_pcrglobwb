@@ -92,11 +92,14 @@ recharge_ref    = parameters$avg_groundwater_recharge[which(parameters$code == "
 
 
 ########################################################################################################################
-with_selection = TRUE 
+with_selection = FALSE 
 file_name_selection = "no_selection"
 #
 if (with_selection == TRUE) {
 # make selection 
+
+# file name for this selection
+file_name_selection = "with_selection"
 
 # average runoff should be between 35000 and 50000 km3/year
 parameters = parameters[which(parameters$avg_runoff > 35000), ]
@@ -116,14 +119,12 @@ parameters = parameters[which(parameters$log_ksat <= -0.25), ]
 # log_recession_coef should be -0.50
 parameters = parameters[which(parameters$log_recession_coef == -0.50), ]
 
-#~ # stor_cap should be 1.0
-#~ parameters = parameters[which(parameters$stor_cap == 1.00), ]
+# stor_cap should be 1.0
+parameters = parameters[which(parameters$stor_cap == 1.00), ]
 
 # min_soil_depth_frac should be 0.75
 parameters = parameters[which(parameters$min_soil_depth_frac == 0.75), ]
 
-# file name for this selection
-file_name_selection = "with_selection"
 }
 ########################################################################################################################
 
