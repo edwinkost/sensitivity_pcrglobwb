@@ -46,8 +46,8 @@ pdf("0Rtest.pdf", width=30, height=length(river), bg = "white")
 par(mfrow=c(length(river), 4), mar=c(1,1,1,1))
 
 # loop through all rivers to get model performances from all runs and their corresponding model parameters
-or (i_river in seq(1, length(river), 1)) {
-#~ for (i_river in seq(1, 5, 1)) {
+#~ for (i_river in seq(1, length(river), 1)) {
+for (i_river in seq(1, 5, 1)) {
 
 
 print("")
