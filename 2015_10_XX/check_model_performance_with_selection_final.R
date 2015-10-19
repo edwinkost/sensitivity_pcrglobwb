@@ -228,11 +228,11 @@ print("")
 
 }
 
-plot(c(parameters$min_soil_depth_frac, 10), array(i_river, length(parameters$code) + 1), cex = c(indicator_value, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c(-0.5, 1.5))
+plot(c(parameters$min_soil_depth_frac, 10), array(i_river, length(parameters$code) + 1), cex = c(indicator_value, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c( 0.5, 1.5))
 text(mean(parameters$min_soil_depth_frac), i_river + 0.25, labels = as.character(river[i_river]), cex = 1.5)
-plot(c(parameters$log_ksat           , 10), array(i_river, length(parameters$code) + 1), cex = c(indicator_value, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c(-0.5, 1.5))
-plot(c(parameters$log_recession_coef , 10), array(i_river, length(parameters$code) + 1), cex = c(indicator_value, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c(-0.5, 1.5))
-plot(c(parameters$stor_cap           , 10), array(i_river, length(parameters$code) + 1), cex = c(indicator_value, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c(-0.5, 1.5))
+plot(c(parameters$log_ksat           , 10), array(i_river, length(parameters$code) + 1), cex = c(indicator_value, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c(-1.0, 1.0))
+plot(c(parameters$log_recession_coef , 10), array(i_river, length(parameters$code) + 1), cex = c(indicator_value, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c(-1.0, 1.0))
+plot(c(parameters$stor_cap           , 10), array(i_river, length(parameters$code) + 1), cex = c(indicator_value, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c( 0.5, 1.5))
 
 }
 
