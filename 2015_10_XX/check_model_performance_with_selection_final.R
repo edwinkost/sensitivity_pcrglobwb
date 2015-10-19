@@ -30,11 +30,9 @@ parameters[,2:ncol(parameters)] <- lapply(parameters[,2:ncol(parameters)], as.nu
 
 ########################################################################################################################
 # make table of average values 
-
+average_values = data.frame()
 # main path
 main_path = "~/github/edwinkost/sensitivity_pcrglobwb/2015_10_XX/summary_0to1124/summary_"
-
-average_values = data.frame()
 
 for( i_run in seq(0, length(parameters$code) - 1,1)) {
 
@@ -170,7 +168,8 @@ dev.off()
 
 #############################################################################################################################
 # get the list of all rivers/stations used
-file_for_list_of_rivers = paste(main_path, "code__a__", as.character(0), "/analysis/monthly_discharge/summary.txt", sep = "")
+output_path = "/scratch-shared/edwin/sensitivity_analysis/2015_10_XX/"
+file_for_list_of_rivers = paste(output_path, "code__a__", as.character(0), "/analysis/monthly_discharge/summary.txt", sep = "")
 performance_table = read.table(file_for_list_of_rivers, sep=";", header = T)
 
 # select rivers with number of months >= 12
