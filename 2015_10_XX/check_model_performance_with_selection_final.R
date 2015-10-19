@@ -113,12 +113,14 @@ parameters = parameters[which(parameters$avg_evaporation > 55000), ]
 parameters = parameters[which(parameters$log_ksat >= -0.50), ]
 parameters = parameters[which(parameters$log_ksat <= -0.25), ]
 
-# log_log_recession_coef should be between 0.50
+# log_recession_coef should be -0.50
 parameters = parameters[which(parameters$log_recession_coef == -0.50), ]
 
 #~ # stor_cap should be 1.0
 #~ parameters = parameters[which(parameters$stor_cap == 1.00), ]
 
+# min_soil_depth_frac should be 0.75
+parameters = parameters[which(parameters$stor_cap == 0.75), ]
 
 # file name for this selection
 file_name_selection = "with_selection"
