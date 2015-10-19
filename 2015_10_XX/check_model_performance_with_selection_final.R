@@ -74,6 +74,7 @@ average_values[,2:ncol(average_values)] <- lapply(average_values[,2:ncol(average
 
 # merge two data frame
 parameters_ori = parameters
+parameters = parameters_ori
 parameters = merge(parameters, average_values, by = "code")
 
 # make sure formats are correct
@@ -102,8 +103,8 @@ parameters = parameters[which(parameters$avg_runoff > 35000), ]
 parameters = parameters[which(parameters$avg_runoff < 50000), ]
 
 # average recharge should be between 15000 and 25000 km3/year
-parameters = parameters[which(parameters$groundwater_recharge > 15000), ]
-parameters = parameters[which(parameters$groundwater_recharge < 25000), ]
+parameters = parameters[which(parameters$avg_groundwater_recharge > 15000), ]
+parameters = parameters[which(parameters$avg_groundwater_recharge < 25000), ]
 
 # average evaporation should be above 55000 km3/year
 parameters = parameters[which(parameters$avg_evaporation > 55000), ]
@@ -188,7 +189,7 @@ for (i_indi in seq(1, length(performance_indi), 1)) {
 performance_used = performance_indi[i_indi]
 performance_colm = which(names(performance_table) == performance_used)
 
-file_name_indi = paste(performance_used, file_name_selection, ".pdf", sep = "")
+file_name_indi = paste(performance_used, "_", file_name_selection, ".pdf", sep = "")
 
 pdf(file_name_indi, width = 30, height = 1.2 * length(river), bg = "white")
 par(mfrow=c(length(river), ), mar=c(1,1,1,1))
@@ -204,15 +205,15 @@ indicator_value = array(NA, length(parameters$code))
 for (i_code in seq(1, length(parameters$code), 1)) {
 
 # open/read file 
-file_name = paste(main_path, "code__a__", as.character(i_code-1), "/analysis/monthly_discharge/summary.txt", sep = "")
+file_name = paste(output_path, "code__a__", as.character(i_code-1), "/analysis/monthly_discharge/summary.txt", sep = "")
 print(file_name)
 performance_table = read.table(file_name, sep=";", header = T)
 
 # model performance indicators
-indicator_value[[i_code] = performance_table[which(performance_table$river_name == as.character(river[i_river])), performance_colm]
+indicator_value[i_code] = performance_table[which(performance_table$river_name == as.character(river[i_river])), performance_colm]
 
 # set minimum value of model performance indicator
-indicator_value[[i_code][which(indicator_value[[i_code] < 0.0)] = 0.0
+indicator_value[i_code][which(indicator_value[i_code] < 0.0)] = 0.0
 
 # print to indicate progress
 print("")
