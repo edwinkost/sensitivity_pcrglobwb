@@ -120,7 +120,7 @@ parameters = parameters[which(parameters$log_recession_coef == -0.50), ]
 #~ parameters = parameters[which(parameters$stor_cap == 1.00), ]
 
 # min_soil_depth_frac should be 0.75
-parameters = parameters[which(parameters$stor_cap == 0.75), ]
+parameters = parameters[which(parameters$min_soil_depth_frac == 0.75), ]
 
 # file name for this selection
 file_name_selection = "with_selection"
