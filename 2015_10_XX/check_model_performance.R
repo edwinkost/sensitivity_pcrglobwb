@@ -41,9 +41,9 @@ river = river[which(river$num_of_month_pairs > 12), ]
 # sort river based on grdc catchment area and use only the river name
 river = as.character(river$river_name[order(-river$grdc_catchment_area_in_km2)])
 
-
-pdf("0Rtest.pdf", width = 17.5, height = 0.75 * length(river), bg = "white")
-par(mfrow=c(length(river), 5*4), mar=c(1,1,1,1))
+pdf("000Rtest.pdf", width = 17.5, height = 0.75 * length(river), bg = "white")
+#~ par(mfrow=c(length(river), 5*4), mar=c(1,1,1,1))
+par(mfrow=c(length(river), 1*4), mar=c(1,1,1,1))
 
 # loop through all rivers to get model performances from all runs and their corresponding model parameters
 for (i_river in seq(1, length(river), 1)) {
@@ -76,20 +76,20 @@ kge_2009[i_code] = performance_table$kge_2009[which(performance_table$river_name
 kge_2012[i_code] = performance_table$kge_2012[which(performance_table$river_name == river[i_river])]
 R2[i_code]       = performance_table$R2[which(performance_table$river_name == river[i_river])]
 
-#~ # set minimum value of model performance indicator
-#~ ns_eff[i_code][which(ns_eff[i_code] < 0.0)] = 0.0
-#~ ns_log[i_code][which(ns_log[i_code] < 0.0)] = 0.0
-#~ kge_2009[i_code][which(kge_2009[i_code] < 0.0)] = 0.0
-#~ kge_2012[i_code][which(kge_2012[i_code] < 0.0)] = 0.0
-#~ R2[i_code][which(R2[i_code] < 0.0)] = 0.0      
+# set minimum value of model performance indicator
+ns_eff[i_code][which(ns_eff[i_code] < 0.0)] = 0.0
+ns_log[i_code][which(ns_log[i_code] < 0.0)] = 0.0
+kge_2009[i_code][which(kge_2009[i_code] < 0.0)] = 0.0
+kge_2012[i_code][which(kge_2012[i_code] < 0.0)] = 0.0
+R2[i_code][which(R2[i_code] < 0.0)] = 0.0      
 
 }
 
-#~ plot(parameters$min_soil_depth_frac, array(i_river, length(parameters$code)), cex = ns_eff * 7., yaxt = 'n', ylab = substr(as.character(river[i_river]), 1, 5), ylim = c(i_river - 0.5, i_river + 0.5))
-#~ text(mean(parameters$min_soil_depth_frac), i_river + 0.25, labels = as.character(river[i_river]), cex = 2.5)
-#~ plot(parameters$log_ksat           , array(i_river, length(parameters$code)), cex = ns_eff * 7., yaxt = 'n', ylab = "")
-#~ plot(parameters$log_recession_coef , array(i_river, length(parameters$code)), cex = ns_eff * 7., yaxt = 'n', ylab = "")
-#~ plot(parameters$stor_cap           , array(i_river, length(parameters$code)), cex = ns_eff * 7., yaxt = 'n', ylab = "")
+plot(c(parameters$min_soil_depth_frac, 10), array(i_river, length(parameters$code) + 1), cex = c(ns_log, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c(min(parameters$min_soil_depth_frac), max(parameters$min_soil_depth_frac)))
+text(mean(parameters$min_soil_depth_frac), i_river + 0.25, labels = as.character(river[i_river]), cex = 2.5)
+plot(c(parameters$log_ksat           , 10), array(i_river, length(parameters$code) + 1), cex = c(ns_log, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c(min(parameters$log_ksat           ), max(parameters$log_ksat           )))
+plot(c(parameters$log_recession_coef , 10), array(i_river, length(parameters$code) + 1), cex = c(ns_log, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c(min(parameters$log_recession_coef ), max(parameters$log_recession_coef )))
+plot(c(parameters$stor_cap           , 10), array(i_river, length(parameters$code) + 1), cex = c(ns_log, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c(min(parameters$stor_cap           ), max(parameters$stor_cap           )))
 
 #~ plot(parameters$min_soil_depth_frac, array(i_river, length(parameters$code)), cex = ns_log * 7., yaxt = 'n', ylab = substr(as.character(river[i_river]), 1, 5), ylim = c(i_river - 0.5, i_river + 0.5))
 #~ text(mean(parameters$min_soil_depth_frac), i_river + 0.25, labels = as.character(river[i_river]), cex = 2.5)
@@ -123,35 +123,35 @@ R2[i_code]       = performance_table$R2[which(performance_table$river_name == ri
 #~ symbols(parameters$stor_cap           , array(i_river, length(parameters$code)), circles = kge_2009, yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), bg=NULL, fg="black")
 
 
-plot(parameters$min_soil_depth_frac, ns_eff, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
-text(mean(parameters$min_soil_depth_frac), 0.85, labels = as.character(river[i_river]), cex = 1)
-plot(parameters$log_ksat           , ns_eff, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
-plot(parameters$log_recession_coef , ns_eff, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
-plot(parameters$stor_cap           , ns_eff, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
-
-plot(parameters$min_soil_depth_frac, ns_log, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
-text(mean(parameters$min_soil_depth_frac), 0.85, labels = as.character(river[i_river]), cex = 1)
-plot(parameters$log_ksat           , ns_log, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
-plot(parameters$log_recession_coef , ns_log, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
-plot(parameters$stor_cap           , ns_log, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
-
-plot(parameters$min_soil_depth_frac, kge_2009, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
-text(mean(parameters$min_soil_depth_frac), 0.85, labels = as.character(river[i_river]), cex = 1)
-plot(parameters$log_ksat           , kge_2009, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
-plot(parameters$log_recession_coef , kge_2009, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
-plot(parameters$stor_cap           , kge_2009, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
-
-plot(parameters$min_soil_depth_frac, kge_2012, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
-text(mean(parameters$min_soil_depth_frac), 0.85, labels = as.character(river[i_river]), cex = 1)
-plot(parameters$log_ksat           , kge_2012, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
-plot(parameters$log_recession_coef , kge_2012, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
-plot(parameters$stor_cap           , kge_2012, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
-
-plot(parameters$min_soil_depth_frac, R2, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
-text(mean(parameters$min_soil_depth_frac), 0.85, labels = as.character(river[i_river]), cex = 1)
-plot(parameters$log_ksat           , R2, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
-plot(parameters$log_recession_coef , R2, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
-plot(parameters$stor_cap           , R2, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
+#~ plot(parameters$min_soil_depth_frac, ns_eff, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
+#~ text(mean(parameters$min_soil_depth_frac), 0.85, labels = as.character(river[i_river]), cex = 1)
+#~ plot(parameters$log_ksat           , ns_eff, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
+#~ plot(parameters$log_recession_coef , ns_eff, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
+#~ plot(parameters$stor_cap           , ns_eff, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
+#~ 
+#~ plot(parameters$min_soil_depth_frac, ns_log, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
+#~ text(mean(parameters$min_soil_depth_frac), 0.85, labels = as.character(river[i_river]), cex = 1)
+#~ plot(parameters$log_ksat           , ns_log, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
+#~ plot(parameters$log_recession_coef , ns_log, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
+#~ plot(parameters$stor_cap           , ns_log, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
+#~ 
+#~ plot(parameters$min_soil_depth_frac, kge_2009, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
+#~ text(mean(parameters$min_soil_depth_frac), 0.85, labels = as.character(river[i_river]), cex = 1)
+#~ plot(parameters$log_ksat           , kge_2009, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
+#~ plot(parameters$log_recession_coef , kge_2009, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
+#~ plot(parameters$stor_cap           , kge_2009, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
+#~ 
+#~ plot(parameters$min_soil_depth_frac, kge_2012, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
+#~ text(mean(parameters$min_soil_depth_frac), 0.85, labels = as.character(river[i_river]), cex = 1)
+#~ plot(parameters$log_ksat           , kge_2012, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
+#~ plot(parameters$log_recession_coef , kge_2012, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
+#~ plot(parameters$stor_cap           , kge_2012, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
+#~ 
+#~ plot(parameters$min_soil_depth_frac, R2, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
+#~ text(mean(parameters$min_soil_depth_frac), 0.85, labels = as.character(river[i_river]), cex = 1)
+#~ plot(parameters$log_ksat           , R2, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
+#~ plot(parameters$log_recession_coef , R2, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
+#~ plot(parameters$stor_cap           , R2, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
 
 
 
