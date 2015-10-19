@@ -78,6 +78,13 @@ average_values[,2:ncol(average_values)] <- lapply(average_values[,2:ncol(average
 parameters_ori = parameters
 parameters = merge(parameters, average_values, by = "code")
 
+# make sure formats are correct
+parameters[,1] <- as.character(parameters[,1])
+parameters[,2:ncol(parameters)] <- lapply(parameters[,2:ncol(parameters)], as.character)
+parameters[,2:ncol(parameters)] <- lapply(parameters[,2:ncol(parameters)], as.numeric)
+########################################################################################################################
+
+
 # value for the reference run
 evaporation_ref = parameters$avg_evaporation[which(parameters$code == "code__a__0")]
 runoff_ref      = parameters$avg_runoff[which(parameters$code == "code__a__0")]
@@ -118,6 +125,7 @@ file_name_selection = "with_selection"
 file_name = paste("scatter_plot_parameters_", file_name_selection, ".pdf", sep = "")
 
 pdf(file_name, width=10, height=12, bg = "white")
+par(mfrow=c(4,4), mar=c(4,4,2,4))
 
 plot(parameters$min_soil_depth_frac, parameters$avg_evaporation, xlim = c(0.5, 1.5), ylim = c(30000, 80000))
 abline(h = evaporation_ref)
