@@ -124,7 +124,7 @@ R2[i_code]       = performance_table$R2[which(performance_table$river_name == ri
 
 
 plot(parameters$min_soil_depth_frac, ns_eff, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
-text(mean(parameters$min_soil_depth_frac), 0.85, labels = as.character(river[i_river]), cex = 2.)
+text(mean(parameters$min_soil_depth_frac), 0.85, labels = as.character(river[i_river]), cex = 0.5)
 plot(parameters$log_ksat           , ns_eff, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
 plot(parameters$log_recession_coef , ns_eff, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
 plot(parameters$stor_cap           , ns_eff, ylab = "", ylim = c(0, 1.1), breaks = seq(0, 1, 0.1), bg=NULL, fg="black")
