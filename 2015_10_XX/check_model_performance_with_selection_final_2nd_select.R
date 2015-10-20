@@ -116,9 +116,8 @@ parameters = parameters[which(parameters$avg_evaporation >= 55000), ]
 parameters = parameters[which(parameters$stor_cap >= 0.75), ]
 parameters = parameters[which(parameters$stor_cap <= 1.25), ]
 
-# stor_cap should be between 1.00 and 1.25
-parameters = parameters[which(parameters$stor_cap >= 1.00), ]
-parameters = parameters[which(parameters$stor_cap <= 1.25), ]
+# stor_cap should be 1.00
+parameters = parameters[which(parameters$stor_cap == 1.00), ]
 
 #~ # log_ksat should be between -0.50 and -0.25
 #~ parameters = parameters[which(parameters$log_ksat >= -0.50), ]
