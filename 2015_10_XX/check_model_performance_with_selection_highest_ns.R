@@ -99,7 +99,7 @@ if (with_selection == TRUE) {
 # make selection 
 
 # file name for this selection
-file_name_selection = "central"
+file_name_selection = "highest"
 
 # average runoff should be between 35000 and 50000 km3/year
 parameters = parameters[which(parameters$avg_runoff >= 35000), ]
@@ -205,7 +205,6 @@ par(mfrow=c(length(river), 4), mar=c(1,1,1,1))
 
 # loop through all rivers to get model performances from all runs and their corresponding model parameters
 for (i_river in seq(1, length(river), 1)) {
-#~ for (i_river in seq(1, 5, 1)) {
 
 # initiate model performance indicator (all NA)
 indicator_value = array(NA, length(parameters$code))
@@ -234,11 +233,28 @@ print("")
 
 }
 
-plot(c(parameters$min_soil_depth_frac, 10), array(i_river, length(parameters$code) + 1), cex = c(indicator_value, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c( 0.5, 1.5))
-text(mean(parameters$min_soil_depth_frac), i_river + 0.25, labels = as.character(river[i_river]), cex = 1.5)
-plot(c(parameters$log_ksat           , 10), array(i_river, length(parameters$code) + 1), cex = c(indicator_value, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c(-1.0, 1.0))
-plot(c(parameters$log_recession_coef , 10), array(i_river, length(parameters$code) + 1), cex = c(indicator_value, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c(-1.0, 1.0))
-plot(c(parameters$stor_cap           , 10), array(i_river, length(parameters$code) + 1), cex = c(indicator_value, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c( 0.5, 1.5))
+min_soil_depth_frac = parameters$min_soil_depth_frac
+log_ksat            = parameters$log_ksat
+log_recession_coef  = parameters$log_recession_coef
+stor_cap            = parameters$stor_cap
+
+
+if (file_name_selection == "highest") {
+
+min_soil_depth_frac = min_soil_depth_frac[which(indicator_value == max())]
+log_ksat           
+log_recession_coef 
+stor_cap           
+indicator_value     = which()  
+
+}
+
+
+plot(c(min_soil_depth_frac, 10), array(i_river, length(parameters$code) + 1), cex = c(indicator_value, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c( 0.5, 1.5))
+text(mers$min_soil_depth_frac), i_river + 0.25, labels = as.character(river[i_river]), cex = 1.5)
+plot(c(log_ksat           , 10), array(i_river, length(parameters$code) + 1), cex = c(indicator_value, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c(-1.0, 1.0))
+plot(c(log_recession_coef , 10), array(i_river, length(parameters$code) + 1), cex = c(indicator_value, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c(-1.0, 1.0))
+plot(c(stor_cap           , 10), array(i_river, length(parameters$code) + 1), cex = c(indicator_value, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c( 0.5, 1.5))
 
 }
 
