@@ -126,7 +126,6 @@ parameters = parameters[which(parameters$log_ksat != 0.75), ]
 # min_soil_depth_frac should not be equal to 0.50
 parameters = parameters[which(parameters$min_soil_depth_frac != 0.50), ]
 
-
 #~ # log_ksat should be between -0.50 and -0.25
 #~ parameters = parameters[which(parameters$log_ksat >= -0.50), ]
 #~ parameters = parameters[which(parameters$log_ksat <= -0.25), ]
