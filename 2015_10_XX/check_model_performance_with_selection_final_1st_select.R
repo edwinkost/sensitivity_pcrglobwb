@@ -102,28 +102,26 @@ if (with_selection == TRUE) {
 file_name_selection = "first_selection"
 
 # average runoff should be between 35000 and 50000 km3/year
-parameters = parameters[which(parameters$avg_runoff >= 35000), ]
-parameters = parameters[which(parameters$avg_runoff <= 50000), ]
+parameters = parameters[which(parameters$avg_runoff > 35000), ]
+parameters = parameters[which(parameters$avg_runoff < 50000), ]
 
 # average recharge should be between 15000 and 25000 km3/year
-parameters = parameters[which(parameters$avg_groundwater_recharge >= 15000), ]
-parameters = parameters[which(parameters$avg_groundwater_recharge <= 30000), ]
+parameters = parameters[which(parameters$avg_groundwater_recharge > 15000), ]
+parameters = parameters[which(parameters$avg_groundwater_recharge < 25000), ]
 
 # average evaporation should be above 55000 km3/year
-parameters = parameters[which(parameters$avg_evaporation >= 55000), ]
-
-# stor_cap should be between 0.75 and 1.25
-parameters = parameters[which(parameters$stor_cap >= 0.75), ]
-parameters = parameters[which(parameters$stor_cap <= 1.25), ]
+parameters = parameters[which(parameters$avg_evaporation > 55000), ]
 
 #~ # log_ksat should be between -0.50 and -0.25
 #~ parameters = parameters[which(parameters$log_ksat >= -0.50), ]
 #~ parameters = parameters[which(parameters$log_ksat <= -0.25), ]
-
+#~ 
 #~ # log_recession_coef should be -0.50
 #~ parameters = parameters[which(parameters$log_recession_coef == -0.50), ]
-
-
+#~ 
+#~ # stor_cap should be 1.0
+#~ parameters = parameters[which(parameters$stor_cap == 1.00), ]
+#~ 
 #~ # min_soil_depth_frac should be 0.75
 #~ parameters = parameters[which(parameters$min_soil_depth_frac == 0.75), ]
 
@@ -237,11 +235,11 @@ print("")
 
 }
 
-plot(c(parameters$min_soil_depth_frac, 10), array(i_river, length(parameters$code) + 1), cex = c(indicator_value, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c( 0.5, 1.5))
+plot(c(parameters$min_soil_depth_frac, 10, 10), array(i_river, length(parameters$code) + 2), cex = c(indicator_value, 0, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c( 0.5, 1.5))
 text(mean(parameters$min_soil_depth_frac), i_river + 0.25, labels = as.character(river[i_river]), cex = 1.5)
-plot(c(parameters$log_ksat           , 10), array(i_river, length(parameters$code) + 1), cex = c(indicator_value, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c(-1.0, 1.0))
-plot(c(parameters$log_recession_coef , 10), array(i_river, length(parameters$code) + 1), cex = c(indicator_value, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c(-1.0, 1.0))
-plot(c(parameters$stor_cap           , 10), array(i_river, length(parameters$code) + 1), cex = c(indicator_value, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c( 0.5, 1.5))
+plot(c(parameters$log_ksat           , 10, 10), array(i_river, length(parameters$code) + 2), cex = c(indicator_value, 0, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c(-1.0, 1.0))
+plot(c(parameters$log_recession_coef , 10, 10), array(i_river, length(parameters$code) + 2), cex = c(indicator_value, 0, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c(-1.0, 1.0))
+plot(c(parameters$stor_cap           , 10, 10), array(i_river, length(parameters$code) + 2), cex = c(indicator_value, 0, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c( 0.5, 1.5))
 
 }
 
