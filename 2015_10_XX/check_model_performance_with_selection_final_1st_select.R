@@ -107,7 +107,7 @@ parameters = parameters[which(parameters$avg_runoff <= 50000), ]
 
 # average recharge should be between 15000 and 25000 km3/year
 parameters = parameters[which(parameters$avg_groundwater_recharge >= 15000), ]
-parameters = parameters[which(parameters$avg_groundwater_recharge <= 25000), ]
+parameters = parameters[which(parameters$avg_groundwater_recharge <= 30000), ]
 
 # average evaporation should be above 55000 km3/year
 parameters = parameters[which(parameters$avg_evaporation >= 55000), ]
