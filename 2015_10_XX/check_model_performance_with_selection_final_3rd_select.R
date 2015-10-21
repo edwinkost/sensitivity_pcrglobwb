@@ -120,9 +120,10 @@ parameters = parameters[which(parameters$stor_cap <= 1.25), ]
 # - based on ns log 
 parameters = parameters[which(parameters$stor_cap >= 1.00), ]
 
-#~ # log_ksat should be between -0.50 and -0.25
-#~ parameters = parameters[which(parameters$log_ksat >= -0.50), ]
-#~ parameters = parameters[which(parameters$log_ksat <= -0.25), ]
+# log_ksat should be between -0.50 and -0.00
+# - Marc and Rens preference (in order to avoid very high recharge)
+parameters = parameters[which(parameters$log_ksat >=  0.50), ]
+parameters = parameters[which(parameters$log_ksat <=  0.00), ]
 #~ 
 #~ # log_recession_coef should be -0.50
 #~ parameters = parameters[which(parameters$log_recession_coef == -0.50), ]
