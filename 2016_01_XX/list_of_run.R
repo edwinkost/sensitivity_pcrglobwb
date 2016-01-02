@@ -8,16 +8,23 @@ log_recession_coef  = seq(-1.0, 1.0, 0.50)
 stor_cap            = seq( 1.0, 1.0, 0.00)
 degree_day_factor   = seq( 0.5, 1.5, 0.50)
 
+# parameter lists
+min_soil_depth_frac = seq( 0.5, 1.5, 0.50)
+log_ksat            = seq(-0.5, 0.5, 0.25)	
+log_recession_coef  = seq(-1.0, 1.0, 0.50)	
+stor_cap            = seq( 1.0, 1.0, 0.00)
+degree_day_factor   = seq( 0.5, 1.5, 0.50)
+
 # output folder name and numbering
 general_output_folder_name = 'code__a__'
-start_folder_index = 1
+start_folder_index = 75
 
 # file name for the output table that will contain new parameters
-new_parameter_table_file_name = "table_02_january_2016_cartesius.txt"
+new_parameter_table_file_name = "table_02_january_2016_cartesius_edwinhs.txt"
 
 # list of existing parameters sets that have been defined in the previous runs
-existing_parameters = c(1.0, 0.0, 0.0, 1.0, 1.0)                                                                                     # reference run              
-#~ existing_parameters = rbind(existing_parameters, read.table("table_05_october_2015_speedy_and_rapid.txt", header=T)[2:5])         # from the previous file/runs
+existing_parameters = c(1.0, 0.0, 0.0, 1.0, 1.0)                                                                           # reference run              
+existing_parameters = rbind(existing_parameters, read.table("table_02_january_2016_cartesius.txt", header=T)[2:6])         # from the previous file/runs
 
 # number of cores that will be used
 number_of_cores = 23
@@ -28,8 +35,8 @@ core_type = "normal"
 model_script = "~/github/edwinkost/PCR-GLOBWB/model/deterministic_runner_glue_january_2016.py"
 
 # configuration/ini file
-ini_file     = "~/github/edwinkost/sensitivity_pcrglobwb/2016_01_XX/setup_sensitivity_analysis_cartesius_non_natural.ini"
-#~ ini_file     = "~/github/edwinkost/sensitivity_pcrglobwb/2016_01_XX/setup_sensitivity_analysis_cartesius_non_natural_edwinhs.ini"
+#~ ini_file     = "~/github/edwinkost/sensitivity_pcrglobwb/2016_01_XX/setup_sensitivity_analysis_cartesius_non_natural.ini"
+ini_file     = "~/github/edwinkost/sensitivity_pcrglobwb/2016_01_XX/setup_sensitivity_analysis_cartesius_non_natural_edwinhs.ini"
 
 # name for job scripts:
 job_general_name = "calibration_a_" # example: "calibration_aa_001-022.sh"
