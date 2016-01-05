@@ -21,6 +21,6 @@ for i_run in range(sta_run, end_run + 1):
    if ((i_run + 1)%max_cores == 0) or (i_run == end_run): cmd = cmd + "wait \n"       
 
 print cmd
-#~ 
-#~ # execute the command line
-#~ os.system(cmd)      
+
+# execute the command line
+os.system(cmd)      
