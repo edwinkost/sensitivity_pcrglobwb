@@ -9,7 +9,7 @@ sta_run = 0
 end_run = 224 
 
 # maximum number of cores
-max_cores = 23
+max_cores = 20
 
 # making command lines
 cmd = ''
