@@ -120,7 +120,7 @@ plot(table$log_recession_coef , table$avg_groundwater_recharge)
 abline(h = recharge_ref)
 plot(table$stor_cap           , table$avg_groundwater_recharge)
 abline(h = recharge_ref)
-plot(table$stor_cap           , table$avg_groundwater_recharge)
+plot(table$degree_day_factor  , table$avg_groundwater_recharge)
 abline(h = recharge_ref)
 
 dev.off()
