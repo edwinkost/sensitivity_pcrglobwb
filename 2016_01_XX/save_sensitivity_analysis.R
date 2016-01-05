@@ -76,7 +76,7 @@ recharge_ref    = table$avg_groundwater_recharge[which(table$code == "code__a__0
 
 ########################################################################################################################
 # make scatter plots
-pdf("scatter_plot.pdf", width=12.5, height=12, bg = "white")
+pdf("scatter_plot.pdf", width=10, height=12, bg = "white")
 par(mfrow=c(4,5), mar=c(4,4,2,4))
 
 plot(table$min_soil_depth_frac, table$avg_evaporation)
