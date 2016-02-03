@@ -231,6 +231,7 @@ chart_table = cbind(
                            ggplotGrob(chart_non_irrigation_return_flow     ), size = "last"), size = "last")
 
 chart_file_name = paste(folder_for_the_analysis_output, "/chart_global_annual_fluxes_km3.pdf",sep ="")
+print(chart_file_name)
 pdf(file = chart_file_name, width = 11, height = 7)  # units are in inches
 grid.newpage()
 grid.draw(chart_table)
