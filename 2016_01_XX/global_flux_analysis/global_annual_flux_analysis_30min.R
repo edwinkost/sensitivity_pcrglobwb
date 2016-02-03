@@ -216,7 +216,7 @@ chart_table = cbind(
                            ggplotGrob(chart_irrigation_withdrawal          ),
                            ggplotGrob(chart_livestock_withdrawal           ),
                            ggplotGrob(chart_industry_withdrawal            ),
-                           ggplotGrob(chart_livestock_withdrawal           ), size = "last"), 
+                           ggplotGrob(chart_domestic_withdrawal            ), size = "last"), 
 
                      rbind(ggplotGrob(chart_total_withdrawal               ),
                            ggplotGrob(chart_non_irrigation_withdrawal      ),
