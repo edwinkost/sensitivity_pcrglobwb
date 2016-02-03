@@ -18,7 +18,7 @@ scenario_code                  <- args[4]
 pcrglobwb_output_folder        <- paste("/projects/0/dfguu/users/edwin/30min_sensitivity_analysis_non_natural/2016_01_XX/", scenario_code, "/", sep = "")
 
 # folder for the analysis output
-folder_for_the_analysis_output <- paste(pcrglobwb_output_folder, scenario_code, "/analysis_iwmi/global_annual_fluxes/", sep = "")
+folder_for_the_analysis_output <- paste(pcrglobwb_output_folder, "/analysis_iwmi/global_annual_fluxes/", sep = "")
 # - making the folder
 dir.create(folder_for_the_analysis_output, recursive = TRUE)
 
@@ -167,3 +167,73 @@ non_irrigation_return_flow
 )
 file_name = paste(folder_for_the_analysis_output, "/table_global_annual_fluxes_km3.txt",sep ="")
 write.table(data_frame_complete, file_name, sep = ";", row.names = FALSE)
+
+# making charts
+chart_precipitation                   <- ggplot(data = data_frame_complete, aes(x = year, y = precipitation                  )) + geom_line() + theme(axis.text = element_text(size = 6), axis.title = element_text(size = 6, face = "plain"))
+chart_land_evaporation                <- ggplot(data = data_frame_complete, aes(x = year, y = land_evaporation               )) + geom_line() + theme(axis.text = element_text(size = 6), axis.title = element_text(size = 6, face = "plain"))
+chart_total_evaporation               <- ggplot(data = data_frame_complete, aes(x = year, y = total_evaporation              )) + geom_line() + theme(axis.text = element_text(size = 6), axis.title = element_text(size = 6, face = "plain"))
+chart_land_runoff                     <- ggplot(data = data_frame_complete, aes(x = year, y = land_runoff                    )) + geom_line() + theme(axis.text = element_text(size = 6), axis.title = element_text(size = 6, face = "plain"))
+chart_total_runoff                    <- ggplot(data = data_frame_complete, aes(x = year, y = total_runoff                   )) + geom_line() + theme(axis.text = element_text(size = 6), axis.title = element_text(size = 6, face = "plain"))
+chart_gw_recharge                     <- ggplot(data = data_frame_complete, aes(x = year, y = gw_recharge                    )) + geom_line() + theme(axis.text = element_text(size = 6), axis.title = element_text(size = 6, face = "plain"))
+chart_gw_baseflow                     <- ggplot(data = data_frame_complete, aes(x = year, y = gw_baseflow                    )) + geom_line() + theme(axis.text = element_text(size = 6), axis.title = element_text(size = 6, face = "plain"))
+chart_total_withdrawal                <- ggplot(data = data_frame_complete, aes(x = year, y = total_withdrawal               )) + geom_line() + theme(axis.text = element_text(size = 6), axis.title = element_text(size = 6, face = "plain"))
+chart_desalination_withdrawal         <- ggplot(data = data_frame_complete, aes(x = year, y = desalination_withdrawal        )) + geom_line() + theme(axis.text = element_text(size = 6), axis.title = element_text(size = 6, face = "plain"))
+chart_surface_water_withdrawal        <- ggplot(data = data_frame_complete, aes(x = year, y = surface_water_withdrawal       )) + geom_line() + theme(axis.text = element_text(size = 6), axis.title = element_text(size = 6, face = "plain"))
+chart_total_gw_abstraction            <- ggplot(data = data_frame_complete, aes(x = year, y = total_gw_abstraction           )) + geom_line() + theme(axis.text = element_text(size = 6), axis.title = element_text(size = 6, face = "plain"))
+chart_fossil_gw_abstraction           <- ggplot(data = data_frame_complete, aes(x = year, y = fossil_gw_abstraction          )) + geom_line() + theme(axis.text = element_text(size = 6), axis.title = element_text(size = 6, face = "plain"))
+chart_non_fossil_gw_abstraction       <- ggplot(data = data_frame_complete, aes(x = year, y = non_fossil_gw_abstraction      )) + geom_line() + theme(axis.text = element_text(size = 6), axis.title = element_text(size = 6, face = "plain"))
+chart_irrigation_withdrawal           <- ggplot(data = data_frame_complete, aes(x = year, y = irrigation_withdrawal          )) + geom_line() + theme(axis.text = element_text(size = 6), axis.title = element_text(size = 6, face = "plain"))
+chart_non_irrigation_withdrawal       <- ggplot(data = data_frame_complete, aes(x = year, y = non_irrigation_withdrawal      )) + geom_line() + theme(axis.text = element_text(size = 6), axis.title = element_text(size = 6, face = "plain"))
+chart_paddy_irrigation_withdrawal     <- ggplot(data = data_frame_complete, aes(x = year, y = paddy_irrigation_withdrawal    )) + geom_line() + theme(axis.text = element_text(size = 6), axis.title = element_text(size = 6, face = "plain"))
+chart_non_paddy_irrigation_withdrawal <- ggplot(data = data_frame_complete, aes(x = year, y = non_paddy_irrigation_withdrawal)) + geom_line() + theme(axis.text = element_text(size = 6), axis.title = element_text(size = 6, face = "plain"))
+chart_industry_withdrawal             <- ggplot(data = data_frame_complete, aes(x = year, y = industry_withdrawal            )) + geom_line() + theme(axis.text = element_text(size = 6), axis.title = element_text(size = 6, face = "plain"))
+chart_domestic_withdrawal             <- ggplot(data = data_frame_complete, aes(x = year, y = domestic_withdrawal            )) + geom_line() + theme(axis.text = element_text(size = 6), axis.title = element_text(size = 6, face = "plain"))
+chart_livestock_withdrawal            <- ggplot(data = data_frame_complete, aes(x = year, y = livestock_withdrawal           )) + geom_line() + theme(axis.text = element_text(size = 6), axis.title = element_text(size = 6, face = "plain"))
+chart_non_irrigation_consumption      <- ggplot(data = data_frame_complete, aes(x = year, y = non_irrigation_consumption     )) + geom_line() + theme(axis.text = element_text(size = 6), axis.title = element_text(size = 6, face = "plain"))
+chart_non_irrigation_return_flow      <- ggplot(data = data_frame_complete, aes(x = year, y = non_irrigation_return_flow     )) + geom_line() + theme(axis.text = element_text(size = 6), axis.title = element_text(size = 6, face = "plain"))
+
+# plot the charts
+chart_table = cbind( 
+                     rbind(ggplotGrob(chart_precipitation    ),
+                           ggplotGrob(chart_land_evaporation ),
+                           ggplotGrob(chart_total_evaporation),
+                           ggplotGrob(chart_land_runoff      ),
+                           ggplotGrob(chart_total_runoff     ), size = "last"), 
+
+                     rbind(ggplotGrob(chart_gw_recharge              ),
+                           ggplotGrob(chart_gw_baseflow              ),
+                           ggplotGrob(chart_total_gw_abstraction     ),
+                           ggplotGrob(chart_fossil_gw_abstraction    ),
+                           ggplotGrob(chart_non_fossil_gw_abstraction), size = "last"), 
+
+                     rbind(ggplotGrob(chart_total_withdrawal         ),
+                           ggplotGrob(chart_desalination_withdrawal  ),
+                           ggplotGrob(chart_surface_water_withdrawal ),
+                           ggplotGrob(chart_fossil_gw_abstraction    ),
+                           ggplotGrob(chart_non_fossil_gw_abstraction), size = "last"), 
+                           
+                     rbind(ggplotGrob(chart_total_withdrawal               ),
+                           ggplotGrob(chart_irrigation_withdrawal          ),
+                           ggplotGrob(chart_livestock_withdrawal           ),
+                           ggplotGrob(chart_industry_withdrawal            ),
+                           ggplotGrob(chart_livestock_withdrawal           ), size = "last"), 
+
+                     rbind(ggplotGrob(chart_total_withdrawal               ),
+                           ggplotGrob(chart_non_irrigation_withdrawal      ),
+                           ggplotGrob(chart_irrigation_withdrawal          ),
+                           ggplotGrob(chart_paddy_irrigation_withdrawal    ),
+                           ggplotGrob(chart_non_paddy_irrigation_withdrawal), size = "last"), 
+                           
+                     rbind(ggplotGrob(chart_total_withdrawal               ),
+                           ggplotGrob(chart_non_irrigation_withdrawal      ),
+                           ggplotGrob(chart_livestock_withdrawal           ),
+                           ggplotGrob(chart_non_irrigation_consumption     ),
+                           ggplotGrob(chart_non_irrigation_return_flow     ), size = "last"), size = "last")
+
+chart_file_name = paste(folder_for_the_analysis_output, "/chart_global_annual_fluxes_km3.pdf",sep ="")
+pdf(file = chart_file_name, width = 11, height = 7)  # units are in inches
+grid.newpage()
+grid.draw(chart_table)
+dev.off()
+
+                           
