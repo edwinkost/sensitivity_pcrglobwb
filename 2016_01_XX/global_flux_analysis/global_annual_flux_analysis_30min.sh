@@ -1,12 +1,12 @@
 #!/bin/bash
 
-for i in {0..16}
+for i in {0..225}
 do
    OUT=code__a__
    echo "Processing the run $i."
    echo "R -f global_annual_flux_analysis_30min.R $OUT$i &"
    R -f global_annual_flux_analysis_30min.R $OUT$i &
-   if ! ((i % 10)); then
+   if ! ((i % 4)); then
       echo "wait"
       wait         
    fi
