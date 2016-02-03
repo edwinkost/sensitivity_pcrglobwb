@@ -6,7 +6,7 @@ do
    echo "Processing the run $i."
    echo "R -f global_annual_flux_analysis_30min.R $OUT$i"
    #~ R -f global_annual_flux_analysis_30min.R $OUT$i
-   if ! ((i % 4))
+   if ! ((i % 4)); then
       echo "wait"         
    fi
 done
