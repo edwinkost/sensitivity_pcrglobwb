@@ -10,347 +10,159 @@ require(grid)
 # read the system arguments
 args <- commandArgs()
 
-#
-pcrglobwb_output_folder <- args[4]
+# scenario name/code 
+scenario_code                  <- args[4]
 
-# 
-analysis_output_file    <- 
-modelFile  =  args[5]
+# folder that contains pcrglobwb model output
+pcrglobwb_output_folder        <- paste("/projects/0/dfguu/users/edwin/30min_sensitivity_analysis_non_natural/2016_01_XX/", scenario_code, "/", sep = "")
 
+# folder for the analysis output
+folder_for_the_analysis_output <- paste(pcrglobwb_output_folder, scenario_code, "/analysis_iwmi/global_annual_fluxes/", sep = "")
+# - making the folder
+dir.create(folder_for_the_analysis_output, recursive = TRUE)
 
-"desalinationAbstractionVolume_annuaTot_output.nc",
-"domesticWaterWithdrawalVolume_annuaTot_output.nc",
-"industryWaterWithdrawalVolume_annuaTot_output.nc",
-"irrGrossDemandVolume_annuaTot_output.nc",
-"irrigationWaterWithdrawalVolume_annuaTot_output.nc",
-"livestockWaterWithdrawalVolume_annuaTot_output.nc",
-"nonIrrGrossDemandVolume_annuaTot_output.nc",
-"surfaceWaterAbstractionVolume_annuaTot_output.nc",
-"totalGrossDemandVolume_annuaTot_output.nc",
-"totalGroundwaterAbstractionVolume_annuaTot_output.nc"
+# netcdf output_files 
+####################################################################################################################################################################################################################
+precipitation_file                   = nc_open( paste( pcrglobwb_output_folder , "/netcdf/" , "precipitation_annuaTot_output.nc"                   , sep = "") )
+land_evaporation_file                = nc_open( paste( pcrglobwb_output_folder , "/netcdf/" , "actualET_annuaTot_output.nc"                        , sep = "") )
+total_evaporation_file               = nc_open( paste( pcrglobwb_output_folder , "/netcdf/" , "totalEvaporation_annuaTot_output.nc"                , sep = "") )
+land_runoff_file                     = nc_open( paste( pcrglobwb_output_folder , "/netcdf/" , "runoff_annuaTot_output.nc"                          , sep = "") )
+total_runoff_file                    = nc_open( paste( pcrglobwb_output_folder , "/netcdf/" , "totalRunoff_annuaTot_output.nc"                     , sep = "") )
+gw_recharge_file                     = nc_open( paste( pcrglobwb_output_folder , "/netcdf/" , "gwRecharge_annuaTot_output.nc"                      , sep = "") )
+gw_baseflow_file                     = nc_open( paste( pcrglobwb_output_folder , "/netcdf/" , "baseflow_annuaTot_output.nc"                        , sep = "") )
+total_withdrawal_file                = nc_open( paste( pcrglobwb_output_folder , "/netcdf/" , "totalAbstraction_annuaTot_output.nc"                , sep = "") )  # or "totalGrossDemand_annuaTot_output.nc"
+desalination_withdrawal_file         = nc_open( paste( pcrglobwb_output_folder , "/netcdf/" , "desalinationAbstraction_annuaTot_output.nc"         , sep = "") )
+surface_water_withdrawal_file        = nc_open( paste( pcrglobwb_output_folder , "/netcdf/" , "surfaceWaterAbstraction_annuaTot_output.nc"         , sep = "") )
+total_gw_abstraction_file            = nc_open( paste( pcrglobwb_output_folder , "/netcdf/" , "totalGroundwaterAbstraction_annuaTot_output.nc"     , sep = "") )
+fossil_gw_abstraction_file           = nc_open( paste( pcrglobwb_output_folder , "/netcdf/" , "fossilGroundwaterAbstraction_annuaTot_output.nc"    , sep = "") )
+non_fossil_gw_abstraction_file       = nc_open( paste( pcrglobwb_output_folder , "/netcdf/" , "nonFossilGroundwaterAbstraction_annuaTot_output.nc" , sep = "") )
+irrigation_withdrawal_file           = nc_open( paste( pcrglobwb_output_folder , "/netcdf/" , "irrGrossDemand_annuaTot_output.nc"                  , sep = "") )  # or "irrigationWaterWithdrawal_annuaTot_output.nc"
+non_irrigation_withdrawal_file       = nc_open( paste( pcrglobwb_output_folder , "/netcdf/" , "nonIrrGrossDemand_annuaTot_output.nc"               , sep = "") )
+paddy_irrigation_withdrawal_file     = nc_open( paste( pcrglobwb_output_folder , "/netcdf/" , "irrPaddyWaterWithdrawal_annuaTot_output.nc"         , sep = "") )
+non_paddy_irrigation_withdrawal_file = nc_open( paste( pcrglobwb_output_folder , "/netcdf/" , "irrNonPaddyWaterWithdrawal_annuaTot_output.nc"      , sep = "") )
+industry_withdrawal_file             = nc_open( paste( pcrglobwb_output_folder , "/netcdf/" , "industryWaterWithdrawal_annuaTot_output.nc"         , sep = "") )
+domestic_withdrawal_file             = nc_open( paste( pcrglobwb_output_folder , "/netcdf/" , "domesticWaterWithdrawal_annuaTot_output.nc"         , sep = "") )
+livestock_withdrawal_file            = nc_open( paste( pcrglobwb_output_folder , "/netcdf/" , "livestockWaterWithdrawal_annuaTot_output.nc"        , sep = "") )
+non_irrigation_consumption_file      = nc_open( paste( pcrglobwb_output_folder , "/netcdf/" , "nonIrrWaterConsumption_annuaTot_output.nc"          , sep = "") )
+non_irrigation_return_flow_file      = nc_open( paste( pcrglobwb_output_folder , "/netcdf/" , "nonIrrReturnFlow_annuaTot_output.nc"                , sep = "") )
+####################################################################################################################################################################################################################
 
-"actualET_annuaTot_output.nc",
-"baseflow_annuaTot_output.nc",
-"desalinationAbstractionVolume_annuaTot_output.nc",
-"desalinationAbstraction_annuaTot_output.nc",
-
-"domesticWaterWithdrawalVolume_annuaTot_output.nc",
-
-"domesticWaterWithdrawal_annuaTot_output.nc",
-
-"fossilGroundwaterAbstraction_annuaTot_output.nc",
-
-"gwRecharge_annuaTot_output.nc",
-
-"industryWaterWithdrawalVolume_annuaTot_output.nc"
-
-"industryWaterWithdrawal_annuaTot_output.nc
-"irrGrossDemandVolume_annuaTot_output.nc
-"irrGrossDemand_annuaTot_output.nc
-"irrNonPaddyWaterWithdrawal_annuaTot_output.nc
-"irrPaddyWaterWithdrawal_annuaTot_output.nc
-"irrigationWaterWithdrawalVolume_annuaTot_output.nc
-"irrigationWaterWithdrawal_annuaTot_output.nc
-"livestockWaterWithdrawalVolume_annuaTot_output.nc
-"livestockWaterWithdrawal_annuaTot_output.nc
-"nonFossilGroundwaterAbstraction_annuaTot_output.nc
-"nonIrrGrossDemandVolume_annuaTot_output.nc
-"nonIrrGrossDemand_annuaTot_output.nc
-"nonIrrReturnFlow_annuaTot_output.nc
-"nonIrrWaterConsumption_annuaTot_output.nc
-"precipitation_annuaTot_output.nc
-"runoff_annuaTot_output.nc
-"storGroundwaterFossil_annuaAvg_output.nc
-"storGroundwaterFossil_annuaEnd_output.nc
-"storGroundwaterTotal_annuaAvg_output.nc
-"storGroundwaterTotal_annuaEnd_output.nc
-"storGroundwater_annuaAvg_output.nc
-"storGroundwater_annuaEnd_output.nc
-"surfaceWaterAbstractionVolume_annuaTot_output.nc
-"surfaceWaterAbstraction_annuaTot_output.nc
-"temperature_annuaAvg_output.nc
-"totalAbstraction_annuaTot_output.nc
-"totalActiveStorageThickness_annuaAvg_output.nc
-"totalActiveStorageThickness_annuaEnd_output.nc
-"totalEvaporation_annuaTot_output.nc
-"totalGrossDemandVolume_annuaTot_output.nc
-"totalGrossDemand_annuaTot_output.nc
-"totalGroundwaterAbstractionVolume_annuaTot_output.nc
-"totalGroundwaterAbstraction_annuaTot_output.nc
-"totalRunoff_annuaTot_output.nc
-"totalWaterStorageThickness_annuaAvg_output.nc
-"totalWaterStorageThickness_annuaEnd_output.nc
-
-
-# You have to define the following variables
-# - output_folder
-# - starting_year
-
-
-pre_file = nc_open( paste( output_folder, "precipitation_annuaTot_output.nc"               , sep = "") )
-eva_file = nc_open( paste( output_folder, "totalEvaporation_annuaTot_output.nc"            , sep = "") )
-run_file = nc_open( paste( output_folder, "totalRunoff_annuaTot_output.nc"                 , sep = "") )
-
-snw_file = nc_open( paste( output_folder, "snowCoverSWE_annuaAvg_output.nc"                , sep = "") )
-snf_file = nc_open( paste( output_folder, "snowFreeWater_annuaAvg_output.nc"               , sep = "") )
-
-swt_file = nc_open( paste( output_folder, "surfaceWaterStorage_annuaAvg_output.nc"         , sep = "") )
-top_file = nc_open( paste( output_folder, "topWaterLayer_annuaAvg_output.nc"               , sep = "") )
-
-int_file = nc_open( paste( output_folder, "interceptStor_annuaAvg_output.nc"               , sep = "") )
-
-upp_file = nc_open( paste( output_folder, "storUppTotal_annuaAvg_output.nc"                , sep = "") )
-low_file = nc_open( paste( output_folder, "storLowTotal_annuaAvg_output.nc"                , sep = "") )
-
-gwt_file = nc_open( paste( output_folder, "groundwaterThicknessEstimate_annuaAvg_output.nc", sep = "") )
 
 # time values 
-time = ncvar_get(swt_file, "time")
+time = ncvar_get(gw_recharge_file, "time")
 
 # years used in the model
-year = seq(starting_year, 2010, 1)
+year          = seq(1958, 2010, 1)
 
-
-
-
-
-PRE = rep(NA, length(time))
-EVA = rep(NA, length(time))
-RUN = rep(NA, length(time))
-
-SNW = rep(NA, length(time))
-SNF = rep(NA, length(time))
-
-SWT = rep(NA, length(time))
-TOP = rep(NA, length(time))
-
-INT = rep(NA, length(time))
-
-UPP = rep(NA, length(time))
-LOW = rep(NA, length(time))
-
-GWT = rep(NA, length(time))
+# initiate empty arrays 
+precipitation                   =  rep( NA, precipitation_file                   , length(time))
+land_evaporation                =  rep( NA, land_evaporation_file                , length(time))
+total_evaporation               =  rep( NA, total_evaporation_file               , length(time))
+land_runoff                     =  rep( NA, land_runoff_file                     , length(time))
+total_runoff                    =  rep( NA, total_runoff_file                    , length(time))
+gw_recharge                     =  rep( NA, gw_recharge_file                     , length(time))
+gw_baseflow                     =  rep( NA, gw_baseflow_file                     , length(time))
+total_withdrawal                =  rep( NA, total_withdrawal_file                , length(time))
+desalination_withdrawal         =  rep( NA, desalination_withdrawal_file         , length(time))
+surface_water_withdrawal        =  rep( NA, surface_water_withdrawal_file        , length(time))
+total_gw_abstraction            =  rep( NA, total_gw_abstraction_file            , length(time))
+fossil_gw_abstraction           =  rep( NA, fossil_gw_abstraction_file           , length(time))
+non_fossil_gw_abstraction       =  rep( NA, non_fossil_gw_abstraction_file       , length(time))
+irrigation_withdrawal           =  rep( NA, irrigation_withdrawal_file           , length(time))
+non_irrigation_withdrawal       =  rep( NA, non_irrigation_withdrawal_file       , length(time))
+paddy_irrigation_withdrawal     =  rep( NA, paddy_irrigation_withdrawal_file     , length(time))
+non_paddy_irrigation_withdrawal =  rep( NA, non_paddy_irrigation_withdrawal_file , length(time))
+industry_withdrawal             =  rep( NA, industry_withdrawal_file             , length(time))
+domestic_withdrawal             =  rep( NA, domestic_withdrawal_file             , length(time))
+livestock_withdrawal            =  rep( NA, livestock_withdrawal_file            , length(time))
+non_irrigation_consumption      =  rep( NA, non_irrigation_consumption_file      , length(time))   
+non_irrigation_return_flow      =  rep( NA, non_irrigation_return_flow_file      , length(time))   
 
 # cell area 
-cell_area_file = nc_open("/home/edwin/data/cell_area_nc/cellsize05min.correct.used.nc")
+cell_area_file = nc_open("/home/edwin/data/cell_area_nc/cellarea30min.correct.used.nc")
 cell_area = ncvar_get(cell_area_file, "Band1")[,]
 nc_close(cell_area_file)
 
+# loop for every timestep/year
 for (i in 1:length(time)){
 
-PRE_field = ncvar_get(pre_file, "precipitation"                   , c(1, 1, i), c(-1, -1, 1))
-EVA_field = ncvar_get(eva_file, "total_evaporation"               , c(1, 1, i), c(-1, -1, 1))
-RUN_field = ncvar_get(run_file, "total_runoff"                    , c(1, 1, i), c(-1, -1, 1))
+print(paste("Processing the data from the year ", year[i]), sep = "")
 
-SNW_field = ncvar_get(snw_file, "snow_water_equivalent"           , c(1, 1, i), c(-1, -1, 1))
-SNF_field = ncvar_get(snf_file, "snow_free_water"                 , c(1, 1, i), c(-1, -1, 1))
-
-SWT_field = ncvar_get(swt_file, "surface_water_storage"           , c(1, 1, i), c(-1, -1, 1))
-TOP_field = ncvar_get(top_file, "top_water_layer"                 , c(1, 1, i), c(-1, -1, 1))
-
-INT_field = ncvar_get(int_file, "interception_storage"            , c(1, 1, i), c(-1, -1, 1))
-
-UPP_field = ncvar_get(upp_file, "upper_soil_storage"              , c(1, 1, i), c(-1, -1, 1))
-LOW_field = ncvar_get(low_file, "lower_soil_storage"              , c(1, 1, i), c(-1, -1, 1))
-
-GWT_field = ncvar_get(gwt_file, "groundwater_thickness_estimate"  , c(1, 1, i), c(-1, -1, 1))
-
-# ignore zero values for some stores 
-SWT_field[which(SWT_field < 0.0)] = 0.0
+# load field values from netcdf files
+map_precipitation                    = ncvar_get(precipitation_file                   , NA , c(1, 1, i), c(-1, -1, 1))
+map_land_evaporation                 = ncvar_get(land_evaporation_file                , NA , c(1, 1, i), c(-1, -1, 1))
+map_total_evaporation                = ncvar_get(total_evaporation_file               , NA , c(1, 1, i), c(-1, -1, 1))
+map_land_runoff                      = ncvar_get(land_runoff_file                     , NA , c(1, 1, i), c(-1, -1, 1))
+map_total_runoff                     = ncvar_get(total_runoff_file                    , NA , c(1, 1, i), c(-1, -1, 1))
+map_gw_recharge                      = ncvar_get(gw_recharge_file                     , NA , c(1, 1, i), c(-1, -1, 1))
+map_gw_baseflow                      = ncvar_get(gw_baseflow_file                     , NA , c(1, 1, i), c(-1, -1, 1))
+map_total_withdrawal                 = ncvar_get(total_withdrawal_file                , NA , c(1, 1, i), c(-1, -1, 1))
+map_desalination_withdrawal          = ncvar_get(desalination_withdrawal_file         , NA , c(1, 1, i), c(-1, -1, 1))
+map_surface_water_withdrawal         = ncvar_get(surface_water_withdrawal_file        , NA , c(1, 1, i), c(-1, -1, 1))
+map_total_gw_abstraction             = ncvar_get(total_gw_abstraction_file            , NA , c(1, 1, i), c(-1, -1, 1))
+map_fossil_gw_abstraction            = ncvar_get(fossil_gw_abstraction_file           , NA , c(1, 1, i), c(-1, -1, 1))
+map_non_fossil_gw_abstraction        = ncvar_get(non_fossil_gw_abstraction_file       , NA , c(1, 1, i), c(-1, -1, 1))
+map_irrigation_withdrawal            = ncvar_get(irrigation_withdrawal_file           , NA , c(1, 1, i), c(-1, -1, 1))
+map_non_irrigation_withdrawal        = ncvar_get(non_irrigation_withdrawal_file       , NA , c(1, 1, i), c(-1, -1, 1))
+map_paddy_irrigation_withdrawal      = ncvar_get(paddy_irrigation_withdrawal_file     , NA , c(1, 1, i), c(-1, -1, 1))
+map_non_paddy_irrigation_withdrawal  = ncvar_get(non_paddy_irrigation_withdrawal_file , NA , c(1, 1, i), c(-1, -1, 1))
+map_industry_withdrawal              = ncvar_get(industry_withdrawal_file             , NA , c(1, 1, i), c(-1, -1, 1))
+map_domestic_withdrawal              = ncvar_get(domestic_withdrawal_file             , NA , c(1, 1, i), c(-1, -1, 1))
+map_livestock_withdrawal             = ncvar_get(livestock_withdrawal_file            , NA , c(1, 1, i), c(-1, -1, 1))
+map_non_irrigation_consumption       = ncvar_get(non_irrigation_consumption_file      , NA , c(1, 1, i), c(-1, -1, 1))
+map_non_irrigation_return_flow       = ncvar_get(non_irrigation_return_flow_file      , NA , c(1, 1, i), c(-1, -1, 1))
 
 # calculate the global volumes (unit: km3)
-PRE[i] = sum( PRE_field  * cell_area, na.rm = T)/10^9
-EVA[i] = sum( EVA_field  * cell_area, na.rm = T)/10^9
-RUN[i] = sum( RUN_field  * cell_area, na.rm = T)/10^9
-
-SNW[i] = sum( SNW_field  * cell_area, na.rm = T)/10^9
-SNF[i] = sum( SNF_field  * cell_area, na.rm = T)/10^9
-
-SWT[i] = sum( SWT_field  * cell_area, na.rm = T)/10^9
-TOP[i] = sum( TOP_field  * cell_area, na.rm = T)/10^9
-
-INT[i] = sum( INT_field  * cell_area, na.rm = T)/10^9
-
-UPP[i] = sum( UPP_field  * cell_area, na.rm = T)/10^9
-LOW[i] = sum( LOW_field  * cell_area, na.rm = T)/10^9
-
-GWT[i] = sum( GWT_field  * cell_area, na.rm = T)/10^9
-
-print(i)
-print(year[i])
-print(paste("PRE : ",PRE[i]))
-print(paste("EVA : ",EVA[i]))
-print(paste("RUN : ",RUN[i]))
-
-print(paste("SNW : ",SNW[i]))
-print(paste("SNF : ",SNF[i]))
-
-print(paste("SWT : ",SWT[i]))
-print(paste("TOP : ",TOP[i]))
-
-print(paste("INT : ",INT[i]))
-
-print(paste("UPP : ",UPP[i]))
-print(paste("LOW : ",LOW[i]))
-
-print(paste("GWT : ",GWT[i]))
-
-print("")
+precipitation                    [i] = sum(cell_area * map_precipitation                   , na.rm = T) / 10^9
+land_evaporation                 [i] = sum(cell_area * map_land_evaporation                , na.rm = T) / 10^9
+total_evaporation                [i] = sum(cell_area * map_total_evaporation               , na.rm = T) / 10^9
+land_runoff                      [i] = sum(cell_area * map_land_runoff                     , na.rm = T) / 10^9
+total_runoff                     [i] = sum(cell_area * map_total_runoff                    , na.rm = T) / 10^9
+gw_recharge                      [i] = sum(cell_area * map_gw_recharge                     , na.rm = T) / 10^9
+gw_baseflow                      [i] = sum(cell_area * map_gw_baseflow                     , na.rm = T) / 10^9
+total_withdrawal                 [i] = sum(cell_area * map_total_withdrawal                , na.rm = T) / 10^9
+desalination_withdrawal          [i] = sum(cell_area * map_desalination_withdrawal         , na.rm = T) / 10^9
+surface_water_withdrawal         [i] = sum(cell_area * map_surface_water_withdrawal        , na.rm = T) / 10^9
+total_gw_abstraction             [i] = sum(cell_area * map_total_gw_abstraction            , na.rm = T) / 10^9
+fossil_gw_abstraction            [i] = sum(cell_area * map_fossil_gw_abstraction           , na.rm = T) / 10^9
+non_fossil_gw_abstraction        [i] = sum(cell_area * map_non_fossil_gw_abstraction       , na.rm = T) / 10^9
+irrigation_withdrawal            [i] = sum(cell_area * map_irrigation_withdrawal           , na.rm = T) / 10^9
+non_irrigation_withdrawal        [i] = sum(cell_area * map_non_irrigation_withdrawal       , na.rm = T) / 10^9
+paddy_irrigation_withdrawal      [i] = sum(cell_area * map_paddy_irrigation_withdrawal     , na.rm = T) / 10^9
+non_paddy_irrigation_withdrawal  [i] = sum(cell_area * map_non_paddy_irrigation_withdrawal , na.rm = T) / 10^9
+industry_withdrawal              [i] = sum(cell_area * map_industry_withdrawal             , na.rm = T) / 10^9
+domestic_withdrawal              [i] = sum(cell_area * map_domestic_withdrawal             , na.rm = T) / 10^9
+livestock_withdrawal             [i] = sum(cell_area * map_livestock_withdrawal            , na.rm = T) / 10^9
+non_irrigation_consumption       [i] = sum(cell_area * map_non_irrigation_consumption      , na.rm = T) / 10^9
+non_irrigation_return_flow       [i] = sum(cell_area * map_non_irrigation_return_flow      , na.rm = T) / 10^9
 
 }
 
-# index of the starting year
-analysis_starting_year = starting_year + 10
-sta = which(year == analysis_starting_year)
-# index of the last year
-las = length(year)
-
-# correcting snow and snow free water (due to the accumulation in glacier and ice sheet regions)
-snw_lm_model  = lm(SNW ~ year)
-snf_lm_model  = lm(SNF ~ year)
-SNW_corrected = SNW - (snw_lm_model$coefficients[1] + snw_lm_model$coefficients[2]*year)
-SNF_corrected = SNF - (snf_lm_model$coefficients[1] + snf_lm_model$coefficients[2]*year)
-
-# including the starting snow and snow free water
-SNW_corrected = SNW[1] + SNW_corrected
-SNF_corrected = SNF[1] + SNF_corrected
-
-# the corrected TWS
-TWS_corrected = SWT + SNW_corrected + SNF_corrected + INT + TOP + UPP + LOW + GWT
-plot(year[sta:las], TWS_corrected[sta:las]); lines(year[sta:las], TWS_corrected[sta:las])
-
-# TODO: write a complete and raw data frame
-data_frame_raw_complete = data.frame(year,
-EVA,
-RUN,
-SNW,
-SNF,
-SWT,
-TOP,
-INT,
-UPP,
-LOW,
-GWT,
-SNW_corrected,
-SNF_corrected)
-file_name = paste(output_folder, "table_raw_complete_", starting_year, "to2010.txt",sep ="")
-write.table(data_frame_raw_complete, file_name, sep = ";", row.names = FALSE)
-
-# integrating to several storages
-total_water_storage = TWS_corrected
-surface_water       = SWT + TOP
-snow                = SNW_corrected + SNF_corrected                       ; plot(year[sta:las], snow[sta:las]); lines(year[sta:las], snow[sta:las])
-interception        = INT
-soil_moisture       = UPP + LOW
-groundwater         = GWT
-
-# identify mean values (only using a specific period of interest
-mean_total_water_storage = mean(total_water_storage[sta:las])
-mean_surface_water       = mean(surface_water      [sta:las])
-mean_snow                = mean(snow               [sta:las])
-mean_interception        = mean(interception       [sta:las])
-mean_soil_moisture       = mean(soil_moisture      [sta:las])
-mean_groundwater         = mean(groundwater        [sta:las])
-
-# identiy the maximum amplitude from the mean values (for making charts) 
-amplitude = max( 
-                    mean_total_water_storage - min(total_water_storage[sta:las]), max(total_water_storage[sta:las]) - mean_total_water_storage,
-                    mean_surface_water       - min(surface_water[sta:las])      , max(surface_water[sta:las])       - mean_surface_water,
-                    mean_groundwater         - min(groundwater[sta:las])        , max(groundwater[sta:las])         - mean_groundwater,
-                0.0)
-
-# making data frame for the absolute value and write it to file
-data_frame_absolute = data.frame(year, total_water_storage, surface_water, snow, interception, soil_moisture, groundwater)
-file_name = paste(output_folder, "absolute_", starting_year, "to2010.txt",sep ="")
-write.table(data_frame_absolute, file_name, sep = ";", row.names = FALSE)
-
-# calculating anomaly values
-total_water_storage_anomaly = total_water_storage - mean_total_water_storage
-surface_water_anomaly       = surface_water       - mean_surface_water      
-snow_anomaly                = snow                - mean_snow               ; plot(year[sta:las], snow_anomaly[sta:las]); lines(year[sta:las], snow_anomaly[sta:las])  
-interception_anomaly        = interception        - mean_interception       
-soil_moisture_anomaly       = soil_moisture       - mean_soil_moisture      
-groundwater_anomaly         = groundwater         - mean_groundwater        
-
-# making data frame for the anomaly value
-data_frame_anomaly = data.frame(year, total_water_storage_anomaly, surface_water_anomaly, snow_anomaly, interception_anomaly, soil_moisture_anomaly, groundwater_anomaly)
-
-# making the anomaly charts
-tws_anomaly_chart <- ggplot(data = data_frame_anomaly, aes(x = year, y = total_water_storage_anomaly)) + geom_line() + scale_x_continuous(limits = c(analysis_starting_year, 2010))
-swt_anomaly_chart <- ggplot(data = data_frame_anomaly, aes(x = year, y = surface_water_anomaly))       + geom_line() + scale_x_continuous(limits = c(analysis_starting_year, 2010))
-snw_anomaly_chart <- ggplot(data = data_frame_anomaly, aes(x = year, y = snow_anomaly))                + geom_line() + scale_x_continuous(limits = c(analysis_starting_year, 2010))
-int_anomaly_chart <- ggplot(data = data_frame_anomaly, aes(x = year, y = interception_anomaly))        + geom_line() + scale_x_continuous(limits = c(analysis_starting_year, 2010))
-soi_anomaly_chart <- ggplot(data = data_frame_anomaly, aes(x = year, y = soil_moisture_anomaly))       + geom_line() + scale_x_continuous(limits = c(analysis_starting_year, 2010))
-gwt_anomaly_chart <- ggplot(data = data_frame_anomaly, aes(x = year, y = groundwater_anomaly))         + geom_line() + scale_x_continuous(limits = c(analysis_starting_year, 2010))
-# setting y axes
-tws_anomaly_chart <- tws_anomaly_chart + scale_y_continuous(limits = c(- amplitude, amplitude))
-swt_anomaly_chart <- swt_anomaly_chart + scale_y_continuous(limits = c(- amplitude, amplitude))
-snw_anomaly_chart <- snw_anomaly_chart + scale_y_continuous(limits = c(- amplitude, amplitude))
-int_anomaly_chart <- int_anomaly_chart + scale_y_continuous(limits = c(- amplitude, amplitude))
-soi_anomaly_chart <- soi_anomaly_chart + scale_y_continuous(limits = c(- amplitude, amplitude))
-gwt_anomaly_chart <- gwt_anomaly_chart + scale_y_continuous(limits = c(- amplitude, amplitude))
-
-# plotting the anomaly charts - this is for one slide
-gA <- ggplotGrob(tws_anomaly_chart)
-gB <- ggplotGrob(swt_anomaly_chart)
-gC <- ggplotGrob(gwt_anomaly_chart)
-gD <- ggplotGrob(snw_anomaly_chart)
-gE <- ggplotGrob(int_anomaly_chart)
-gF <- ggplotGrob(soi_anomaly_chart)
-g = cbind(rbind(gA, gB, gC, size = "last"), rbind(gD, gE, gF, size = "last"), size = "first")
-grid.newpage()
-grid.draw(g)
-
-# making data frame for all fluxes
-precipitation = PRE
-evaporation   = EVA
-runoff        = RUN
-data_frame_flux = data.frame(precipitation, evaporation, runoff)
-file_name = paste(output_folder, "fluxes_", starting_year, "to2010.txt",sep ="")
-write.table(data_frame_flux, file_name, sep = ";", row.names = FALSE)
-
-# calculate mean values of fluxes
-mean_precipitation = mean(precipitation[sta:las])
-mean_evaporation   = mean(evaporation[sta:las])
-mean_runoff        = mean(runoff[sta:las])
-
-# calculate anomaly fluxes and making data frame for anomaly
-precipitation_anomaly = precipitation - mean_precipitation
-evaporation_anomaly   = evaporation   - mean_evaporation  
-runoff_anomaly        = runoff        - mean_runoff       
-data_frame_flux_anomaly = data.frame(year, precipitation_anomaly, evaporation_anomaly, runoff_anomaly)
-write.table(data_frame_flux_anomaly, file_name, sep = ";", row.names = FALSE)
-
-# amplitude for fluxes (for the bar plots)
-amplitude_precipitation = max(mean_precipitation - min(precipitation[sta:las]), max(precipitation[sta:las]) - mean_precipitation) 
-amplitude_evaporation   = max(mean_evaporation   - min(evaporation[sta:las])  , max(evaporation[sta:las])   - mean_evaporation) 
-amplitude_runoff        = max(mean_runoff        - min(runoff[sta:las])       , max(runoff[sta:las])        - mean_runoff) 
-
-# making barplot for fluxes
-pre_anomaly_bar_plot = ggplot(data = data_frame_anomaly, aes(x = year, y = precipitation_anomaly)) + geom_bar(stat = "identity", position = "identity")
-eva_anomaly_bar_plot = ggplot(data = data_frame_anomaly, aes(x = year, y = evaporation_anomaly  )) + geom_bar(stat = "identity", position = "identity")
-run_anomaly_bar_plot = ggplot(data = data_frame_anomaly, aes(x = year, y = runoff_anomaly       )) + geom_bar(stat = "identity", position = "identity")
-# setting x and y axes
-pre_anomaly_bar_plot <- pre_anomaly_bar_plot + scale_y_continuous(limits = c(- amplitude_precipitation, amplitude_precipitation)) + scale_x_continuous(limits = c(analysis_starting_year, 2010))
-eva_anomaly_bar_plot <- eva_anomaly_bar_plot + scale_y_continuous(limits = c(- amplitude_evaporation  , amplitude_evaporation  )) + scale_x_continuous(limits = c(analysis_starting_year, 2010))
-run_anomaly_bar_plot <- run_anomaly_bar_plot + scale_y_continuous(limits = c(- amplitude_runoff       , amplitude_runoff       )) + scale_x_continuous(limits = c(analysis_starting_year, 2010))
-
-# making plot for absolute storages
-total_water_storage_chart <- ggplot(data = data_frame_absolute, aes(x = year, y = total_water_storage)) + geom_line() + scale_x_continuous(limits = c(analysis_starting_year, 2010))
-surface_water_chart       <- ggplot(data = data_frame_absolute, aes(x = year, y = surface_water))       + geom_line() + scale_x_continuous(limits = c(analysis_starting_year, 2010))
-groundwater_chart         <- ggplot(data = data_frame_absolute, aes(x = year, y = groundwater))         + geom_line() + scale_x_continuous(limits = c(analysis_starting_year, 2010))
-# setting y axes
-total_water_storage_chart <- total_water_storage_chart + scale_y_continuous(limits = c(mean_total_water_storage - amplitude, mean_total_water_storage + amplitude)) 
-surface_water_chart       <- surface_water_chart       + scale_y_continuous(limits = c(mean_surface_water       - amplitude, mean_surface_water       + amplitude)) 
-groundwater_chart         <- groundwater_chart         + scale_y_continuous(limits = c(mean_groundwater         - amplitude, mean_groundwater         + amplitude)) 
-
-# plooting storage and fluxes charts
-gA <- ggplotGrob(total_water_storage_chart)
-gB <- ggplotGrob(surface_water_chart)
-gC <- ggplotGrob(groundwater_chart)
-gD <- ggplotGrob(pre_anomaly_bar_plot)
-gE <- ggplotGrob(eva_anomaly_bar_plot)
-gF <- ggplotGrob(run_anomaly_bar_plot)
-g = cbind(rbind(gA, gB, gC, size = "last"), rbind(gD, gE, gF, size = "last"), size = "first")
-grid.newpage()
-grid.draw(g)
+# data frame contain yearly flux values: 
+data_frame_complete = data.frame(
+year,
+precipitation,                  
+land_evaporation,               
+total_evaporation,              
+land_runoff,                    
+total_runoff,                   
+gw_recharge,                    
+gw_baseflow,                    
+total_withdrawal,               
+desalination_withdrawal,        
+surface_water_withdrawal,       
+total_gw_abstraction,           
+fossil_gw_abstraction,          
+non_fossil_gw_abstraction,      
+irrigation_withdrawal,          
+non_irrigation_withdrawal,      
+paddy_irrigation_withdrawal,    
+non_paddy_irrigation_withdrawal,
+industry_withdrawal,            
+domestic_withdrawal,            
+livestock_withdrawal,           
+non_irrigation_consumption,     
+non_irrigation_return_flow     
+)
+file_name = paste(folder_for_the_analysis_output, "/table_global_annual_fluxes_km3.txt",sep ="")
+write.table(data_frame_complete, file_name, sep = ";", row.names = FALSE)
