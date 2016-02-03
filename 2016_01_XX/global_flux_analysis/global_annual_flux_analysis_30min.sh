@@ -6,13 +6,16 @@ do
    echo "Processing the run $i."
    echo "R -f global_annual_flux_analysis_30min.R $OUT$i &"
    R -f global_annual_flux_analysis_30min.R $OUT$i &
-   if ! ((i % 4)); then
-      echo "wait"         
+   if ! ((i % 10)); then
+      echo "wait"
+      wait         
    fi
 done
 
-#~ R -f global_annual_flux_analysis_30min.R with_fossil_limit_and_with_pumping_limit 
-#~ R -f global_annual_flux_analysis_30min.R with_fossil_limit_and_without_pumping_limit
-#~ R -f global_annual_flux_analysis_30min.R without_fossil_limit_and_with_pumping_limit
-#~ R -f global_annual_flux_analysis_30min.R without_fossil_limit_and_without_pumping_limit
+R -f global_annual_flux_analysis_30min.R with_fossil_limit_and_with_pumping_limit &
+R -f global_annual_flux_analysis_30min.R with_fossil_limit_and_without_pumping_limit &
+R -f global_annual_flux_analysis_30min.R without_fossil_limit_and_with_pumping_limit &
+R -f global_annual_flux_analysis_30min.R without_fossil_limit_and_without_pumping_limit &
+wait
+echo "all done"
 
