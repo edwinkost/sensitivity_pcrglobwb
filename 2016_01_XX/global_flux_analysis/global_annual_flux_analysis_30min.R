@@ -9,6 +9,7 @@ require(grid)
 
 # read the system arguments
 args <- commandArgs()
+print(args)
 
 # scenario name/code 
 scenario_code                  <- args[4]
