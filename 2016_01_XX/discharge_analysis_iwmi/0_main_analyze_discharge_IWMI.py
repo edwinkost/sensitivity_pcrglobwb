@@ -51,7 +51,7 @@ if len(sys.argv) > 2 and sys.argv[2] == "iwmi_calibration":
     globalDirectoryGRDC = "/projects/0/dfguu/users/edwin/data/observation_data/IWMI_calibration/monthly_discharge/for_calibration/"
     baseflowFolderIWMI  = "/projects/0/dfguu/users/edwin/data/observation_data/IWMI_calibration/annual_baseflow/for_calibration/"
 if len(sys.argv) > 2 and sys.argv[2] == "iwmi_validation":
-    globalDirectoryGRDC = "/projects/0/dfguu/users/edwin/data/observation_data/IWMI_calibration/annual_baseflow/for_calibration/"
+    globalDirectoryGRDC = "/projects/0/dfguu/users/edwin/data/observation_data/IWMI_calibration/monthly_discharge/for_validation/"
     baseflowFolderIWMI  = "/projects/0/dfguu/users/edwin/data/observation_data/IWMI_calibration/annual_baseflow/for_validation/"
 
 # clone, ldd and cell area maps, for 30min results (of PCR-GLOBWB 2.0)
