@@ -8,8 +8,8 @@ import sys
 sta_run = int(sys.argv[1]) # 0
 end_run = int(sys.argv[2]) # 224 
 
-# maximum number of cores
-max_cores = 26
+# maximum number of cores (must be an even number)
+max_cores = 24
 
 # making command lines
 cmd = ''
@@ -21,7 +21,7 @@ for i_run in range(sta_run, end_run + 1):
    cmd += "python 0_main_analyze_discharge_IWMI.py " + "/projects/0/dfguu/users/edwin/30min_sensitivity_analysis_non_natural/2016_01_XX/code__a__" + str(i_run) + " iwmi_validation"
    cmd = cmd +" & \n"
 
-   if ((i_run + 1)%max_cores == 0) or (i_run == end_run): cmd = cmd + "wait \n"       
+   if ((i_run + 1)%(max_cores/2) == 0) or (i_run == end_run): cmd = cmd + "wait \n"       
 
 print cmd
 

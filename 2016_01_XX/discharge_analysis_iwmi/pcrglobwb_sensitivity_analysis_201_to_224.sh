@@ -3,6 +3,6 @@
 #SBATCH -t 24:00:00
 #SBATCH -p normal
 
-python 00_analyzing_bash.py 221 224
+python 00_analyzing_bash.py 201 224
 
 
