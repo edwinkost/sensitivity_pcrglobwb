@@ -11,6 +11,7 @@ import sys
 import glob
 
 import dischargeGRDC
+import baseflowIWMI
 
 import logging
 from logger import Logger
