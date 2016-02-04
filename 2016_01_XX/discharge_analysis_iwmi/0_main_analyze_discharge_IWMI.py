@@ -31,8 +31,8 @@ cleanOutputDir          = True # option to clean analysisOutputDir
 if len(sys.argv) > 1:
     pcrglobwb_output["folder"] = str(sys.argv[1])
     globalAnalysisOutputDir    = str(sys.argv[1])+"/analysis/"
-    if len(sys.argv) > 2 and len(sys.argv)[2] == "iwmi_calibration": globalAnalysisOutputDir = str(sys.argv[1])+"/analysis_iwmi/calibration/"
-    if len(sys.argv) > 2 and len(sys.argv)[2] == "iwmi_validation" : globalAnalysisOutputDir = str(sys.argv[1])+"/analysis_iwmi/validation/"
+    if len(sys.argv) > 2 and sys.argv[2] == "iwmi_calibration": globalAnalysisOutputDir = str(sys.argv[1])+"/analysis_iwmi/calibration/"
+    if len(sys.argv) > 2 and sys.argv[2] == "iwmi_validation" : globalAnalysisOutputDir = str(sys.argv[1])+"/analysis_iwmi/validation/"
 try:
     os.makedirs(globalAnalysisOutputDir) 
 except:
