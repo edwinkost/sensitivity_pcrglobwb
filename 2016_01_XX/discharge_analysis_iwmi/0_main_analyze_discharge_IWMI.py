@@ -124,6 +124,12 @@ def main():
         # logger object for baseflow analysis
         logger = Logger(analysisOutputDir)
         #
+        
+        print  "test"
+        print  "test"
+        print  "test"
+        print  "test"
+        
         # annual baseflow evaluation (based on baseflow data)
         baseflowEvaluation = baseflowIWMI.BaseflowEvaluation(pcrglobwb_output["folder"],\
                                                              startDate,endDate,temporary_directory)
