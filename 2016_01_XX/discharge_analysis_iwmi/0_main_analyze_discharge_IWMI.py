@@ -129,7 +129,7 @@ def main():
                                                              startDate,endDate,temporary_directory)
         # - get GRDC attributes of all stations 
         #   (based on the previous analysis on monthly discharge)
-        baseflowEvaluation.get_grdc_attributes(dischargeEvaluation.attributeGRDC, baseflowFolderIWMI)
+        baseflowEvaluation.get_grdc_attributes(baseflowEvaluation.attributeGRDC, baseflowFolderIWMI)
         #
         # - evaluate annual baseflow time series
         pcrglobwb_output["netcdf_file_name"]     = "netcdf/accuBaseflow_annuaAvg_output.nc"
