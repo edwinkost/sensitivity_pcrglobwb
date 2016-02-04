@@ -6,10 +6,10 @@ import sys
 
 # starting and last_run code
 sta_run = 0
-end_run = 20 
+end_run = 224 
 
 # maximum number of cores
-max_cores = 5
+max_cores = 8
 
 # making command lines
 cmd = ''
