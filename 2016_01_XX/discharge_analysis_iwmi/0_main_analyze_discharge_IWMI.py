@@ -46,10 +46,10 @@ endDate   = None # "2010-12-31" #YYYY-MM-DD # None
 globalDirectoryGRDC = "/projects/0/dfguu/users/edwin/data/observation_data/pcrglobwb_sensitivity_analysis/grdc_monthly_discharge/"
 # - for IWMI runs: There are 39 calibration stations and 65 validation stations used for validating monthly discharge. 
 #                  However, for validating annual baseflow, due to the data quality and length, we use only 33 calibration stations and 54 for validation stations.
-if len(sys.argv) > 2 and len(sys.argv)[2] == "iwmi_calibration":
+if len(sys.argv) > 2 and sys.argv[2] == "iwmi_calibration":
     globalDirectoryGRDC = "/projects/0/dfguu/users/edwin/data/observation_data/IWMI_calibration/monthly_discharge/for_calibration/"
     baseflowFolderIWMI  = "/projects/0/dfguu/users/edwin/data/observation_data/IWMI_calibration/annual_baseflow/for_calibration/"
-if len(sys.argv) > 2 and len(sys.argv)[2] == "iwmi_validation":
+if len(sys.argv) > 2 and sys.argv[2] == "iwmi_validation":
     globalDirectoryGRDC = "/projects/0/dfguu/users/edwin/data/observation_data/IWMI_calibration/annual_baseflow/for_calibration/"
     baseflowFolderIWMI  = "/projects/0/dfguu/users/edwin/data/observation_data/IWMI_calibration/annual_baseflow/for_validation/"
 
@@ -104,8 +104,8 @@ def main():
     # baseflow analysis
     ####################################################################################################
     #
-    if len(sys.argv) > 2 and (len(sys.argv)[2] == "iwmi_calibration" or\
-                              len(sys.argv)[2] == "iwmi_validation"):
+    if len(sys.argv) > 2 and (sys.argv[2] == "iwmi_calibration" or\
+                              sys.argv[2] == "iwmi_validation"):
         # make analysisOutputDir
         analysisOutputDir = globalAnalysisOutputDir+"/annual_baseflow/"
         try:
