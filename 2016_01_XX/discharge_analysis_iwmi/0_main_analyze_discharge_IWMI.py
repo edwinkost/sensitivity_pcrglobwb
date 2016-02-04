@@ -114,6 +114,13 @@ def main():
         except:
             if cleanOutputDir == True: os.system('rm -r '+analysisOutputDir+"/*") 
         #
+        # temporary directory (note that it is NOT a good idea to store temporary files in the memory (/dev/shm))
+        temporary_directory = analysisOutputDir+"/tmp/"
+        try:
+            os.makedirs(temporary_directory) 
+        except:
+            os.system('rm -r '+temporary_directory+"/*") # make sure that temporary directory is clean 
+        #
         # logger object for baseflow analysis
         logger = Logger(analysisOutputDir)
         #
