@@ -5,11 +5,11 @@ import os
 import sys
 
 # starting and last_run code
-sta_run = 0
-end_run = 224 
+sta_run = int(sys.argv[1]) # 0
+end_run = int(sys.argv[2]) # 224 
 
 # maximum number of cores
-max_cores = 8
+max_cores = 23
 
 # making command lines
 cmd = ''
