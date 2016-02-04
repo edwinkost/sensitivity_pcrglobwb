@@ -34,6 +34,7 @@ if len(sys.argv) > 1:
     globalAnalysisOutputDir    = str(sys.argv[1])+"/analysis/"
     if len(sys.argv) > 2 and sys.argv[2] == "iwmi_calibration": globalAnalysisOutputDir = str(sys.argv[1])+"/analysis_iwmi/calibration/"
     if len(sys.argv) > 2 and sys.argv[2] == "iwmi_validation" : globalAnalysisOutputDir = str(sys.argv[1])+"/analysis_iwmi/validation/"
+    if len(sys.argv) > 2 and sys.argv[2] == "test" : globalAnalysisOutputDir = str(sys.argv[1])+"/analysis_iwmi/test/"
 try:
     os.makedirs(globalAnalysisOutputDir) 
 except:
@@ -53,6 +54,9 @@ if len(sys.argv) > 2 and sys.argv[2] == "iwmi_calibration":
 if len(sys.argv) > 2 and sys.argv[2] == "iwmi_validation":
     globalDirectoryGRDC = "/projects/0/dfguu/users/edwin/data/observation_data/IWMI_calibration/monthly_discharge/for_validation/"
     baseflowFolderIWMI  = "/projects/0/dfguu/users/edwin/data/observation_data/IWMI_calibration/annual_baseflow/for_validation/"
+if len(sys.argv) > 2 and sys.argv[2] == "test":
+    globalDirectoryGRDC = "/projects/0/dfguu/users/edwin/data/observation_data/IWMI_calibration/monthly_discharge/test/"
+    baseflowFolderIWMI  = "/projects/0/dfguu/users/edwin/data/observation_data/IWMI_calibration/annual_baseflow/test/"
 
 # clone, ldd and cell area maps, for 30min results (of PCR-GLOBWB 2.0)
 globalCloneMapFileName = "/projects/0/dfguu/data/hydroworld/PCRGLOBWB20/input30min/global/Global_CloneMap_30min.map"
@@ -90,23 +94,24 @@ def main():
     # - get GRDC attributes of all stations:
     dischargeEvaluation.get_grdc_attributes(directoryGRDC = globalDirectoryGRDC)
     #
-    #~ # - evaluate monthly discharge results
-    #~ pcrglobwb_output["netcdf_file_name"]     = "netcdf/discharge_monthAvg_output.nc"
-    #~ pcrglobwb_output["netcdf_variable_name"] = "discharge"
-    #~ dischargeEvaluation.evaluateAllModelResults(globalCloneMapFileName,\
-                                                #~ catchmentClassFileName,\
-                                                #~ lddMapFileName,\
-                                                #~ cellAreaMapFileName,\
-                                                #~ pcrglobwb_output,\
-                                                #~ analysisOutputDir)  
-    #~ ####################################################################################################
+    # - evaluate monthly discharge results
+    pcrglobwb_output["netcdf_file_name"]     = "netcdf/discharge_monthAvg_output.nc"
+    pcrglobwb_output["netcdf_variable_name"] = "discharge"
+    dischargeEvaluation.evaluateAllModelResults(globalCloneMapFileName,\
+                                                catchmentClassFileName,\
+                                                lddMapFileName,\
+                                                cellAreaMapFileName,\
+                                                pcrglobwb_output,\
+                                                analysisOutputDir)  
+    ####################################################################################################
 
 
     # baseflow analysis
     ####################################################################################################
     #
     if len(sys.argv) > 2 and (sys.argv[2] == "iwmi_calibration" or\
-                              sys.argv[2] == "iwmi_validation"):
+                              sys.argv[2] == "iwmi_validation" or\
+                              sys.argv[2] == "test"):
         # make analysisOutputDir
         analysisOutputDir = globalAnalysisOutputDir+"/annual_baseflow/"
         try:
