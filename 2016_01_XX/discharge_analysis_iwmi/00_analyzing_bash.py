@@ -9,7 +9,7 @@ sta_run = int(sys.argv[1]) # 0
 end_run = int(sys.argv[2]) # 224 
 
 # maximum number of cores
-max_cores = 23
+max_cores = 26
 
 # making command lines
 cmd = ''
