@@ -64,32 +64,32 @@ catchmentClassFileName = None
 
 def main():
 
-    #~ # discharge analysis
-    #~ ####################################################################################################
-    #~ #
-    #~ # make analysisOutputDir
-    #~ analysisOutputDir = globalAnalysisOutputDir+"/monthly_discharge/"
-    #~ try:
-        #~ os.makedirs(analysisOutputDir) 
-    #~ except:
-        #~ if cleanOutputDir == True: os.system('rm -r '+analysisOutputDir+"/*") 
-    #~ #
-    #~ # temporary directory (note that it is NOT a good idea to store temporary files in the memory (/dev/shm))
-    #~ temporary_directory = analysisOutputDir+"/tmp/"
-    #~ try:
-        #~ os.makedirs(temporary_directory) 
-    #~ except:
-        #~ os.system('rm -r '+temporary_directory+"/*") # make sure that temporary directory is clean 
-    #~ #
-    #~ # logger object for discharge analysis
-    #~ logger = Logger(analysisOutputDir)
-    #~ #
-    #~ # monthly discharge evaluation (based on GRDC data)
-    #~ dischargeEvaluation = dischargeGRDC.DischargeEvaluation(pcrglobwb_output["folder"],\
-                                                            #~ startDate,endDate,temporary_directory)
-    #~ # - get GRDC attributes of all stations:
-    #~ dischargeEvaluation.get_grdc_attributes(directoryGRDC = globalDirectoryGRDC)
-    #~ #
+    # discharge analysis
+    ####################################################################################################
+    #
+    # make analysisOutputDir
+    analysisOutputDir = globalAnalysisOutputDir+"/monthly_discharge/"
+    try:
+        os.makedirs(analysisOutputDir) 
+    except:
+        if cleanOutputDir == True: os.system('rm -r '+analysisOutputDir+"/*") 
+    #
+    # temporary directory (note that it is NOT a good idea to store temporary files in the memory (/dev/shm))
+    temporary_directory = analysisOutputDir+"/tmp/"
+    try:
+        os.makedirs(temporary_directory) 
+    except:
+        os.system('rm -r '+temporary_directory+"/*") # make sure that temporary directory is clean 
+    #
+    # logger object for discharge analysis
+    logger = Logger(analysisOutputDir)
+    #
+    # monthly discharge evaluation (based on GRDC data)
+    dischargeEvaluation = dischargeGRDC.DischargeEvaluation(pcrglobwb_output["folder"],\
+                                                            startDate,endDate,temporary_directory)
+    # - get GRDC attributes of all stations:
+    dischargeEvaluation.get_grdc_attributes(directoryGRDC = globalDirectoryGRDC)
+    #
     #~ # - evaluate monthly discharge results
     #~ pcrglobwb_output["netcdf_file_name"]     = "netcdf/discharge_monthAvg_output.nc"
     #~ pcrglobwb_output["netcdf_variable_name"] = "discharge"
@@ -135,7 +135,7 @@ def main():
                                                              startDate,endDate,temporary_directory)
         # - get GRDC attributes of all stations 
         #   (based on the previous analysis on monthly discharge)
-        baseflowEvaluation.get_grdc_attributes(baseflowEvaluation.attributeGRDC, baseflowFolderIWMI)
+        baseflowEvaluation.get_grdc_attributes(dischargeEvaluation.attributeGRDC, baseflowFolderIWMI)
         #
         # - evaluate annual baseflow time series
         pcrglobwb_output["netcdf_file_name"]     = "netcdf/accuBaseflow_annuaAvg_output.nc"
