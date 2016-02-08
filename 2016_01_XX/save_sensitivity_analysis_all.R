@@ -159,6 +159,8 @@ calibration_lm_slope_obs_to_model_per_baseflow_deviation_relative = lm_slope_obs
 
 } # end if (station_type == "calibration")
 
+if (station_type == "validation") {
+
 validation_avg_correlation                                       = avg_correlation                                      
 validation_avg_R2                                                = avg_R2                                               
 validation_avg_R2_adjusted                                       = avg_R2_adjusted                                      
@@ -225,14 +227,6 @@ average_values = rbind(average_values,
                              validation_avg_kge_2012_per_baseflow_deviation_relative
                              ))
 }
-
-
-
-
-
-
-
-
 
 
 # names of all columns
