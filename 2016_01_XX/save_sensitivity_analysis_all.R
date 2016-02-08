@@ -15,8 +15,6 @@ parameters = rbind(parameters, read.table("table_02_january_2016_cartesius_edwin
 # the first column is character
 parameters[,1] = as.character(parameters[,1])
 
-min_soil_depth_frac log_ksat log_recession_coef stor_cap degree_day_factor
-
 # reference run  
 parameters = rbind(parameters, c("code__a__0", 1.0, 0.0, 0.0, 1.0, 1.0))
 
