@@ -119,13 +119,13 @@ kge_2009_per_baseflow_deviation_relative          = discharge$kge_2009          
 kge_2012_per_baseflow_deviation_relative          = discharge$kge_2012          / baseflow_deviation_relative
 
 # calculate the average values of discharge performance
-avg_correlation       = mean(correlation      , na.rm = TRUE)
-avg_R2                = mean(R2               , na.rm = TRUE)
-avg_R2_adjusted       = mean(R2_adjusted      , na.rm = TRUE)
-avg_ns_efficiency     = mean(ns_efficiency    , na.rm = TRUE)
-avg_ns_efficiency_log = mean(ns_efficiency_log, na.rm = TRUE)
-avg_kge_2009          = mean(kge_2009         , na.rm = TRUE)
-avg_kge_2012          = mean(kge_2012         , na.rm = TRUE)
+avg_correlation       = mean(discharge$correlation      , na.rm = TRUE)
+avg_R2                = mean(discharge$R2               , na.rm = TRUE)
+avg_R2_adjusted       = mean(discharge$R2_adjusted      , na.rm = TRUE)
+avg_ns_efficiency     = mean(discharge$ns_efficiency    , na.rm = TRUE)
+avg_ns_efficiency_log = mean(discharge$ns_efficiency_log, na.rm = TRUE)
+avg_kge_2009          = mean(discharge$kge_2009         , na.rm = TRUE)
+avg_kge_2012          = mean(discharge$kge_2012         , na.rm = TRUE)
 lm_slope_obs_to_model = lm_slope_without_intercept(discharge$average_observation ~ 0 + discharge$average_model, na.action = na.omit)
 
 # calculate the average values of composite performance values
