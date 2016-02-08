@@ -126,7 +126,7 @@ avg_ns_efficiency     = mean(discharge$ns_efficiency    , na.rm = TRUE)
 avg_ns_efficiency_log = mean(discharge$ns_efficiency_log, na.rm = TRUE)
 avg_kge_2009          = mean(discharge$kge_2009         , na.rm = TRUE)
 avg_kge_2012          = mean(discharge$kge_2012         , na.rm = TRUE)
-lm_slope_obs_to_model = lm_slope_without_intercept(discharge$average_observation ~ 0 + discharge$average_model, na.action = na.omit)
+lm_slope_obs_to_model = lm(discharge$average_observation ~ 0 + discharge$average_model, na.action = na.omit)
 
 # calculate the average values of composite performance values
 avg_correlation_per_baseflow_deviation_relative       = mean(correlation_per_baseflow_deviation_relative      ) 
