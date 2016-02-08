@@ -110,13 +110,13 @@ baseflow_deviation_relative[ is.na(baseflow_deviation_relative)        ] <- limi
 baseflow_deviation_relative[is.nan(baseflow_deviation_relative)        ] <- limit
 
 # calculating the composite performance values for all stations:
-correlation_per_baseflow_deviation_relative       = discharge$correlation       / baseflow_deviation_relative
-R2_per_baseflow_deviation_relative                = discharge$R2                / baseflow_deviation_relative
-R2_adjusted_per_baseflow_deviation_relative       = discharge$R2_adjusted       / baseflow_deviation_relative
-ns_efficiency_per_baseflow_deviation_relative     = discharge$ns_efficiency     / baseflow_deviation_relative
-ns_efficiency_log_per_baseflow_deviation_relative = discharge$ns_efficiency_log / baseflow_deviation_relative
-kge_2009_per_baseflow_deviation_relative          = discharge$kge_2009          / baseflow_deviation_relative
-kge_2012_per_baseflow_deviation_relative          = discharge$kge_2012          / baseflow_deviation_relative
+correlation_per_baseflow_deviation_relative       = discharge$correlation       / (1 + baseflow_deviation_relative)
+R2_per_baseflow_deviation_relative                = discharge$R2                / (1 + baseflow_deviation_relative)
+R2_adjusted_per_baseflow_deviation_relative       = discharge$R2_adjusted       / (1 + baseflow_deviation_relative)
+ns_efficiency_per_baseflow_deviation_relative     = discharge$ns_efficiency     / (1 + baseflow_deviation_relative)
+ns_efficiency_log_per_baseflow_deviation_relative = discharge$ns_efficiency_log / (1 + baseflow_deviation_relative)
+kge_2009_per_baseflow_deviation_relative          = discharge$kge_2009          / (1 + baseflow_deviation_relative)
+kge_2012_per_baseflow_deviation_relative          = discharge$kge_2012          / (1 + baseflow_deviation_relative)
 
 # calculate the average values of discharge performance
 avg_correlation       = mean(discharge$correlation      , na.rm = TRUE)
@@ -136,7 +136,7 @@ avg_ns_efficiency_per_baseflow_deviation_relative     = mean(ns_efficiency_per_b
 avg_ns_efficiency_log_per_baseflow_deviation_relative = mean(ns_efficiency_log_per_baseflow_deviation_relative) 
 avg_kge_2009_per_baseflow_deviation_relative          = mean(kge_2009_per_baseflow_deviation_relative         ) 
 avg_kge_2012_per_baseflow_deviation_relative          = mean(kge_2012_per_baseflow_deviation_relative         )
-lm_slope_obs_to_model_per_baseflow_deviation_relative = lm_slope_obs_to_model / mean(baseflow_deviation_relative) 
+lm_slope_obs_to_model_per_baseflow_deviation_relative = lm_slope_obs_to_model / (1 + mean(baseflow_deviation_relative)) 
 
 if (station_type == "calibration") {
 
