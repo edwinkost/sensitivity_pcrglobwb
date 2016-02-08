@@ -50,40 +50,40 @@ avg_evaporation          = mean(summary_table$total_evaporation   )
 avg_groundwater_recharge = mean(summary_table$gw_recharge         )
 avg_baseflow             = mean(summary_table$gw_baseflow         )        
 
+avg_total_withdrawal               = mean(summary_table$total_withdrawal     )
 avg_surface_water_abstraction      = mean(summary_table$surface_water_withdrawal )
-avg_total_groundwater_abstraction  = mean(summary_table$total_gw_abstraction     )
 avg_renewable_gw_abstraction       = mean(summary_table$non_fossil_gw_abstraction)
 avg_fossil_groundwater_abstraction = mean(summary_table$fossil_gw_abstraction    ) 
 
 # average abstraction values for the period 2000
 sta_year = which(summary_table$year == 2000)
 end_year = which(summary_table$year == 2000)
+avg_total_withdrawal_2000               = mean(summary_table$total_withdrawal     [sta_year:end_year])
 avg_surface_water_abstraction_2000      = mean(summary_table$surface_water_withdrawal [sta_year:end_year])
-avg_total_groundwater_abstraction_2000  = mean(summary_table$total_gw_abstraction     [sta_year:end_year])
 avg_renewable_gw_abstraction_2000       = mean(summary_table$non_fossil_gw_abstraction[sta_year:end_year])
 avg_fossil_groundwater_abstraction_2000 = mean(summary_table$fossil_gw_abstraction    [sta_year:end_year]) 
 
 # average abstraction values for the period 2000-2009
 sta_year = which(summary_table$year == 2000)
 end_year = which(summary_table$year == 2009)
+avg_total_withdrawal_2000_to_2009               = mean(summary_table$total_withdrawal     [sta_year:end_year])
 avg_surface_water_abstraction_2000_to_2009      = mean(summary_table$surface_water_withdrawal [sta_year:end_year])
-avg_total_groundwater_abstraction_2000_to_2009  = mean(summary_table$total_gw_abstraction     [sta_year:end_year])
 avg_renewable_gw_abstraction_2000_to_2009       = mean(summary_table$non_fossil_gw_abstraction[sta_year:end_year])
 avg_fossil_groundwater_abstraction_2000_to_2009 = mean(summary_table$fossil_gw_abstraction    [sta_year:end_year]) 
 
 # average abstraction values for the period 2001-2008
 sta_year = which(summary_table$year == 2001)
 end_year = which(summary_table$year == 2008)
+avg_total_withdrawal_2001_to_2008               = mean(summary_table$total_withdrawal     [sta_year:end_year])
 avg_surface_water_abstraction_2001_to_2008      = mean(summary_table$surface_water_withdrawal [sta_year:end_year])
-avg_total_groundwater_abstraction_2001_to_2008  = mean(summary_table$total_gw_abstraction     [sta_year:end_year])
 avg_renewable_gw_abstraction_2001_to_2008       = mean(summary_table$non_fossil_gw_abstraction[sta_year:end_year])
 avg_fossil_groundwater_abstraction_2001_to_2008 = mean(summary_table$fossil_gw_abstraction    [sta_year:end_year]) 
 
 # average abstraction values for the period 2010
 sta_year = which(summary_table$year == 2010)
 end_year = which(summary_table$year == 2010)
+avg_total_withdrawal_2010               = mean(summary_table$total_withdrawal     [sta_year:end_year])
 avg_surface_water_abstraction_2010      = mean(summary_table$surface_water_withdrawal [sta_year:end_year])
-avg_total_groundwater_abstraction_2010  = mean(summary_table$total_gw_abstraction     [sta_year:end_year])
 avg_renewable_gw_abstraction_2010       = mean(summary_table$non_fossil_gw_abstraction[sta_year:end_year])
 avg_fossil_groundwater_abstraction_2010 = mean(summary_table$fossil_gw_abstraction    [sta_year:end_year]) 
 
@@ -215,58 +215,72 @@ validation_lm_slope_obs_to_model_per_baseflow_deviation_relative = lm_slope_obs_
 # all average values
 average_values = rbind(average_values, 
                        cbind(code, 
+
                              avg_evaporation,         
                              avg_runoff,              
                              avg_baseflow,            
                              avg_groundwater_recharge,
+
+                             avg_total_withdrawal, 
                              avg_surface_water_abstraction,     
-                             avg_total_groundwater_abstraction, 
                              avg_renewable_gw_abstraction,      
                              avg_fossil_groundwater_abstraction,
+
+                             avg_total_withdrawal_2000, 
                              avg_surface_water_abstraction_2000,     
-                             avg_total_groundwater_abstraction_2000, 
                              avg_renewable_gw_abstraction_2000,      
                              avg_fossil_groundwater_abstraction_2000,
+
+                             avg_total_withdrawal_2000_to_2009, 
                              avg_surface_water_abstraction_2000_to_2009,     
-                             avg_total_groundwater_abstraction_2000_to_2009, 
                              avg_renewable_gw_abstraction_2000_to_2009,      
                              avg_fossil_groundwater_abstraction_2000_to_2009,
+
+                             avg_total_withdrawal_2001_to_2008, 
                              avg_surface_water_abstraction_2001_to_2008,     
-                             avg_total_groundwater_abstraction_2001_to_2008, 
                              avg_renewable_gw_abstraction_2001_to_2008,      
                              avg_fossil_groundwater_abstraction_2001_to_2008,
+
+                             avg_total_withdrawal_2010, 
                              avg_surface_water_abstraction_2010,     
-                             avg_total_groundwater_abstraction_2010, 
                              avg_renewable_gw_abstraction_2010,      
                              avg_fossil_groundwater_abstraction_2010,
+
                              calibration_avg_correlation,                                      
                              calibration_avg_R2,                                               
                              calibration_avg_R2_adjusted,                                      
                              calibration_lm_slope_obs_to_model,                                
+
                              calibration_avg_ns_efficiency,                                    
                              calibration_avg_ns_efficiency_log,                                
                              calibration_avg_kge_2009,                                         
                              calibration_avg_kge_2012,                                         
+
                              calibration_avg_correlation_per_baseflow_deviation_relative,      
                              calibration_avg_R2_per_baseflow_deviation_relative,               
                              calibration_avg_R2_adjusted_per_baseflow_deviation_relative,      
                              calibration_lm_slope_obs_to_model_per_baseflow_deviation_relative,
+
                              calibration_avg_ns_efficiency_per_baseflow_deviation_relative,    
                              calibration_avg_ns_efficiency_log_per_baseflow_deviation_relative,
                              calibration_avg_kge_2009_per_baseflow_deviation_relative,         
                              calibration_avg_kge_2012_per_baseflow_deviation_relative,         
+
                              validation_avg_correlation,                                      
                              validation_avg_R2,                                               
                              validation_avg_R2_adjusted,                                      
                              validation_lm_slope_obs_to_model,                                
+
                              validation_avg_ns_efficiency,                                    
                              validation_avg_ns_efficiency_log,                                
                              validation_avg_kge_2009,                                         
                              validation_avg_kge_2012,                                         
+
                              validation_avg_correlation_per_baseflow_deviation_relative,      
                              validation_avg_R2_per_baseflow_deviation_relative,               
                              validation_avg_R2_adjusted_per_baseflow_deviation_relative,      
                              validation_lm_slope_obs_to_model_per_baseflow_deviation_relative,
+
                              validation_avg_ns_efficiency_per_baseflow_deviation_relative,    
                              validation_avg_ns_efficiency_log_per_baseflow_deviation_relative,
                              validation_avg_kge_2009_per_baseflow_deviation_relative,         
@@ -279,58 +293,72 @@ average_values = rbind(average_values,
 
 # names of all columns
 names(average_values)[ 1] <- "code"         
+
 names(average_values)[ 2] <- "avg_evaporation"         
 names(average_values)[ 3] <- "avg_runoff"              
 names(average_values)[ 4] <- "avg_baseflow"            
 names(average_values)[ 5] <- "avg_groundwater_recharge"
-names(average_values)[ 6] <- "avg_surface_water_abstraction"     
-names(average_values)[ 7] <- "avg_total_groundwater_abstraction" 
+
+names(average_values)[ 6] <- "avg_total_withdrawal" 
+names(average_values)[ 7] <- "avg_surface_water_abstraction"     
 names(average_values)[ 8] <- "avg_renewable_gw_abstraction"      
 names(average_values)[ 9] <- "avg_fossil_groundwater_abstraction"
-names(average_values)[10] <- "avg_surface_water_abstraction_2000"     
-names(average_values)[11] <- "avg_total_groundwater_abstraction_2000" 
+
+names(average_values)[10] <- "avg_total_withdrawal_2000" 
+names(average_values)[11] <- "avg_surface_water_abstraction_2000"     
 names(average_values)[12] <- "avg_renewable_gw_abstraction_2000"      
 names(average_values)[13] <- "avg_fossil_groundwater_abstraction_2000"
-names(average_values)[14] <- "avg_surface_water_abstraction_2000_to_2009"     
-names(average_values)[15] <- "avg_total_groundwater_abstraction_2000_to_2009" 
+
+names(average_values)[14] <- "avg_total_withdrawal_2000_to_2009" 
+names(average_values)[15] <- "avg_surface_water_abstraction_2000_to_2009"     
 names(average_values)[16] <- "avg_renewable_gw_abstraction_2000_to_2009"      
 names(average_values)[17] <- "avg_fossil_groundwater_abstraction_2000_to_2009"
-names(average_values)[18] <- "avg_surface_water_abstraction_2001_to_2008"     
-names(average_values)[19] <- "avg_total_groundwater_abstraction_2001_to_2008" 
+
+names(average_values)[18] <- "avg_total_withdrawal_2001_to_2008" 
+names(average_values)[19] <- "avg_surface_water_abstraction_2001_to_2008"     
 names(average_values)[20] <- "avg_renewable_gw_abstraction_2001_to_2008"      
 names(average_values)[21] <- "avg_fossil_groundwater_abstraction_2001_to_2008"
-names(average_values)[22] <- "avg_surface_water_abstraction_2010"     
-names(average_values)[23] <- "avg_total_groundwater_abstraction_2010" 
+
+names(average_values)[22] <- "avg_total_withdrawal_2010" 
+names(average_values)[23] <- "avg_surface_water_abstraction_2010"     
 names(average_values)[24] <- "avg_renewable_gw_abstraction_2010"      
 names(average_values)[25] <- "avg_fossil_groundwater_abstraction_2010"
+
 names(average_values)[26] <- "calibration_avg_correlation"                                      
 names(average_values)[27] <- "calibration_avg_R2"                                               
 names(average_values)[28] <- "calibration_avg_R2_adjusted"                                      
 names(average_values)[29] <- "calibration_lm_slope_obs_to_model"                                
+
 names(average_values)[30] <- "calibration_avg_ns_efficiency"                                    
 names(average_values)[31] <- "calibration_avg_ns_efficiency_log"                                
 names(average_values)[32] <- "calibration_avg_kge_2009"                                         
 names(average_values)[33] <- "calibration_avg_kge_2012"                                         
+
 names(average_values)[34] <- "calibration_avg_correlation_per_baseflow_deviation_relative"      
 names(average_values)[35] <- "calibration_avg_R2_per_baseflow_deviation_relative"               
 names(average_values)[36] <- "calibration_avg_R2_adjusted_per_baseflow_deviation_relative"      
 names(average_values)[37] <- "calibration_lm_slope_obs_to_model_per_baseflow_deviation_relative"
+
 names(average_values)[38] <- "calibration_avg_ns_efficiency_per_baseflow_deviation_relative"    
 names(average_values)[39] <- "calibration_avg_ns_efficiency_log_per_baseflow_deviation_relative"
 names(average_values)[40] <- "calibration_avg_kge_2009_per_baseflow_deviation_relative"         
 names(average_values)[41] <- "calibration_avg_kge_2012_per_baseflow_deviation_relative"         
+
 names(average_values)[42] <- "validation_avg_correlation"                                      
 names(average_values)[43] <- "validation_avg_R2"                                               
 names(average_values)[44] <- "validation_avg_R2_adjusted"                                      
 names(average_values)[45] <- "validation_lm_slope_obs_to_model"                                
+
 names(average_values)[46] <- "validation_avg_ns_efficiency"                                    
 names(average_values)[47] <- "validation_avg_ns_efficiency_log"                                
 names(average_values)[48] <- "validation_avg_kge_2009"                                         
 names(average_values)[49] <- "validation_avg_kge_2012"                                         
+
 names(average_values)[50] <- "validation_avg_correlation_per_baseflow_deviation_relative"      
 names(average_values)[51] <- "validation_avg_R2_per_baseflow_deviation_relative"               
 names(average_values)[52] <- "validation_avg_R2_adjusted_per_baseflow_deviation_relative"      
 names(average_values)[53] <- "validation_lm_slope_obs_to_model_per_baseflow_deviation_relative"
+
 names(average_values)[54] <- "validation_avg_ns_efficiency_per_baseflow_deviation_relative"    
 names(average_values)[55] <- "validation_avg_ns_efficiency_log_per_baseflow_deviation_relative"
 names(average_values)[56] <- "validation_avg_kge_2009_per_baseflow_deviation_relative"         
