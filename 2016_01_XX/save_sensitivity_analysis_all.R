@@ -439,9 +439,115 @@ validation_avg_kge_2012_per_baseflow_deviation_relative_ref             = comple
                                                                                          
 
 
+
+avg_evaporation_ref                                                   
+avg_runoff_ref                                                        
+avg_baseflow_ref                                                      
+avg_groundwater_recharge_ref                                          
+avg_total_withdrawal_ref                                              
+avg_surface_water_abstraction_ref                                     
+avg_renewable_gw_abstraction_ref                                      
+avg_fossil_groundwater_abstraction_ref                                
+avg_total_withdrawal_2000_ref                                         
+avg_surface_water_abstraction_2000_ref                                
+avg_renewable_gw_abstraction_2000_ref                                 
+avg_fossil_groundwater_abstraction_2000_ref                           
+avg_total_withdrawal_2000_to_2009_ref                                 
+avg_surface_water_abstraction_2000_to_2009_ref                        
+avg_renewable_gw_abstraction_2000_to_2009_ref                         
+avg_fossil_groundwater_abstraction_2000_to_2009_ref                   
+avg_total_withdrawal_2001_to_2008_ref                                 
+avg_surface_water_abstraction_2001_to_2008_ref                        
+avg_renewable_gw_abstraction_2001_to_2008_ref                         
+avg_fossil_groundwater_abstraction_2001_to_2008_ref                   
+avg_total_withdrawal_2010_ref                                         
+avg_surface_water_abstraction_2010_ref                                
+avg_renewable_gw_abstraction_2010_ref                                 
+avg_fossil_groundwater_abstraction_2010_ref                           
+calibration_avg_correlation_ref                                       
+calibration_avg_R2_ref                                                
+calibration_avg_R2_adjusted_ref                                       
+calibration_one_minus_avg_baseflow_deviation_relative_ref             
+calibration_avg_ns_efficiency_ref                                     
+calibration_avg_ns_efficiency_log_ref                                 
+calibration_avg_kge_2009_ref                                          
+calibration_avg_kge_2012_ref                                          
+calibration_avg_correlation_per_baseflow_deviation_relative_ref       
+calibration_avg_R2_per_baseflow_deviation_relative_ref                
+calibration_avg_R2_adjusted_per_baseflow_deviation_relative_ref       
+calibration_lm_slope_obs_to_model_per_baseflow_deviation_relative_ref 
+calibration_avg_ns_efficiency_per_baseflow_deviation_relative_ref     
+calibration_avg_ns_efficiency_log_per_baseflow_deviation_relative_ref 
+calibration_avg_kge_2009_per_baseflow_deviation_relative_ref          
+calibration_avg_kge_2012_per_baseflow_deviation_relative_ref          
+validation_avg_correlation_ref                                        
+validation_avg_R2_ref                                                 
+validation_avg_R2_adjusted_ref                                        
+validation_one_minus_avg_baseflow_deviation_relative_ref              
+validation_avg_ns_efficiency_ref                                      
+validation_avg_ns_efficiency_log_ref                                  
+validation_avg_kge_2009_ref                                           
+validation_avg_kge_2012_ref                                           
+validation_avg_correlation_per_baseflow_deviation_relative_ref        
+validation_avg_R2_per_baseflow_deviation_relative_ref                 
+validation_avg_R2_adjusted_per_baseflow_deviation_relative_ref        
+validation_lm_slope_obs_to_model_per_baseflow_deviation_relative_ref  
+validation_avg_ns_efficiency_per_baseflow_deviation_relative_ref      
+validation_avg_ns_efficiency_log_per_baseflow_deviation_relative_ref  
+validation_avg_kge_2009_per_baseflow_deviation_relative_ref           
+validation_avg_kge_2012_per_baseflow_deviation_relative_ref           
+
+
+
+sensitivity_scatter_plot_row <- function(data_frame, y_chart_and_reference) {
+
+data_frame_used        <- data_frame
+y_chart_used           <- y_chart_and_reference[1]
+y_chart_reference_used <- y_chart_and_reference[2]
+
+axis_text_size   =  6
+axis_title_size  =  6.5
+axis_title_vjust = -0.005
+axis_title_face  = "bold"
+
+x_axis_variable_list = list("min_soil_depth_frac", "log_ksat", "log_recession_coef", "degree_day_factor")
+
+for (i_x_axis in 1:4) {
+
+print(i_x_axis)
+x_axis_variable = x_axis_variable_list[i_x_axis]
+
+print(y_chart_reference_used)
+
+chart <- ggplot(data = data_frame_used, aes_string(x = x_axis_variable, y = y_chart_used)) + geom_point() + theme(axis.text = element_text(size = axis_text_size), axis.title = element_text(size = axis_title_size, vjust = axis_title_vjust, face = axis_title_face))
+chart <- chart + geom_hline(aes(yintercept = as.numeric(y_chart_reference_used)))
+
+assign(paste("chart", as.character(i_x_axis), sep = "_"), chart)
+
+}
+
+charts_in_ggplotGrob = cbind(ggplotGrob(chart_1), 
+                             ggplotGrob(chart_2),
+                             ggplotGrob(chart_3),
+                             ggplotGrob(chart_4),
+                             size = "last")
+           
+return(charts_in_ggplotGrob)
+
+}
+
+y_chart_reference = calibration_avg_kge_2009_per_baseflow_deviation_relative_ref
+test <- sensitivity_scatter_plot_row(complete_table, c("calibration_avg_kge_2009_per_baseflow_deviation_relative", y_chart_reference))
+grid.newpage()
+grid.draw(test)
+
+
+#~ 
+#~ 
+#~ 
 #~ ggplot(data = complete_table, aes(x = log_ksat, y = calibration_avg_kge_2009_per_baseflow_deviation_relative)) + geom_point() + theme(axis.text = element_text(size = 6), axis.title = element_text(size = 6.5, , vjust = -0.005, face = "bold")) +
 #~                         geom_hline(aes(yintercept = calibration_avg_kge_2009_per_baseflow_deviation_relative_ref))
-                                                                                         
+#~                                                                                          
                                                                                          
 #~ 
 #~ ########################################################################################################################
