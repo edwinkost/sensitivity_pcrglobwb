@@ -517,6 +517,8 @@ for (i_x_axis in 1:4) {
 print(i_x_axis)
 x_axis_variable = x_axis_variable_list[i_x_axis]
 
+y_chart_reference_used = y_chart_reference_used 
+
 print(y_chart_reference_used)
 
 chart <- ggplot(data = data_frame_used, aes_string(x = x_axis_variable, y = y_chart_used)) + geom_point() + theme(axis.text = element_text(size = axis_text_size), axis.title = element_text(size = axis_title_size, vjust = axis_title_vjust, face = axis_title_face))
