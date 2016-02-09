@@ -534,7 +534,7 @@ assign(paste("chart", as.character(i_x_axis), sep = "_"), chart)
 #~                              ggplotGrob(chart_4),
 #~                              size = "last")
            
-return(charts_in_ggplotGrob)
+#~ return(charts_in_ggplotGrob)
 
 }
 
