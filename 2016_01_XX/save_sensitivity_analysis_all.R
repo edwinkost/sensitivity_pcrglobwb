@@ -528,11 +528,11 @@ assign(paste("chart", as.character(i_x_axis), sep = "_"), chart)
 
 }
 
-charts_in_ggplotGrob = cbind(ggplotGrob(chart_1), 
-                             ggplotGrob(chart_2),
-                             ggplotGrob(chart_3),
-                             ggplotGrob(chart_4),
-                             size = "last")
+#~ charts_in_ggplotGrob = cbind(ggplotGrob(chart_1), 
+#~                              ggplotGrob(chart_2),
+#~                              ggplotGrob(chart_3),
+#~                              ggplotGrob(chart_4),
+#~                              size = "last")
            
 return(charts_in_ggplotGrob)
 
