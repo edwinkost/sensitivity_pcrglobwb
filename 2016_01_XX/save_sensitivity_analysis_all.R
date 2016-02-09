@@ -439,7 +439,8 @@ validation_avg_kge_2012_per_baseflow_deviation_relative_ref             = comple
                                                                                          
 
 
-#~ ggplot(data = complete_table, aes(x = year, y = precipitation                  )) + geom_line() + theme(axis.text = element_text(size = 6), axis.title = element_text(size = 6.5, , vjust = -0.005, face = "bold"))
+#~ ggplot(data = complete_table, aes(x = log_ksat, y = calibration_avg_kge_2009_per_baseflow_deviation_relative)) + geom_point() + theme(axis.text = element_text(size = 6), axis.title = element_text(size = 6.5, , vjust = -0.005, face = "bold")) +
+#~                         geom_hline(aes(yintercept = calibration_avg_kge_2009_per_baseflow_deviation_relative_ref))
                                                                                          
                                                                                          
 #~ 
