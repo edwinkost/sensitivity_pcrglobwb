@@ -458,7 +458,7 @@ x_axis_variable_list = list("min_soil_depth_frac", "log_ksat", "log_recession_co
 col_index = which(names(data_frame == selected_column_name))
 
 # reference value
-reference << data_frame[which(data_frame$code == "code__a__0"), col_index]
+assign("reference", data_frame[which(data_frame$code == "code__a__0"), col_index], envir = .GlobalEnv)
 
 # minimum, maximum, mean and standard deviation values:
 
