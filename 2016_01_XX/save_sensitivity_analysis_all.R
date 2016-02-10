@@ -379,9 +379,9 @@ complete_table = merge(parameters, average_values, by = "code")
 # sorting the data based 
 complete_table = complete_table[order(-complete_table$calibration_avg_kge_2009_per_baseflow_deviation_relative), ]
 
-# selecting the data (only using the first 10 runs)
-complete_table_select = complete_table[1:10,]
-
+# selecting the data (only using the best 20% runs)
+index_for_the_last_chosen_run = as.integer(round(0.25 * length(complete_table$code)))
+complete_table_select = complete_table[1:index_for_the_last_chosen_run,]
 
 # performance values for the reference run
 avg_evaporation_ref                                                     = complete_table$avg_evaporation                                                  [which(complete_table$code == "code__a__0")] 
@@ -443,23 +443,36 @@ validation_avg_kge_2012_per_baseflow_deviation_relative_ref             = comple
                                                                                          
 
 # function to make scatter plots
-sensitivity_scatter_plot_row <- function(data_frame, y_chart, reference, minimum, maximum) {
+sensitivity_scatter_plot_row <- function(data_frame, data_frame_select, selected_column_name) {
 
+# options for the scatter plots
 axis_text_size   =  6
 axis_title_size  =  6.5
 axis_title_vjust = -0.005
 axis_title_face  = "bold"
 
+# list of variables that will be plotted
 x_axis_variable_list = list("min_soil_depth_frac", "log_ksat", "log_recession_coef", "degree_day_factor")
+
+# column index 
+col_index = which(names(data_frame == selected_column_name))
+
+# reference value
+reference << data_frame[which(data_frame$code == "code__a__0"), col_index]
+
+# minimum, maximum, mean and standard deviation values:
+
 
 for (i_x_axis in 1:4) {
 
 print(i_x_axis); x_axis_variable = x_axis_variable_list[i_x_axis]
 
-chart <- ggplot(data = data_frame, aes_string(x = x_axis_variable, y = y_chart)) + geom_point() + theme(axis.text = element_text(size = axis_text_size), axis.title = element_text(size = axis_title_size, vjust = axis_title_vjust, face = axis_title_face))
-chart <- chart + geom_hline(aes(yintercept = reference), colour = "red")
-chart <- chart + geom_hline(aes(yintercept = minimum))
-chart <- chart + geom_hline(aes(yintercept = maximum))
+chart <-         ggplot(data = data_frame,        aes_string(x = x_axis_variable, y = selected_column_name)) + geom_point() + scale_shape(solid = FALSE)
+chart <- chart + ggplot(data = data_frame_select, aes_string(x = x_axis_variable, y = selected_column_name)) + geom_point()
+chart <- chart + theme(axis.text = element_text(size = axis_text_size), axis.title = element_text(size = axis_title_size, vjust = axis_title_vjust, face = axis_title_face))
+chart <- chart + geom_hline(aes(yintercept = reference), colour = "gray")
+#~ chart <- chart + geom_hline(aes(yintercept = minimum)  , colour = "red")
+#~ chart <- chart + geom_hline(aes(yintercept = maximum)  , colour = "red" )
 
 assign(paste("chart", as.character(i_x_axis), sep = "_"), chart)
 
@@ -475,10 +488,10 @@ return(charts_in_ggplotGrob)
 }
 
 # plots for avg_evaporation, avg_runoff, avg_baseflow and avg_groundwater_recharge
-reference = avg_evaporation_ref         ; minimum = min(complete_table_select$avg_evaporation         ); maximum = max(complete_table_select$avg_evaporation         ); charts_avg_evaporation          = sensitivity_scatter_plot_row(complete_table, "avg_evaporation"         , reference, minimum, maximum)
-reference = avg_runoff_ref              ; minimum = min(complete_table_select$avg_runoff              ); maximum = max(complete_table_select$avg_runoff              ); charts_avg_runoff               = sensitivity_scatter_plot_row(complete_table, "avg_runoff"              , reference, minimum, maximum)
-reference = avg_baseflow_ref            ; minimum = min(complete_table_select$avg_baseflow            ); maximum = max(complete_table_select$avg_baseflow            ); charts_avg_baseflow             = sensitivity_scatter_plot_row(complete_table, "avg_baseflow"            , reference, minimum, maximum)
-reference = avg_groundwater_recharge_ref; minimum = min(complete_table_select$avg_groundwater_recharge); maximum = max(complete_table_select$avg_groundwater_recharge); charts_avg_groundwater_recharge = sensitivity_scatter_plot_row(complete_table, "avg_groundwater_recharge", reference, minimum, maximum)
+charts_avg_evaporation          = sensitivity_scatter_plot_row(complete_table, complete_table_select, "avg_evaporation"         )
+charts_avg_runoff               = sensitivity_scatter_plot_row(complete_table, complete_table_select, "avg_runoff"              )
+charts_avg_baseflow             = sensitivity_scatter_plot_row(complete_table, complete_table_select, "avg_baseflow"            )
+charts_avg_groundwater_recharge = sensitivity_scatter_plot_row(complete_table, complete_table_select, "avg_groundwater_recharge")
 # - plotting
 chart_table = rbind(charts_avg_evaporation,         
                     charts_avg_runoff,              
@@ -488,66 +501,16 @@ grid.newpage()
 grid.draw(chart_table)
 
 
-
-
-
+#~ # plots for avg_evaporation, avg_runoff, avg_baseflow and avg_groundwater_recharge
+#~ reference = avg_evaporation_ref         ; minimum = min(complete_table_select$avg_evaporation         ); maximum = max(complete_table_select$avg_evaporation         ); average = mean(complete_table_select$avg_evaporation         ); stdev = sd(complete_table_select$avg_evaporation         ); charts_avg_evaporation          = sensitivity_scatter_plot_row(complete_table, "avg_evaporation"         , reference, minimum, maximum)
+#~ reference = avg_runoff_ref              ; minimum = min(complete_table_select$avg_runoff              ); maximum = max(complete_table_select$avg_runoff              ); average = mean(complete_table_select$avg_runoff              ); stdev = sd(complete_table_select$avg_runoff              ); charts_avg_runoff               = sensitivity_scatter_plot_row(complete_table, "avg_runoff"              , reference, minimum, maximum)
+#~ reference = avg_baseflow_ref            ; minimum = min(complete_table_select$avg_baseflow            ); maximum = max(complete_table_select$avg_baseflow            ); average = mean(complete_table_select$avg_baseflow            ); stdev = sd(complete_table_select$avg_baseflow            ); charts_avg_baseflow             = sensitivity_scatter_plot_row(complete_table, "avg_baseflow"            , reference, minimum, maximum)
+#~ reference = avg_groundwater_recharge_ref; minimum = min(complete_table_select$avg_groundwater_recharge); maximum = max(complete_table_select$avg_groundwater_recharge); average = mean(complete_table_select$avg_groundwater_recharge); stdev = sd(complete_table_select$avg_groundwater_recharge); charts_avg_groundwater_recharge = sensitivity_scatter_plot_row(complete_table, "avg_groundwater_recharge", reference, minimum, maximum)
+#~ # - plotting
+#~ chart_table = rbind(charts_avg_evaporation,         
+#~                     charts_avg_runoff,              
+#~                     charts_avg_baseflow,            
+#~                     charts_avg_groundwater_recharge, size = "last")
+#~ grid.newpage()
+#~ grid.draw(chart_table)
 #~ 
-#~ 
-#~ 
-#~ ggplot(data = complete_table, aes(x = log_ksat, y = calibration_avg_kge_2009_per_baseflow_deviation_relative)) + geom_point() + theme(axis.text = element_text(size = 6), axis.title = element_text(size = 6.5, , vjust = -0.005, face = "bold")) +
-#~                         geom_hline(aes(yintercept = calibration_avg_kge_2009_per_baseflow_deviation_relative_ref))
-#~                                                                                          
-                                                                                         
-#~ 
-#~ ########################################################################################################################
-#~ # make scatter plots
-#~ pdf("scatter_plot.pdf", width=10, height=12, bg = "white")
-#~ par(mfrow=c(4,5), mar=c(4,4,2,4))
-#~ 
-#~ plot(table$min_soil_depth_frac, table$avg_evaporation)
-#~ abline(h = evaporation_ref)
-#~ plot(table$log_ksat           , table$avg_evaporation)
-#~ abline(h = evaporation_ref)
-#~ plot(table$log_recession_coef , table$avg_evaporation)
-#~ abline(h = evaporation_ref)
-#~ plot(table$stor_cap           , table$avg_evaporation)
-#~ abline(h = evaporation_ref)
-#~ plot(table$degree_day_factor  , table$avg_evaporation)
-#~ abline(h = evaporation_ref)
-#~ 
-#~ plot(table$min_soil_depth_frac, table$avg_runoff)
-#~ abline(h = runoff_ref)
-#~ plot(table$log_ksat           , table$avg_runoff)
-#~ abline(h = runoff_ref)
-#~ plot(table$log_recession_coef , table$avg_runoff)
-#~ abline(h = runoff_ref)
-#~ plot(table$stor_cap           , table$avg_runoff)
-#~ abline(h = runoff_ref)
-#~ plot(table$degree_day_factor  , table$avg_runoff)
-#~ abline(h = runoff_ref)
-#~ 
-#~ plot(table$min_soil_depth_frac, table$avg_baseflow)
-#~ abline(h = baseflow_ref)
-#~ plot(table$log_ksat           , table$avg_baseflow)
-#~ abline(h = baseflow_ref)
-#~ plot(table$log_recession_coef , table$avg_baseflow)
-#~ abline(h = baseflow_ref)
-#~ plot(table$stor_cap           , table$avg_baseflow)
-#~ abline(h = baseflow_ref)
-#~ plot(table$degree_day_factor  , table$avg_baseflow)
-#~ abline(h = baseflow_ref)
-#~ 
-#~ plot(table$min_soil_depth_frac, table$avg_groundwater_recharge)
-#~ abline(h = recharge_ref)
-#~ plot(table$log_ksat           , table$avg_groundwater_recharge)
-#~ abline(h = recharge_ref)
-#~ plot(table$log_recession_coef , table$avg_groundwater_recharge)
-#~ abline(h = recharge_ref)
-#~ plot(table$stor_cap           , table$avg_groundwater_recharge)
-#~ abline(h = recharge_ref)
-#~ plot(table$degree_day_factor  , table$avg_groundwater_recharge)
-#~ abline(h = recharge_ref)
-#~ 
-#~ dev.off()
-#~ ########################################################################################################################
-
