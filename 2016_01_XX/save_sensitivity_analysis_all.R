@@ -411,7 +411,7 @@ for (i_x_axis in 1:4) {
 print(i_x_axis); x_axis_variable = x_axis_variable_list[i_x_axis]
 
 chart <- ggplot()
-chart <- chart + annotate("rect", xmin = -Inf, xmax = Inf, ymin = average - 1.96*std_dev, ymax = average + 1.96*std_dev, fill = "yellow", alpha = 0.25)  # z_score for 95% confidence interval = 1.96
+chart <- chart + annotate("rect", xmin = -Inf, xmax = Inf, ymin = average - 1.96*std_dev, ymax = average + 1.96*std_dev, fill = "yellow", alpha = 0.30)  # z_score for 95% confidence interval = 1.96
 chart <- chart + geom_point(data = data_frame,        aes_string(x = x_axis_variable, y = selected_column_name), solid = FALSE )
 chart <- chart + geom_hline(aes(yintercept = reference), colour = "gray")
 chart <- chart + geom_hline(aes(yintercept = average  ), colour = "black")
