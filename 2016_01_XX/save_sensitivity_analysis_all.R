@@ -139,7 +139,7 @@ baseflow = read.table(baseflow_file_name, sep = ";", header = T)
 # calculating relative baseflow deviation
 baseflow_deviation_relative = abs(baseflow$avg_baseflow_deviation/baseflow$average_iwmi_opt_baseflow)
 # set limit - ignoring bad performances:
-limit = 1.5  
+limit = 2.5  
 baseflow_deviation_relative[ which(baseflow_deviation_relative > limit)] <- limit
 # set NA and NaN to the limit
 baseflow_deviation_relative[ is.na(baseflow_deviation_relative)        ] <- limit
@@ -426,47 +426,49 @@ return(charts_in_ggplotGrob)
 
 }
 
-charts_calibration_avg_ns_efficiency_per_baseflow_deviation_relative  = sensitivity_scatter_plot_per_row(complete_table, "calibration_avg_ns_efficiency_per_baseflow_deviation_relative", "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
-charts_calibration_avg_ns_efficiency                                  = sensitivity_scatter_plot_per_row(complete_table, "calibration_avg_ns_efficiency"                                , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
-charts_calibration_one_minus_avg_baseflow_deviation_relative          = sensitivity_scatter_plot_per_row(complete_table, "calibration_one_minus_avg_baseflow_deviation_relative"        , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
-# - plotting
-chart_table = rbind(
-                    charts_calibration_avg_ns_efficiency_per_baseflow_deviation_relative,
-                    charts_calibration_avg_ns_efficiency                                ,
-                    charts_calibration_one_minus_avg_baseflow_deviation_relative        ,
-                    size = "last")
-grid.newpage()
-grid.draw(chart_table)
+cor(complete_table$calibration_avg_ns_efficiency_per_baseflow_deviation_relative, complete_table$calibration_avg_ns_efficiency)
 
-charts_avg_precipitation        = sensitivity_scatter_plot_per_row(complete_table, "avg_precipitation"       , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
-charts_avg_evaporation          = sensitivity_scatter_plot_per_row(complete_table, "avg_evaporation"         , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
-charts_avg_runoff               = sensitivity_scatter_plot_per_row(complete_table, "avg_runoff"              , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
-charts_avg_groundwater_recharge = sensitivity_scatter_plot_per_row(complete_table, "avg_groundwater_recharge", "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
-charts_avg_baseflow             = sensitivity_scatter_plot_per_row(complete_table, "avg_baseflow"            , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
-# - plotting
-chart_table = rbind(charts_avg_precipitation,
-                    charts_avg_evaporation,         
-                    charts_avg_runoff,              
-                    charts_avg_groundwater_recharge, 
-                    charts_avg_baseflow,            
-                    size = "last")
-grid.newpage()
-grid.draw(chart_table)
-
-charts_avg_total_withdrawal_2001_to_2008                = sensitivity_scatter_plot_per_row(complete_table, "avg_total_withdrawal_2001_to_2008"              , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
-charts_avg_surface_water_abstraction_2001_to_2008       = sensitivity_scatter_plot_per_row(complete_table, "avg_surface_water_abstraction_2001_to_2008"     , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
-charts_avg_total_gw_abstraction_2001_to_2008            = sensitivity_scatter_plot_per_row(complete_table, "avg_total_gw_abstraction_2001_to_2008"          , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
-charts_avg_renewable_gw_abstraction_2001_to_2008        = sensitivity_scatter_plot_per_row(complete_table, "avg_renewable_gw_abstraction_2001_to_2008"      , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
-charts_avg_fossil_groundwater_abstraction_2001_to_2008  = sensitivity_scatter_plot_per_row(complete_table, "avg_fossil_groundwater_abstraction_2001_to_2008", "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
-# - plotting
-chart_table = rbind(charts_avg_total_withdrawal_2001_to_2008,               
-                    charts_avg_surface_water_abstraction_2001_to_2008,      
-                    charts_avg_total_gw_abstraction_2001_to_2008,
-                    charts_avg_renewable_gw_abstraction_2001_to_2008,       
-                    charts_avg_fossil_groundwater_abstraction_2001_to_2008, 
-                    size = "last")
-grid.newpage()
-grid.draw(chart_table)
+#~ charts_calibration_avg_ns_efficiency_per_baseflow_deviation_relative  = sensitivity_scatter_plot_per_row(complete_table, "calibration_avg_ns_efficiency_per_baseflow_deviation_relative", "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
+#~ charts_calibration_avg_ns_efficiency                                  = sensitivity_scatter_plot_per_row(complete_table, "calibration_avg_ns_efficiency"                                , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
+#~ charts_calibration_one_minus_avg_baseflow_deviation_relative          = sensitivity_scatter_plot_per_row(complete_table, "calibration_one_minus_avg_baseflow_deviation_relative"        , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
+#~ # - plotting
+#~ chart_table = rbind(
+#~                     charts_calibration_avg_ns_efficiency_per_baseflow_deviation_relative,
+#~                     charts_calibration_avg_ns_efficiency                                ,
+#~                     charts_calibration_one_minus_avg_baseflow_deviation_relative        ,
+#~                     size = "last")
+#~ grid.newpage()
+#~ grid.draw(chart_table)
+#~ 
+#~ charts_avg_precipitation        = sensitivity_scatter_plot_per_row(complete_table, "avg_precipitation"       , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
+#~ charts_avg_evaporation          = sensitivity_scatter_plot_per_row(complete_table, "avg_evaporation"         , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
+#~ charts_avg_runoff               = sensitivity_scatter_plot_per_row(complete_table, "avg_runoff"              , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
+#~ charts_avg_groundwater_recharge = sensitivity_scatter_plot_per_row(complete_table, "avg_groundwater_recharge", "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
+#~ charts_avg_baseflow             = sensitivity_scatter_plot_per_row(complete_table, "avg_baseflow"            , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
+#~ # - plotting
+#~ chart_table = rbind(charts_avg_precipitation,
+#~                     charts_avg_evaporation,         
+#~                     charts_avg_runoff,              
+#~                     charts_avg_groundwater_recharge, 
+#~                     charts_avg_baseflow,            
+#~                     size = "last")
+#~ grid.newpage()
+#~ grid.draw(chart_table)
+#~ 
+#~ charts_avg_total_withdrawal_2001_to_2008                = sensitivity_scatter_plot_per_row(complete_table, "avg_total_withdrawal_2001_to_2008"              , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
+#~ charts_avg_surface_water_abstraction_2001_to_2008       = sensitivity_scatter_plot_per_row(complete_table, "avg_surface_water_abstraction_2001_to_2008"     , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
+#~ charts_avg_total_gw_abstraction_2001_to_2008            = sensitivity_scatter_plot_per_row(complete_table, "avg_total_gw_abstraction_2001_to_2008"          , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
+#~ charts_avg_renewable_gw_abstraction_2001_to_2008        = sensitivity_scatter_plot_per_row(complete_table, "avg_renewable_gw_abstraction_2001_to_2008"      , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
+#~ charts_avg_fossil_groundwater_abstraction_2001_to_2008  = sensitivity_scatter_plot_per_row(complete_table, "avg_fossil_groundwater_abstraction_2001_to_2008", "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
+#~ # - plotting
+#~ chart_table = rbind(charts_avg_total_withdrawal_2001_to_2008,               
+#~                     charts_avg_surface_water_abstraction_2001_to_2008,      
+#~                     charts_avg_total_gw_abstraction_2001_to_2008,
+#~                     charts_avg_renewable_gw_abstraction_2001_to_2008,       
+#~                     charts_avg_fossil_groundwater_abstraction_2001_to_2008, 
+#~                     size = "last")
+#~ grid.newpage()
+#~ grid.draw(chart_table)
 
 
 
