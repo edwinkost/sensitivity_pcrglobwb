@@ -157,13 +157,13 @@ one_minus_avg_baseflow_deviation_relative = 1 - mean(baseflow_deviation_relative
 
 # calculate the average values of composite performance values
 # - alternative one:
-avg_correlation_per_baseflow_deviation_relative       = avg_correlation        / (1 + mean(baseflow_deviation_relative, na.rm = TRUE))
-avg_R2_per_baseflow_deviation_relative                = avg_R2                 / (1 + mean(baseflow_deviation_relative, na.rm = TRUE))
-avg_R2_adjusted_per_baseflow_deviation_relative       = avg_R2_adjusted        / (1 + mean(baseflow_deviation_relative, na.rm = TRUE))
-avg_ns_efficiency_per_baseflow_deviation_relative     = avg_ns_efficiency      / (1 + mean(baseflow_deviation_relative, na.rm = TRUE))
-avg_ns_efficiency_log_per_baseflow_deviation_relative = avg_ns_efficiency_log  / (1 + mean(baseflow_deviation_relative, na.rm = TRUE))
-avg_kge_2009_per_baseflow_deviation_relative          = avg_kge_2009           / (1 + mean(baseflow_deviation_relative, na.rm = TRUE))
-avg_kge_2012_per_baseflow_deviation_relative          = avg_kge_2012           / (1 + mean(baseflow_deviation_relative, na.rm = TRUE))
+avg_correlation_per_baseflow_deviation_relative       = avg_correlation        / (mean(baseflow_deviation_relative, na.rm = TRUE))
+avg_R2_per_baseflow_deviation_relative                = avg_R2                 / (mean(baseflow_deviation_relative, na.rm = TRUE))
+avg_R2_adjusted_per_baseflow_deviation_relative       = avg_R2_adjusted        / (mean(baseflow_deviation_relative, na.rm = TRUE))
+avg_ns_efficiency_per_baseflow_deviation_relative     = avg_ns_efficiency      / (mean(baseflow_deviation_relative, na.rm = TRUE))
+avg_ns_efficiency_log_per_baseflow_deviation_relative = avg_ns_efficiency_log  / (mean(baseflow_deviation_relative, na.rm = TRUE))
+avg_kge_2009_per_baseflow_deviation_relative          = avg_kge_2009           / (mean(baseflow_deviation_relative, na.rm = TRUE))
+avg_kge_2012_per_baseflow_deviation_relative          = avg_kge_2012           / (mean(baseflow_deviation_relative, na.rm = TRUE))
 #~ # - alternative two
 #~ # -- calculating the composite performance values for all stations:
 #~ correlation_per_baseflow_deviation_relative       = discharge$correlation       / (1 + baseflow_deviation_relative)
