@@ -422,7 +422,7 @@ chart <- chart + geom_point(data = data_frame_select, aes_string(x = x_axis_vari
 
 assign(paste("chart", as.character(i_x_axis), sep = "_"), chart)
 
-if (i_x_axis == 1) {charts_in_ggplotGrob = cbind(ggplotGrob(chart), size == "last")} else {charts_in_ggplotGrob = cbind(charts_in_ggplotGrob, ggplotGrob(chart), size == "last")}
+if (i_x_axis == 1) {charts_in_ggplotGrob = cbind(ggplotGrob(chart), size = "last")} else {charts_in_ggplotGrob = cbind(charts_in_ggplotGrob, ggplotGrob(chart), size = "last")}
 
 }
 
