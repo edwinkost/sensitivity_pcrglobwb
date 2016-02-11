@@ -157,13 +157,13 @@ one_minus_avg_baseflow_deviation_relative = 1 - mean(baseflow_deviation_relative
 
 # calculate the average values of composite performance values
 # - alternative one:
-avg_correlation_per_baseflow_deviation_relative       = avg_correlation        / (mean(baseflow_deviation_relative, na.rm = TRUE))
-avg_R2_per_baseflow_deviation_relative                = avg_R2                 / (mean(baseflow_deviation_relative, na.rm = TRUE))
-avg_R2_adjusted_per_baseflow_deviation_relative       = avg_R2_adjusted        / (mean(baseflow_deviation_relative, na.rm = TRUE))
-avg_ns_efficiency_per_baseflow_deviation_relative     = avg_ns_efficiency      / (mean(baseflow_deviation_relative, na.rm = TRUE))
-avg_ns_efficiency_log_per_baseflow_deviation_relative = avg_ns_efficiency_log  / (mean(baseflow_deviation_relative, na.rm = TRUE))
-avg_kge_2009_per_baseflow_deviation_relative          = avg_kge_2009           / (mean(baseflow_deviation_relative, na.rm = TRUE))
-avg_kge_2012_per_baseflow_deviation_relative          = avg_kge_2012           / (mean(baseflow_deviation_relative, na.rm = TRUE))
+avg_correlation_per_baseflow_deviation_relative       = avg_correlation        / (1 + mean(baseflow_deviation_relative, na.rm = TRUE))
+avg_R2_per_baseflow_deviation_relative                = avg_R2                 / (1 + mean(baseflow_deviation_relative, na.rm = TRUE))
+avg_R2_adjusted_per_baseflow_deviation_relative       = avg_R2_adjusted        / (1 + mean(baseflow_deviation_relative, na.rm = TRUE))
+avg_ns_efficiency_per_baseflow_deviation_relative     = avg_ns_efficiency      / (1 + mean(baseflow_deviation_relative, na.rm = TRUE))
+avg_ns_efficiency_log_per_baseflow_deviation_relative = avg_ns_efficiency_log  / (1 + mean(baseflow_deviation_relative, na.rm = TRUE))
+avg_kge_2009_per_baseflow_deviation_relative          = avg_kge_2009           / (1 + mean(baseflow_deviation_relative, na.rm = TRUE))
+avg_kge_2012_per_baseflow_deviation_relative          = avg_kge_2012           / (1 + mean(baseflow_deviation_relative, na.rm = TRUE))
 #~ # - alternative two
 #~ # -- calculating the composite performance values for all stations:
 #~ correlation_per_baseflow_deviation_relative       = discharge$correlation       / (1 + baseflow_deviation_relative)
@@ -413,14 +413,12 @@ print(i_x_axis); x_axis_variable = x_axis_variable_list[i_x_axis]
 chart <- ggplot()
 chart <- chart + annotate("rect", xmin = -Inf, xmax = Inf, ymin = average - 1.96*std_dev, ymax = average + 1.96*std_dev, fill = "yellow", alpha = 0.25)  # z_score for 95% confidence interval = 1.96
 chart <- chart + geom_point(data = data_frame,        aes_string(x = x_axis_variable, y = selected_column_name), solid = FALSE )
-chart <- chart + geom_point(data = data_frame_select, aes_string(x = x_axis_variable, y = selected_column_name), colour = "red")
 chart <- chart + geom_hline(aes(yintercept = reference), colour = "gray")
 chart <- chart + geom_hline(aes(yintercept = average  ), colour = "black")
 chart <- chart + geom_hline(aes(yintercept = average - std_dev), colour = "blue")
 chart <- chart + geom_hline(aes(yintercept = average + std_dev), colour = "blue")
 chart <- chart + theme(axis.text = element_text(size = axis_text_size), axis.title = element_text(size = axis_title_size, vjust = axis_title_vjust, face = axis_title_face))
-#~ chart <- chart + geom_hline(aes(yintercept = minimum)  , colour = "red")
-#~ chart <- chart + geom_hline(aes(yintercept = maximum)  , colour = "red" )
+chart <- chart + geom_point(data = data_frame_select, aes_string(x = x_axis_variable, y = selected_column_name), colour = "red")
 
 assign(paste("chart", as.character(i_x_axis), sep = "_"), chart)
 
@@ -438,32 +436,46 @@ return(charts_in_ggplotGrob)
 print(cor(complete_table$calibration_avg_ns_efficiency_per_baseflow_deviation_relative, complete_table$calibration_avg_ns_efficiency))
 print(cor(complete_table$calibration_avg_ns_efficiency_per_baseflow_deviation_relative, complete_table$calibration_one_minus_avg_baseflow_deviation_relative))
 
-charts_calibration_avg_ns_efficiency_per_baseflow_deviation_relative  = sensitivity_scatter_plot_per_row(complete_table, "calibration_avg_ns_efficiency_per_baseflow_deviation_relative", "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
-charts_calibration_avg_ns_efficiency                                  = sensitivity_scatter_plot_per_row(complete_table, "calibration_avg_ns_efficiency"                                , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
-charts_calibration_one_minus_avg_baseflow_deviation_relative          = sensitivity_scatter_plot_per_row(complete_table, "calibration_one_minus_avg_baseflow_deviation_relative"        , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
+charts_calibration_avg_kge_2009_per_baseflow_deviation_relative  = sensitivity_scatter_plot_per_row(complete_table, "calibration_avg_kge_2009_per_baseflow_deviation_relative", "calibration_avg_kge_2009_per_baseflow_deviation_relative")
+charts_calibration_avg_kge_2009                                  = sensitivity_scatter_plot_per_row(complete_table, "calibration_avg_kge_2009"                                , "calibration_avg_kge_2009_per_baseflow_deviation_relative")
+charts_calibration_one_minus_avg_baseflow_deviation_relative     = sensitivity_scatter_plot_per_row(complete_table, "calibration_one_minus_avg_baseflow_deviation_relative"   , "calibration_avg_kge_2009_per_baseflow_deviation_relative")
 # - plotting
 chart_table = rbind(
-                    charts_calibration_avg_ns_efficiency_per_baseflow_deviation_relative,
-                    charts_calibration_avg_ns_efficiency                                ,
-                    charts_calibration_one_minus_avg_baseflow_deviation_relative        ,
+                    charts_calibration_avg_kge_2009_per_baseflow_deviation_relative,
+                    charts_calibration_avg_kge_2009                                ,
+                    charts_calibration_one_minus_avg_baseflow_deviation_relative   ,
                     size = "last")
 grid.newpage()
 grid.draw(chart_table)
 
-charts_avg_precipitation        = sensitivity_scatter_plot_per_row(complete_table, "avg_precipitation"       , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
-charts_avg_evaporation          = sensitivity_scatter_plot_per_row(complete_table, "avg_evaporation"         , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
-charts_avg_runoff               = sensitivity_scatter_plot_per_row(complete_table, "avg_runoff"              , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
-charts_avg_groundwater_recharge = sensitivity_scatter_plot_per_row(complete_table, "avg_groundwater_recharge", "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
-charts_avg_baseflow             = sensitivity_scatter_plot_per_row(complete_table, "avg_baseflow"            , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
-# - plotting
-chart_table = rbind(charts_avg_precipitation,
-                    charts_avg_evaporation,         
-                    charts_avg_runoff,              
-                    charts_avg_groundwater_recharge, 
-                    charts_avg_baseflow,            
-                    size = "last")
-grid.newpage()
-grid.draw(chart_table)
+
+
+#~ charts_calibration_avg_ns_efficiency_per_baseflow_deviation_relative  = sensitivity_scatter_plot_per_row(complete_table, "calibration_avg_ns_efficiency_per_baseflow_deviation_relative", "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
+#~ charts_calibration_avg_ns_efficiency                                  = sensitivity_scatter_plot_per_row(complete_table, "calibration_avg_ns_efficiency"                                , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
+#~ charts_calibration_one_minus_avg_baseflow_deviation_relative          = sensitivity_scatter_plot_per_row(complete_table, "calibration_one_minus_avg_baseflow_deviation_relative"        , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
+#~ # - plotting
+#~ chart_table = rbind(
+#~                     charts_calibration_avg_ns_efficiency_per_baseflow_deviation_relative,
+#~                     charts_calibration_avg_ns_efficiency                                ,
+#~                     charts_calibration_one_minus_avg_baseflow_deviation_relative        ,
+#~                     size = "last")
+#~ grid.newpage()
+#~ grid.draw(chart_table)
+#~ 
+#~ charts_avg_precipitation        = sensitivity_scatter_plot_per_row(complete_table, "avg_precipitation"       , "calibration_avg_kge_2009_per_baseflow_deviation_relative")
+#~ charts_avg_evaporation          = sensitivity_scatter_plot_per_row(complete_table, "avg_evaporation"         , "calibration_avg_kge_2009_per_baseflow_deviation_relative")
+#~ charts_avg_runoff               = sensitivity_scatter_plot_per_row(complete_table, "avg_runoff"              , "calibration_avg_kge_2009_per_baseflow_deviation_relative")
+#~ charts_avg_groundwater_recharge = sensitivity_scatter_plot_per_row(complete_table, "avg_groundwater_recharge", "calibration_avg_kge_2009_per_baseflow_deviation_relative"))
+#~ charts_avg_baseflow             = sensitivity_scatter_plot_per_row(complete_table, "avg_baseflow"            , "calibration_avg_kge_2009_per_baseflow_deviation_relative"))
+#~ # - plotting
+#~ chart_table = rbind(charts_avg_precipitation,
+#~                     charts_avg_evaporation,         
+#~                     charts_avg_runoff,              
+#~                     charts_avg_groundwater_recharge, 
+#~                     charts_avg_baseflow,            
+#~                     size = "last")
+#~ grid.newpage()
+#~ grid.draw(chart_table)
 #~ 
 #~ charts_avg_total_withdrawal_2001_to_2008                = sensitivity_scatter_plot_per_row(complete_table, "avg_total_withdrawal_2001_to_2008"              , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
 #~ charts_avg_surface_water_abstraction_2001_to_2008       = sensitivity_scatter_plot_per_row(complete_table, "avg_surface_water_abstraction_2001_to_2008"     , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
