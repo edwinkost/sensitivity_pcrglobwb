@@ -422,13 +422,10 @@ chart <- chart + geom_point(data = data_frame_select, aes_string(x = x_axis_vari
 
 assign(paste("chart", as.character(i_x_axis), sep = "_"), chart)
 
+if (i_x_axis == 1) {charts_in_ggplotGrob = cbind(ggplotGrob(chart), size == "last")} else {charts_in_ggplotGrob = cbind(charts_in_ggplotGrob, ggplotGrob(chart), size == "last")}
+
 }
 
-charts_in_ggplotGrob = cbind(ggplotGrob(chart_1), 
-                             ggplotGrob(chart_2),
-                             ggplotGrob(chart_3),
-                             ggplotGrob(chart_4),
-                             size = "last")
 return(charts_in_ggplotGrob)
 
 }
@@ -441,6 +438,18 @@ chart_table = rbind(
                     charts_calibration_avg_kge_2009_per_baseflow_deviation_relative,
                     charts_calibration_avg_kge_2009                                ,
                     charts_calibration_one_minus_avg_baseflow_deviation_relative   ,
+                    size = "last")
+grid.newpage()
+grid.draw(chart_table)
+
+charts_validation_avg_kge_2009_per_baseflow_deviation_relative  = sensitivity_scatter_plot_per_row(complete_table, "validation_avg_kge_2009_per_baseflow_deviation_relative", "calibration_avg_kge_2009_per_baseflow_deviation_relative")
+charts_validation_avg_kge_2009                                  = sensitivity_scatter_plot_per_row(complete_table, "validation_avg_kge_2009"                                , "calibration_avg_kge_2009_per_baseflow_deviation_relative")
+charts_validation_one_minus_avg_baseflow_deviation_relative     = sensitivity_scatter_plot_per_row(complete_table, "validation_one_minus_avg_baseflow_deviation_relative"   , "calibration_avg_kge_2009_per_baseflow_deviation_relative")
+# - plotting
+chart_table = rbind(
+                    charts_validation_avg_kge_2009_per_baseflow_deviation_relative,
+                    charts_validation_avg_kge_2009                                ,
+                    charts_validation_one_minus_avg_baseflow_deviation_relative   ,
                     size = "last")
 grid.newpage()
 grid.draw(chart_table)
