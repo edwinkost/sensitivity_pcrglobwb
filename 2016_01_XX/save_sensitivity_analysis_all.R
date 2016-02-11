@@ -139,7 +139,7 @@ baseflow = read.table(baseflow_file_name, sep = ";", header = T)
 # calculating relative baseflow deviation
 baseflow_deviation_relative = abs(baseflow$avg_baseflow_deviation/baseflow$average_iwmi_opt_baseflow)
 # set limit - ignoring bad performances:
-limit = 1.5  
+limit = 2.5  
 baseflow_deviation_relative[ which(baseflow_deviation_relative > limit)] <- limit
 #~ # set NA and NaN to the limit
 #~ baseflow_deviation_relative[ is.na(baseflow_deviation_relative)        ] <- limit
