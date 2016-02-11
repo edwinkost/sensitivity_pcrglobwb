@@ -376,7 +376,7 @@ average_values[,2:ncol(average_values)] <- lapply(average_values[,2:ncol(average
 complete_table = merge(parameters, average_values, by = "code")
 
 # function to make scatter plots
-sensitivity_scatter_plot_per_row <- function(data_frame, selected_column_name, selected_objective_function, y_axis_title = NA) {
+sensitivity_scatter_plot_per_row <- function(data_frame, selected_column_name, selected_objective_function, y_axis_title = NA, y_limit = NA) {
 
 # options for the scatter plots
 axis_text_size   =  6
@@ -417,15 +417,18 @@ print(x_axis_label)
 chart <- ggplot()
 chart <- chart + annotate("rect", xmin = -Inf, xmax = Inf, ymin = average - 1.96*std_dev, ymax = average + 1.96*std_dev, fill = "yellow", alpha = 0.30)  # z_score for 95% confidence interval = 1.96
 chart <- chart + geom_point(data = data_frame,        aes_string(x = x_axis_variable, y = selected_column_name), solid = FALSE )
-chart <- chart + geom_hline(aes(yintercept = reference), colour = "black", linetype = 2)
-chart <- chart + geom_hline(aes(yintercept = average  ), colour = "black")
-chart <- chart + geom_hline(aes(yintercept = average - std_dev), colour = "blue")
-chart <- chart + geom_hline(aes(yintercept = average + std_dev), colour = "blue")
+chart <- chart + geom_hline(aes(yintercept = reference), colour = "blue")
+chart <- chart + geom_hline(aes(yintercept = average  ), colour = "red")
+chart <- chart + geom_hline(aes(yintercept = average - std_dev), colour = "red", linetype = 2)
+chart <- chart + geom_hline(aes(yintercept = average + std_dev), colour = "red", linetype = 2)
 chart <- chart + theme(axis.text = element_text(size = axis_text_size), axis.title = element_text(size = axis_title_size, vjust = axis_title_vjust, face = axis_title_face))
 chart <- chart + geom_point(data = data_frame_select, aes_string(x = x_axis_variable, y = selected_column_name), colour = "red")
 chart <- chart + xlab(x_axis_label)
 if (!is.na(y_axis_title)) {
 chart <- chart + ylab(y_axis_title)
+}
+if (!is.na(y_limit)) {
+chart <- chart + scale_y_continuous(limits = y_limit)
 }
 
 assign(paste("chart", as.character(i_x_axis), sep = "_"), chart)
@@ -473,11 +476,11 @@ grid.draw(chart_table)
 dev.off()
 
 # plots for global water fluxes
-charts_avg_precipitation        = sensitivity_scatter_plot_per_row(complete_table, "avg_precipitation"       , "calibration_avg_kge_2009_per_baseflow_deviation_relative", "precipitation (km3/yr)")
-charts_avg_evaporation          = sensitivity_scatter_plot_per_row(complete_table, "avg_evaporation"         , "calibration_avg_kge_2009_per_baseflow_deviation_relative", "evaporation (km3/yr)"  )
-charts_avg_runoff               = sensitivity_scatter_plot_per_row(complete_table, "avg_runoff"              , "calibration_avg_kge_2009_per_baseflow_deviation_relative", "runoff (km3/yr)"       )
-charts_avg_groundwater_recharge = sensitivity_scatter_plot_per_row(complete_table, "avg_groundwater_recharge", "calibration_avg_kge_2009_per_baseflow_deviation_relative", "gw recharge (km3/yr)"  )
-charts_avg_baseflow             = sensitivity_scatter_plot_per_row(complete_table, "avg_baseflow"            , "calibration_avg_kge_2009_per_baseflow_deviation_relative", "gw baseflow (km3/yr)" )
+charts_avg_precipitation        = sensitivity_scatter_plot_per_row(complete_table, "avg_precipitation"       , "calibration_avg_kge_2009_per_baseflow_deviation_relative", "precipitation km3/yr", c(105000, 110000))
+charts_avg_evaporation          = sensitivity_scatter_plot_per_row(complete_table, "avg_evaporation"         , "calibration_avg_kge_2009_per_baseflow_deviation_relative", "evaporation km3/yr"  )
+charts_avg_runoff               = sensitivity_scatter_plot_per_row(complete_table, "avg_runoff"              , "calibration_avg_kge_2009_per_baseflow_deviation_relative", "runoff km3/yr"       )
+charts_avg_groundwater_recharge = sensitivity_scatter_plot_per_row(complete_table, "avg_groundwater_recharge", "calibration_avg_kge_2009_per_baseflow_deviation_relative", "gw recharge km3/yr"  )
+charts_avg_baseflow             = sensitivity_scatter_plot_per_row(complete_table, "avg_baseflow"            , "calibration_avg_kge_2009_per_baseflow_deviation_relative", "gw baseflow km3/yr"  )
 # - plotting to a table
 chart_table = rbind(charts_avg_precipitation,
                     charts_avg_evaporation,         
@@ -493,11 +496,11 @@ grid.draw(chart_table)
 dev.off()
 
 # plots for water withdrawal
-charts_avg_total_withdrawal_2001_to_2008                = sensitivity_scatter_plot_per_row(complete_table, "avg_total_withdrawal_2001_to_2008"              , "calibration_avg_kge_2009_per_baseflow_deviation_relative", "total withdrawal (km3/yr)")
-charts_avg_surface_water_abstraction_2001_to_2008       = sensitivity_scatter_plot_per_row(complete_table, "avg_surface_water_abstraction_2001_to_2008"     , "calibration_avg_kge_2009_per_baseflow_deviation_relative", "surface water withdrawal (km3/yr)")
-charts_avg_total_gw_abstraction_2001_to_2008            = sensitivity_scatter_plot_per_row(complete_table, "avg_total_gw_abstraction_2001_to_2008"          , "calibration_avg_kge_2009_per_baseflow_deviation_relative", "total gw withdrawal (km3/yr)")
-charts_avg_renewable_gw_abstraction_2001_to_2008        = sensitivity_scatter_plot_per_row(complete_table, "avg_renewable_gw_abstraction_2001_to_2008"      , "calibration_avg_kge_2009_per_baseflow_deviation_relative", "non-fossil gw withdrawal (km3/yr)")
-charts_avg_fossil_groundwater_abstraction_2001_to_2008  = sensitivity_scatter_plot_per_row(complete_table, "avg_fossil_groundwater_abstraction_2001_to_2008", "calibration_avg_kge_2009_per_baseflow_deviation_relative", "fossil gw withdrawal (km3/yr)")
+charts_avg_total_withdrawal_2001_to_2008                = sensitivity_scatter_plot_per_row(complete_table, "avg_total_withdrawal_2001_to_2008"              , "calibration_avg_kge_2009_per_baseflow_deviation_relative", "total withdrawal km3/yr 2001-08"   )
+charts_avg_surface_water_abstraction_2001_to_2008       = sensitivity_scatter_plot_per_row(complete_table, "avg_surface_water_abstraction_2001_to_2008"     , "calibration_avg_kge_2009_per_baseflow_deviation_relative", "surface water withdrawal km3/yr"   , c(1000, 3000))
+charts_avg_total_gw_abstraction_2001_to_2008            = sensitivity_scatter_plot_per_row(complete_table, "avg_total_gw_abstraction_2001_to_2008"          , "calibration_avg_kge_2009_per_baseflow_deviation_relative", "total gw withdrawal km3/yr"        , c( 400,  800))
+charts_avg_renewable_gw_abstraction_2001_to_2008        = sensitivity_scatter_plot_per_row(complete_table, "avg_renewable_gw_abstraction_2001_to_2008"      , "calibration_avg_kge_2009_per_baseflow_deviation_relative", "non-fossil gw withdrawal km3/yr"   , c( 100,  700))
+charts_avg_fossil_groundwater_abstraction_2001_to_2008  = sensitivity_scatter_plot_per_row(complete_table, "avg_fossil_groundwater_abstraction_2001_to_2008", "calibration_avg_kge_2009_per_baseflow_deviation_relative", "fossil withdrawal km3/yr 2001-2008", c( 100,  425))
 # - plotting to a table
 chart_table = rbind(charts_avg_total_withdrawal_2001_to_2008,               
                     charts_avg_surface_water_abstraction_2001_to_2008,      
