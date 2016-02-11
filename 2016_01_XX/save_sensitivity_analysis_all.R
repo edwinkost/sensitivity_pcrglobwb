@@ -139,8 +139,8 @@ baseflow = read.table(baseflow_file_name, sep = ";", header = T)
 # calculating relative baseflow deviation
 baseflow_deviation_relative = abs(baseflow$avg_baseflow_deviation/baseflow$average_iwmi_opt_baseflow)
 # set limit - ignoring bad performances:
-limit = 1.  
-baseflow_deviation_relative[ which(baseflow_deviation_relative > limit)] <- limit
+#~ limit = 1.5  
+#~ baseflow_deviation_relative[ which(baseflow_deviation_relative > limit)] <- limit
 #~ # set NA and NaN to the limit
 #~ baseflow_deviation_relative[ is.na(baseflow_deviation_relative)        ] <- limit
 #~ baseflow_deviation_relative[is.nan(baseflow_deviation_relative)        ] <- limit
@@ -164,23 +164,23 @@ one_minus_avg_baseflow_deviation_relative = 1 - mean(baseflow_deviation_relative
 #~ avg_ns_efficiency_log_per_baseflow_deviation_relative = avg_ns_efficiency_log  / (1 + mean(baseflow_deviation_relative, na.rm = TRUE))
 #~ avg_kge_2009_per_baseflow_deviation_relative          = avg_kge_2009           / (1 + mean(baseflow_deviation_relative, na.rm = TRUE))
 #~ avg_kge_2012_per_baseflow_deviation_relative          = avg_kge_2012           / (1 + mean(baseflow_deviation_relative, na.rm = TRUE))
-# - alternative two
-# -- calculating the composite performance values for all stations:
-correlation_per_baseflow_deviation_relative       = discharge$correlation       / (1 + baseflow_deviation_relative)
-R2_per_baseflow_deviation_relative                = discharge$R2                / (1 + baseflow_deviation_relative)
-R2_adjusted_per_baseflow_deviation_relative       = discharge$R2_adjusted       / (1 + baseflow_deviation_relative)
-ns_efficiency_per_baseflow_deviation_relative     = discharge$ns_efficiency     / (1 + baseflow_deviation_relative)
-ns_efficiency_log_per_baseflow_deviation_relative = discharge$ns_efficiency_log / (1 + baseflow_deviation_relative)
-kge_2009_per_baseflow_deviation_relative          = discharge$kge_2009          / (1 + baseflow_deviation_relative)
-kge_2012_per_baseflow_deviation_relative          = discharge$kge_2012          / (1 + baseflow_deviation_relative)
-# -- then calculate their averages
-avg_correlation_per_baseflow_deviation_relative       = mean(correlation_per_baseflow_deviation_relative      , na.rm = TRUE) 
-avg_R2_per_baseflow_deviation_relative                = mean(R2_per_baseflow_deviation_relative               , na.rm = TRUE) 
-avg_R2_adjusted_per_baseflow_deviation_relative       = mean(R2_adjusted_per_baseflow_deviation_relative      , na.rm = TRUE) 
-avg_ns_efficiency_per_baseflow_deviation_relative     = mean(ns_efficiency_per_baseflow_deviation_relative    , na.rm = TRUE) 
-avg_ns_efficiency_log_per_baseflow_deviation_relative = mean(ns_efficiency_log_per_baseflow_deviation_relative, na.rm = TRUE) 
-avg_kge_2009_per_baseflow_deviation_relative          = mean(kge_2009_per_baseflow_deviation_relative         , na.rm = TRUE) 
-avg_kge_2012_per_baseflow_deviation_relative          = mean(kge_2012_per_baseflow_deviation_relative         , na.rm = TRUE)
+#~ # - alternative two
+#~ # -- calculating the composite performance values for all stations:
+#~ correlation_per_baseflow_deviation_relative       = discharge$correlation       / (1 + baseflow_deviation_relative)
+#~ R2_per_baseflow_deviation_relative                = discharge$R2                / (1 + baseflow_deviation_relative)
+#~ R2_adjusted_per_baseflow_deviation_relative       = discharge$R2_adjusted       / (1 + baseflow_deviation_relative)
+#~ ns_efficiency_per_baseflow_deviation_relative     = discharge$ns_efficiency     / (1 + baseflow_deviation_relative)
+#~ ns_efficiency_log_per_baseflow_deviation_relative = discharge$ns_efficiency_log / (1 + baseflow_deviation_relative)
+#~ kge_2009_per_baseflow_deviation_relative          = discharge$kge_2009          / (1 + baseflow_deviation_relative)
+#~ kge_2012_per_baseflow_deviation_relative          = discharge$kge_2012          / (1 + baseflow_deviation_relative)
+#~ # -- then calculate their averages
+#~ avg_correlation_per_baseflow_deviation_relative       = mean(correlation_per_baseflow_deviation_relative      , na.rm = TRUE) 
+#~ avg_R2_per_baseflow_deviation_relative                = mean(R2_per_baseflow_deviation_relative               , na.rm = TRUE) 
+#~ avg_R2_adjusted_per_baseflow_deviation_relative       = mean(R2_adjusted_per_baseflow_deviation_relative      , na.rm = TRUE) 
+#~ avg_ns_efficiency_per_baseflow_deviation_relative     = mean(ns_efficiency_per_baseflow_deviation_relative    , na.rm = TRUE) 
+#~ avg_ns_efficiency_log_per_baseflow_deviation_relative = mean(ns_efficiency_log_per_baseflow_deviation_relative, na.rm = TRUE) 
+#~ avg_kge_2009_per_baseflow_deviation_relative          = mean(kge_2009_per_baseflow_deviation_relative         , na.rm = TRUE) 
+#~ avg_kge_2012_per_baseflow_deviation_relative          = mean(kge_2012_per_baseflow_deviation_relative         , na.rm = TRUE)
 
 # an extra composite performance
 lm_slope_obs_to_model = lm(discharge$average_observation ~ 0 + discharge$average_model, na.action = na.omit)$coefficients
@@ -436,7 +436,7 @@ return(charts_in_ggplotGrob)
 }
 
 cor(complete_table$calibration_avg_ns_efficiency_per_baseflow_deviation_relative, complete_table$calibration_avg_ns_efficiency)
-cor(complete_table$calibration_avg_ns_efficiency_per_baseflow_deviation_relative, complete_table$calibration_avg_ns_efficiency)
+cor(complete_table$calibration_avg_ns_efficiency_per_baseflow_deviation_relative, complete_table$calibration_one_minus_avg_baseflow_deviation_relative)
 
 
 charts_calibration_avg_ns_efficiency_per_baseflow_deviation_relative  = sensitivity_scatter_plot_per_row(complete_table, "calibration_avg_ns_efficiency_per_baseflow_deviation_relative", "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
