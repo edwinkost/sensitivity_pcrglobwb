@@ -442,7 +442,7 @@ return(charts_in_ggplotGrob)
 }
 
 # plots for global performance at calibration stations
-charts_calibration_avg_kge_2009_per_baseflow_deviation_relative  = sensitivity_scatter_plot_per_row(complete_table, "calibration_avg_kge_2009_per_baseflow_deviation_relative"     , "calibration_avg_kge_2009_per_baseflow_deviation_relative", "KGE_BF_avg")
+charts_calibration_avg_kge_2009_per_baseflow_deviation_relative  = sensitivity_scatter_plot_per_row(complete_table, "calibration_avg_kge_2009_per_baseflow_deviation_relative"     , "calibration_avg_kge_2009_per_baseflow_deviation_relative", "KGE-BF_avg")
 charts_calibration_avg_kge_2009                                  = sensitivity_scatter_plot_per_row(complete_table, "calibration_avg_kge_2009"                                     , "calibration_avg_kge_2009_per_baseflow_deviation_relative", "KGE_avg"   )
 charts_calibration_one_minus_avg_baseflow_deviation_relative     = sensitivity_scatter_plot_per_row(complete_table, "calibration_one_minus_avg_baseflow_deviation_relative"        , "calibration_avg_kge_2009_per_baseflow_deviation_relative", "1 - BF_avg")
 # - plotting to a table
@@ -459,7 +459,7 @@ grid.draw(chart_table)
 dev.off()
 
 # plots for global performance at validation stations
-charts_validation_avg_kge_2009_per_baseflow_deviation_relative  = sensitivity_scatter_plot_per_row(complete_table, "validation_avg_kge_2009_per_baseflow_deviation_relative"     , "calibration_avg_kge_2009_per_baseflow_deviation_relative", "KGE_BF_avg")
+charts_validation_avg_kge_2009_per_baseflow_deviation_relative  = sensitivity_scatter_plot_per_row(complete_table, "validation_avg_kge_2009_per_baseflow_deviation_relative"     , "calibration_avg_kge_2009_per_baseflow_deviation_relative", "KGE-BF_avg")
 charts_validation_avg_kge_2009                                  = sensitivity_scatter_plot_per_row(complete_table, "validation_avg_kge_2009"                                     , "calibration_avg_kge_2009_per_baseflow_deviation_relative", "KGE_avg"   )
 charts_validation_one_minus_avg_baseflow_deviation_relative     = sensitivity_scatter_plot_per_row(complete_table, "validation_one_minus_avg_baseflow_deviation_relative"        , "calibration_avg_kge_2009_per_baseflow_deviation_relative", "1 - BF_avg")
 # - plotting to a table
