@@ -438,7 +438,6 @@ return(charts_in_ggplotGrob)
 cor(complete_table$calibration_avg_ns_efficiency_per_baseflow_deviation_relative, complete_table$calibration_avg_ns_efficiency)
 cor(complete_table$calibration_avg_ns_efficiency_per_baseflow_deviation_relative, complete_table$calibration_one_minus_avg_baseflow_deviation_relative)
 
-
 charts_calibration_avg_ns_efficiency_per_baseflow_deviation_relative  = sensitivity_scatter_plot_per_row(complete_table, "calibration_avg_ns_efficiency_per_baseflow_deviation_relative", "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
 charts_calibration_avg_ns_efficiency                                  = sensitivity_scatter_plot_per_row(complete_table, "calibration_avg_ns_efficiency"                                , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
 charts_calibration_one_minus_avg_baseflow_deviation_relative          = sensitivity_scatter_plot_per_row(complete_table, "calibration_one_minus_avg_baseflow_deviation_relative"        , "calibration_avg_ns_efficiency_per_baseflow_deviation_relative")
