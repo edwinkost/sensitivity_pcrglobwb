@@ -29,59 +29,89 @@ parameters[,2:ncol(parameters)] <- lapply(parameters[,2:ncol(parameters)], as.nu
 # path of output folder
 main_path = "/projects/0/dfguu/users/edwin/30min_sensitivity_analysis_non_natural/2016_01_XX/"
 
-# get the list of all rivers/stations used
-file_for_list_of_rivers = paste(main_path, "code__a__", as.character(0), "/analysis_iwmi/calibration/monthly_discharge/summary.txt", sep = "")
+# station type: folder from the analysis results:
+type_folder = "analysis_iwmi/calibration/"
+
+# get the list of all rivers/stations used (from the monthly discharge analysis folder)
+file_for_list_of_rivers = paste(main_path, "code__a__", as.character(0), type_folder, "/monthly_discharge/summary.txt", sep = "")
 river = read.table(file_for_list_of_rivers, sep=";", header = T)
 
-# select rivers with number of months > 12
-river = river[which(river$num_of_month_pairs > 12), ]
+#~ # select rivers with number of months > 12
+#~ river = river[which(river$num_of_month_pairs > 12), ]
 
 # sort river based on grdc catchment area and use only the river name
 river = as.character(river$river_name[order(-river$grdc_catchment_area_in_km2)])
 
-pdf("000Rtest.pdf", width = 17.5, height = 0.75 * length(river), bg = "white")
-#~ par(mfrow=c(length(river), 5*4), mar=c(1,1,1,1))
-par(mfrow=c(length(river), 1*4), mar=c(1,1,1,1))
-
 # loop through all rivers to get model performances from all runs and their corresponding model parameters
-for (i_river in seq(1, length(river), 1)) {
-#~ for (i_river in seq(1, 5, 1)) {
-
+#~ for (i_river in seq(1, length(river), 1)) {
+for (i_river in seq(1, 5, 1)) {
 
 print("")
 print(i_river)
 print("")
 
 # initiate model performance indicators (all NA)
-ns_eff   = array(NA, length(parameters$code))
-ns_log   = array(NA, length(parameters$code))
-kge_2009 = array(NA, length(parameters$code))
-kge_2012 = array(NA, length(parameters$code))
-R2       = array(NA, length(parameters$code))
+code         = array(NA, length(parameters$code))          
+ns_eff       = array(NA, length(parameters$code))
+ns_log       = array(NA, length(parameters$code))
+kge_2009     = array(NA, length(parameters$code))
+kge_2012     = array(NA, length(parameters$code))
+R2           = array(NA, length(parameters$code))
+one_min_bfdv = array(NA, length(parameters$code))
 
 # loop through all model runs
 for (i_code in seq(1, length(parameters$code), 1)) {
 
-# open/read file 
-file_name = paste(main_path, "code__a__", as.character(i_code-1), "/analysis_iwmi/calibration/monthly_discharge/summary.txt", sep = "")
+# code for this run and their parameter/pre-factor values
+code[i_code]      = parameters$code[i_code]
+
+# open/read monthly discharge file 
+file_name = paste(main_path, as.character(code[i_code]), "/", type_folder, "/monthly_discharge/summary.txt", sep = "")
 print(file_name)
 performance_table = read.table(file_name, sep=";", header = T)
 
-# model performance indicators
-ns_eff[i_code]   = performance_table$ns_efficiency[which(performance_table$river_name == river[i_river])]
+# discharge model performance indicators
+ns_eff[i_code]   = performance_table$ns_efficiency    [which(performance_table$river_name == river[i_river])]
 ns_log[i_code]   = performance_table$ns_efficiency_log[which(performance_table$river_name == river[i_river])]
-kge_2009[i_code] = performance_table$kge_2009[which(performance_table$river_name == river[i_river])]
-kge_2012[i_code] = performance_table$kge_2012[which(performance_table$river_name == river[i_river])]
-R2[i_code]       = performance_table$R2[which(performance_table$river_name == river[i_river])]
+kge_2009[i_code] = performance_table$kge_2009         [which(performance_table$river_name == river[i_river])]
+kge_2012[i_code] = performance_table$kge_2012         [which(performance_table$river_name == river[i_river])]
+R2[i_code]       = performance_table$R2               [which(performance_table$river_name == river[i_river])]
+
+# open/read annual baseflow performance file 
+file_name = paste(main_path, as.character(code[i_code]), "/", type_folder, "/annual_baseflow/baseflow_summary.txt", sep = "")
+print(file_name)
+performance_table = read.table(file_name, sep=";", header = T)
+
+# annual baseflow performance indicator
+bfdev_relative_value = performance_table$avg_baseflow_deviation[which(performance_table$river_name == river[i_river])]/performance_table$average_iwmi_opt_baseflow[which(performance_table$river_name == river[i_river])]
+one_min_bfdv[i_code] = 1 - bfdev_relative_value
 
 # set minimum value of model performance indicator
-ns_eff[i_code][which(ns_eff[i_code] < 0.0)] = 0.0
-ns_log[i_code][which(ns_log[i_code] < 0.0)] = 0.0
-kge_2009[i_code][which(kge_2009[i_code] < 0.0)] = 0.0
-kge_2012[i_code][which(kge_2012[i_code] < 0.0)] = 0.0
-R2[i_code][which(R2[i_code] < 0.0)] = 0.0      
+ns_eff      [i_code][which(ns_eff       [i_code] < 0.0)] = 0.0
+ns_log      [i_code][which(ns_log       [i_code] < 0.0)] = 0.0
+kge_2009    [i_code][which(kge_2009     [i_code] < 0.0)] = 0.0
+kge_2012    [i_code][which(kge_2012     [i_code] < 0.0)] = 0.0
+R2          [i_code][which(R2           [i_code] < 0.0)] = 0.0 
+one_min_bfdv[i_code][which(one_min_bfdv [i_code] < 0.0)] = 0.0
+
+# set all NA and NaN to 0.0
+ns_eff      [i_code][is.nan(ns_eff      [i_code])]       = 0.0
+ns_log      [i_code][is.nan(ns_log      [i_code])]       = 0.0
+kge_2009    [i_code][is.nan(kge_2009    [i_code])]       = 0.0
+kge_2012    [i_code][is.nan(kge_2012    [i_code])]       = 0.0
+R2          [i_code][is.nan(R2          [i_code])]       = 0.0
+one_min_bfdv[i_code][is.nan(one_min_bfdv[i_code])]       = 0.0
+ns_eff      [i_code][ is.na(ns_eff      [i_code])]       = 0.0
+ns_log      [i_code][ is.na(ns_log      [i_code])]       = 0.0
+kge_2009    [i_code][ is.na(kge_2009    [i_code])]       = 0.0
+kge_2012    [i_code][ is.na(kge_2012    [i_code])]       = 0.0
+R2          [i_code][ is.na(R2          [i_code])]       = 0.0
+one_min_bfdv[i_code][ is.na(one_min_bfdv[i_code])]       = 0.0
 
 }
+
+table_for_this_river = data.frame()
+
 
 plot(c(parameters$min_soil_depth_frac, 10), array(i_river, length(parameters$code) + 1), cex = c(kge_2009, 1) * 7., yaxt = 'n', ylab = "", ylim = c(i_river - 0.5, i_river + 0.5), xlim = c(min(parameters$min_soil_depth_frac), max(parameters$min_soil_depth_frac)))
 text(mean(parameters$min_soil_depth_frac), i_river - 0.25, labels = as.character(river[i_river]), cex = 1.5)
