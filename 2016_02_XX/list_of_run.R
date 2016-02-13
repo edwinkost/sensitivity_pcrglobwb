@@ -20,7 +20,7 @@ general_output_folder_name = 'code__a__'
 start_folder_index = 1
 
 # file name for the output table that will contain new parameters
-new_parameter_table_file_name = "table_13_february_2016_cartesius_edwinhs.txt"
+new_parameter_table_file_name = "table_13_february_2016_cartesius_edwin.txt"
 
 # list of existing parameters sets that have been defined in the previous runs
 existing_parameters = c(1.0, 0.0, 0.0, 1.0, 1.0)                                           # reference run              
