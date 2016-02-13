@@ -1,0 +1,29 @@
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH -t 110:00:00
+#SBATCH -p normal
+
+python ~/github/edwinkost/PCR-GLOBWB/model/deterministic_runner_glue_january_2016.py ~/github/edwinkost/sensitivity_pcrglobwb/2016_02_XX/setup_sensitivity_analysis_cartesius_non_natural_version_february_2016.ini no_debug code__a__139 1 0.5 -0.5 1 1 &  
+python ~/github/edwinkost/PCR-GLOBWB/model/deterministic_runner_glue_january_2016.py ~/github/edwinkost/sensitivity_pcrglobwb/2016_02_XX/setup_sensitivity_analysis_cartesius_non_natural_version_february_2016.ini no_debug code__a__140 1 0.5 -0.5 1 1.5 &  
+python ~/github/edwinkost/PCR-GLOBWB/model/deterministic_runner_glue_january_2016.py ~/github/edwinkost/sensitivity_pcrglobwb/2016_02_XX/setup_sensitivity_analysis_cartesius_non_natural_version_february_2016.ini no_debug code__a__141 1 0.5 0 1 0.5 &  
+python ~/github/edwinkost/PCR-GLOBWB/model/deterministic_runner_glue_january_2016.py ~/github/edwinkost/sensitivity_pcrglobwb/2016_02_XX/setup_sensitivity_analysis_cartesius_non_natural_version_february_2016.ini no_debug code__a__142 1 0.5 0 1 1 &  
+python ~/github/edwinkost/PCR-GLOBWB/model/deterministic_runner_glue_january_2016.py ~/github/edwinkost/sensitivity_pcrglobwb/2016_02_XX/setup_sensitivity_analysis_cartesius_non_natural_version_february_2016.ini no_debug code__a__143 1 0.5 0 1 1.5 &  
+python ~/github/edwinkost/PCR-GLOBWB/model/deterministic_runner_glue_january_2016.py ~/github/edwinkost/sensitivity_pcrglobwb/2016_02_XX/setup_sensitivity_analysis_cartesius_non_natural_version_february_2016.ini no_debug code__a__144 1 0.5 0.5 1 0.5 &  
+python ~/github/edwinkost/PCR-GLOBWB/model/deterministic_runner_glue_january_2016.py ~/github/edwinkost/sensitivity_pcrglobwb/2016_02_XX/setup_sensitivity_analysis_cartesius_non_natural_version_february_2016.ini no_debug code__a__145 1 0.5 0.5 1 1 &  
+python ~/github/edwinkost/PCR-GLOBWB/model/deterministic_runner_glue_january_2016.py ~/github/edwinkost/sensitivity_pcrglobwb/2016_02_XX/setup_sensitivity_analysis_cartesius_non_natural_version_february_2016.ini no_debug code__a__146 1 0.5 0.5 1 1.5 &  
+python ~/github/edwinkost/PCR-GLOBWB/model/deterministic_runner_glue_january_2016.py ~/github/edwinkost/sensitivity_pcrglobwb/2016_02_XX/setup_sensitivity_analysis_cartesius_non_natural_version_february_2016.ini no_debug code__a__147 1 0.5 1 1 0.5 &  
+python ~/github/edwinkost/PCR-GLOBWB/model/deterministic_runner_glue_january_2016.py ~/github/edwinkost/sensitivity_pcrglobwb/2016_02_XX/setup_sensitivity_analysis_cartesius_non_natural_version_february_2016.ini no_debug code__a__148 1 0.5 1 1 1 &  
+python ~/github/edwinkost/PCR-GLOBWB/model/deterministic_runner_glue_january_2016.py ~/github/edwinkost/sensitivity_pcrglobwb/2016_02_XX/setup_sensitivity_analysis_cartesius_non_natural_version_february_2016.ini no_debug code__a__149 1 0.5 1 1 1.5 &  
+python ~/github/edwinkost/PCR-GLOBWB/model/deterministic_runner_glue_january_2016.py ~/github/edwinkost/sensitivity_pcrglobwb/2016_02_XX/setup_sensitivity_analysis_cartesius_non_natural_version_february_2016.ini no_debug code__a__150 1.5 -0.5 -1 1 0.5 &  
+python ~/github/edwinkost/PCR-GLOBWB/model/deterministic_runner_glue_january_2016.py ~/github/edwinkost/sensitivity_pcrglobwb/2016_02_XX/setup_sensitivity_analysis_cartesius_non_natural_version_february_2016.ini no_debug code__a__151 1.5 -0.5 -1 1 1 &  
+python ~/github/edwinkost/PCR-GLOBWB/model/deterministic_runner_glue_january_2016.py ~/github/edwinkost/sensitivity_pcrglobwb/2016_02_XX/setup_sensitivity_analysis_cartesius_non_natural_version_february_2016.ini no_debug code__a__152 1.5 -0.5 -1 1 1.5 &  
+python ~/github/edwinkost/PCR-GLOBWB/model/deterministic_runner_glue_january_2016.py ~/github/edwinkost/sensitivity_pcrglobwb/2016_02_XX/setup_sensitivity_analysis_cartesius_non_natural_version_february_2016.ini no_debug code__a__153 1.5 -0.5 -0.5 1 0.5 &  
+python ~/github/edwinkost/PCR-GLOBWB/model/deterministic_runner_glue_january_2016.py ~/github/edwinkost/sensitivity_pcrglobwb/2016_02_XX/setup_sensitivity_analysis_cartesius_non_natural_version_february_2016.ini no_debug code__a__154 1.5 -0.5 -0.5 1 1 &  
+python ~/github/edwinkost/PCR-GLOBWB/model/deterministic_runner_glue_january_2016.py ~/github/edwinkost/sensitivity_pcrglobwb/2016_02_XX/setup_sensitivity_analysis_cartesius_non_natural_version_february_2016.ini no_debug code__a__155 1.5 -0.5 -0.5 1 1.5 &  
+python ~/github/edwinkost/PCR-GLOBWB/model/deterministic_runner_glue_january_2016.py ~/github/edwinkost/sensitivity_pcrglobwb/2016_02_XX/setup_sensitivity_analysis_cartesius_non_natural_version_february_2016.ini no_debug code__a__156 1.5 -0.5 0 1 0.5 &  
+python ~/github/edwinkost/PCR-GLOBWB/model/deterministic_runner_glue_january_2016.py ~/github/edwinkost/sensitivity_pcrglobwb/2016_02_XX/setup_sensitivity_analysis_cartesius_non_natural_version_february_2016.ini no_debug code__a__157 1.5 -0.5 0 1 1 &  
+python ~/github/edwinkost/PCR-GLOBWB/model/deterministic_runner_glue_january_2016.py ~/github/edwinkost/sensitivity_pcrglobwb/2016_02_XX/setup_sensitivity_analysis_cartesius_non_natural_version_february_2016.ini no_debug code__a__158 1.5 -0.5 0 1 1.5 &  
+python ~/github/edwinkost/PCR-GLOBWB/model/deterministic_runner_glue_january_2016.py ~/github/edwinkost/sensitivity_pcrglobwb/2016_02_XX/setup_sensitivity_analysis_cartesius_non_natural_version_february_2016.ini no_debug code__a__159 1.5 -0.5 0.5 1 0.5 &  
+python ~/github/edwinkost/PCR-GLOBWB/model/deterministic_runner_glue_january_2016.py ~/github/edwinkost/sensitivity_pcrglobwb/2016_02_XX/setup_sensitivity_analysis_cartesius_non_natural_version_february_2016.ini no_debug code__a__160 1.5 -0.5 0.5 1 1 &  
+python ~/github/edwinkost/PCR-GLOBWB/model/deterministic_runner_glue_january_2016.py ~/github/edwinkost/sensitivity_pcrglobwb/2016_02_XX/setup_sensitivity_analysis_cartesius_non_natural_version_february_2016.ini no_debug code__a__161 1.5 -0.5 0.5 1 1.5 &  
+wait
