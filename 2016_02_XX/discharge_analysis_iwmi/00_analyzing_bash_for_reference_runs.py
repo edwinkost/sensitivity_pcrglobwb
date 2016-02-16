@@ -4,10 +4,6 @@
 import os
 import sys
 
-# starting and last_run code
-sta_run = int(sys.argv[1]) # 0
-end_run = int(sys.argv[2]) # 224 
-
 # maximum number of cores (must be an even number)
 max_cores = 4
 
@@ -24,7 +20,7 @@ directory = [
 
 # making command lines
 cmd = ''
-for i_run in range(sta_run, end_run + 1):
+for i_run in range(0, len(directory)):
 
    cmd += "python 0_main_analyze_discharge_IWMI.py " + "/scratch-shared/edwin/30min_sensitivity_analysis_non_natural/2016_02_XX/" + str(directory[i_run]) + " iwmi_calibration"
    cmd = cmd +" & \n"
@@ -37,4 +33,4 @@ for i_run in range(sta_run, end_run + 1):
 print cmd
 
 # execute the command line
-os.system(cmd)      
+#~ os.system(cmd)      
