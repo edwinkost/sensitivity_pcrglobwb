@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for i in {0..225}
+for i in {0..674}
 do
    OUT=code__a__
    echo "Processing the run $i."
