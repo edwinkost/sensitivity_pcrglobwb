@@ -15,9 +15,6 @@ directory = [
 "without_fossil_limit_and_without_pumping_limit"
 ]
 
-directory = [
-"with_fossil_limit_and_with_pumping_limit"]
-
 # making command lines
 cmd = ''
 for i_run in range(0, len(directory)):
