@@ -30,4 +30,4 @@ for i_run in range(0, len(directory)):
 print cmd
 
 # execute the command line
-#~ os.system(cmd)      
+os.system(cmd)      
