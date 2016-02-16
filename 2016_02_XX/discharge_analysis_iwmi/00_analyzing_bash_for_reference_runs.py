@@ -25,9 +25,9 @@ for i_run in range(0, len(directory)):
    cmd += "python 0_main_analyze_discharge_IWMI.py " + "/scratch-shared/edwin/30min_sensitivity_analysis_non_natural/2016_02_XX/" + str(directory[i_run]) + "/ iwmi_validation"
    cmd = cmd +" & \n"
 
-   if ((i_run + 1)%(max_cores/2) == 0) or (i_run == len(directory)): cmd = cmd + "wait \n"       
+   if ((i_run + 1)%(max_cores/2) == 0) or (i_run == (len(directory)-1)): cmd = cmd + "wait \n"       
 
 print cmd
 
 # execute the command line
-os.system(cmd)      
+#~ os.system(cmd)      
