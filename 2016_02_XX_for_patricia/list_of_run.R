@@ -9,24 +9,24 @@ stor_cap            = seq( 0.75, 1.25, 0.25)
 degree_day_factor   = seq( 1.00, 1.00, 1.00)
 ref_pot_et_factor   = seq( 1.00, 1.00, 0.00)
  
-#~ # parameter lists (additional)
-#~ min_soil_depth_frac = seq( 1.00, 1.00, 1.00)
-#~ log_ksat            = seq(-0.25, 0.25, 0.25)	
-#~ log_recession_coef  = seq(-0.50, 0.50, 0.50)	
-#~ stor_cap            = seq( 0.75, 1.25, 0.25)
-#~ degree_day_factor   = seq( 1.00, 1.00, 1.00)
-#~ ref_pot_et_factor   = seq( 0.75, 1.25, 0.25)
+# parameter lists (additional)
+min_soil_depth_frac = seq( 1.00, 1.00, 0.00)
+log_ksat            = seq(-0.25, 0.25, 0.25)	
+log_recession_coef  = seq(-0.50, 0.50, 0.50)	
+stor_cap            = seq( 0.75, 1.25, 0.25)
+degree_day_factor   = seq( 1.00, 1.00, 1.00)
+ref_pot_et_factor   = seq( 0.75, 1.25, 0.25)
 
 # output folder name and numbering
 general_output_folder_name = 'code__a__'
-start_folder_index = 1
+start_folder_index = 27
 
 # file name for the output table that will contain new parameters
-new_parameter_table_file_name = "table_23_february_2016_cartesius_patricia.txt"
+new_parameter_table_file_name = "table_23_february_2016_cartesius_patricia_2nd.txt"
 
 # list of existing parameters sets that have been defined in the previous runs
 existing_parameters = c(1.0, 0.0, 0.0, 1.0, 1.0, 1.0)                                                                             # reference run               # Usually, I indicate this rune with the code 0. 
-#~ existing_parameters = rbind(existing_parameters, read.table("table_13_february_2016_cartesius_edwin.txt", header=T)[2:7])      # from the previous file/runs
+existing_parameters = rbind(existing_parameters, read.table("table_23_february_2016_cartesius_patricia.txt", header=T)[2:7])      # from the previous file/runs
 
 # number of cores that will be used
 number_of_cores = 23
