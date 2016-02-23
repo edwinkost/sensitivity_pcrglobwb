@@ -165,8 +165,8 @@ chart_for_log_ksat            <- chart_for_log_ksat            + geom_point(data
 chart_for_stor_cap            <- chart_for_stor_cap            + geom_point(data = table_for_this_river, aes(x = stor_cap,            y = river_number, size = kge_2009), shape = 21)
 chart_for_log_recession_coef  <- chart_for_log_recession_coef  + geom_point(data = table_for_this_river, aes(x = log_recession_coef,  y = river_number, size = kge_2009), shape = 21)
 
-chart_for_degree_day_factor   <- chart_for_degree_day_factor + scale_size_continuous(limits = c(0.01, 1))
-plot(chart_for_degree_day_factor)
+#~ chart_for_degree_day_factor   <- chart_for_degree_day_factor + scale_size_continuous(limits = c(0.01, 1))
+#~ plot(chart_for_degree_day_factor)
 
 #~ 
 #~ 
