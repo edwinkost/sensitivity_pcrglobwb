@@ -74,8 +74,9 @@ river_number = array(river_number, length(parameters$code))
 # river names (only for documentation purpose) 
 river_name = array(river[i_river], length(parameters$code))
 
-# loop through all model runs
-for (i_code in seq(1, length(parameters$code), 1)) {
+#~ # loop through all model runs
+#~ for (i_code in seq(1, length(parameters$code), 1)) {
+for (i_code in seq(1, 1, 1)) {
 
 # code for this run and their parameter/pre-factor values
 code               [i_code] = parameters$code               [i_code]
@@ -147,6 +148,8 @@ R2                 ,
 one_min_bfdv       
 )
 
+# plot for kge_2009
+
 # initiate the plots 
 if (i_river == 1) {
 chart_for_degree_day_factor   <- ggplot() 
@@ -156,12 +159,13 @@ chart_for_stor_cap            <- ggplot()
 chart_for_log_recession_coef  <- ggplot()
 }
 
-# plots 
 chart_for_degree_day_factor   <- chart_for_degree_day_factor   + geom_point(data = table_for_this_river, aes(x = degree_day_factor,   y = river_number, size = kge_2009), solid = FALSE)
 chart_for_min_soil_depth_frac <- chart_for_min_soil_depth_frac + geom_point(data = table_for_this_river, aes(x = min_soil_depth_frac, y = river_number, size = kge_2009), solid = FALSE)
 chart_for_log_ksat            <- chart_for_log_ksat            + geom_point(data = table_for_this_river, aes(x = log_ksat,            y = river_number, size = kge_2009), solid = FALSE)
 chart_for_stor_cap            <- chart_for_stor_cap            + geom_point(data = table_for_this_river, aes(x = stor_cap,            y = river_number, size = kge_2009), solid = FALSE)
 chart_for_log_recession_coef  <- chart_for_log_recession_coef  + geom_point(data = table_for_this_river, aes(x = log_recession_coef,  y = river_number, size = kge_2009), solid = FALSE)
+
+
 
 
 #~ 
