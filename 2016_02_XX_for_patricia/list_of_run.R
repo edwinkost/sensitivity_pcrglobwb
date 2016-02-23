@@ -2,29 +2,31 @@
 # make list for new runs
 
 # parameter lists
-min_soil_depth_frac = 1.0
-log_ksat            = seq(-0.5, 0.5, 0.25)	
-log_recession_coef  = seq(-1.0, 1.0, 0.50)	
-stor_cap            = seq( 1.0, 1.0, 0.00)
-degree_day_factor   = seq( 0.5, 1.5, 0.50)
-
-# parameter lists
-min_soil_depth_frac = seq( 0.5, 1.5, 0.50)
-log_ksat            = seq(-0.5, 0.5, 0.25)	
-log_recession_coef  = seq(-1.0, 1.0, 0.50)	
-stor_cap            = seq( 1.0, 1.0, 0.00)
-degree_day_factor   = seq( 0.5, 1.5, 0.50)
+min_soil_depth_frac = seq( 1.00, 1.00, 0.00)
+log_ksat            = seq(-0.25, 0.25, 0.25)	
+log_recession_coef  = seq(-0.50, 0.50, 0.50)	
+stor_cap            = seq( 0.75, 1.25, 0.25)
+degree_day_factor   = seq( 1.00, 1.00, 1.00)
+ref_pot_et_factor   = seq( 1.00, 1.00, 0.00)
+ 
+#~ # parameter lists (additional)
+#~ min_soil_depth_frac = seq( 1.00, 1.00, 1.00)
+#~ log_ksat            = seq(-0.25, 0.25, 0.25)	
+#~ log_recession_coef  = seq(-0.50, 0.50, 0.50)	
+#~ stor_cap            = seq( 0.75, 1.25, 0.25)
+#~ degree_day_factor   = seq( 1.00, 1.00, 1.00)
+#~ ref_pot_et_factor   = seq( 0.75, 1.25, 0.25)
 
 # output folder name and numbering
 general_output_folder_name = 'code__a__'
-start_folder_index = 75
+start_folder_index = 1
 
 # file name for the output table that will contain new parameters
-new_parameter_table_file_name = "table_02_january_2016_cartesius_edwinhs.txt"
+new_parameter_table_file_name = "table_23_february_2016_cartesius_patricia.txt"
 
 # list of existing parameters sets that have been defined in the previous runs
-existing_parameters = c(1.0, 0.0, 0.0, 1.0, 1.0)                                                                           # reference run              
-existing_parameters = rbind(existing_parameters, read.table("table_02_january_2016_cartesius.txt", header=T)[2:6])         # from the previous file/runs
+existing_parameters = c(1.0, 0.0, 0.0, 1.0, 1.0, 1.0)                                                                             # reference run               # Usually, I indicate this rune with the code 0. 
+#~ existing_parameters = rbind(existing_parameters, read.table("table_13_february_2016_cartesius_edwin.txt", header=T)[2:7])      # from the previous file/runs
 
 # number of cores that will be used
 number_of_cores = 23
@@ -32,26 +34,26 @@ core_type = "normal"
 #~ if (number_of_cores > 32) {core_type = "fat"} else (core_type = "normal")
 
 # location of model script - NOTE: If jobs have not started, you should not update/pull the model script
-model_script = "~/github/edwinkost/PCR-GLOBWB/model/deterministic_runner_glue_january_2016.py"
+model_script = "/home/patrill/Morocco/PCR-GLOBWB-for_patricia_morroco_3layers/model/deterministic_runner_glue_february_2016.py"
 
 # configuration/ini file
-#~ ini_file     = "~/github/edwinkost/sensitivity_pcrglobwb/2016_01_XX/setup_sensitivity_analysis_cartesius_non_natural.ini"
-ini_file     = "~/github/edwinkost/sensitivity_pcrglobwb/2016_01_XX/setup_sensitivity_analysis_cartesius_non_natural_edwinhs.ini"
+ini_file     = "/home/patrill/Morocco/PCR-GLOBWB-for_patricia_morroco_3layers/config/setup_05min_Morocco_1979_2012_E2O_3layers_AccuTravel.ini"
 
 # name for job scripts:
-job_general_name = "calibration_a_" # example: "calibration_aa_001-022.sh"
+job_general_name = "calibration_a_" # example: "calibration_a_001-022.sh"
 
 # output: list of new model parameters and their folders
 parameters_for_these_runs = NULL
 
 index_folder = start_folder_index - 1
 for (im in seq (along = min_soil_depth_frac)) {
-for (is in seq (along = stor_cap  )) {
 for (ik in seq (along = log_ksat           )) {
 for (ir in seq (along = log_recession_coef )) {
+for (is in seq (along = stor_cap           )) {
 for (id in seq (along = degree_day_factor  )) {
+for (ie in seq (along = ref_pot_et_factor  )) {
 
-parameters = c(min_soil_depth_frac[im], log_ksat[ik], log_recession_coef[ir], stor_cap[is], degree_day_factor[id]) 
+parameters = c(min_soil_depth_frac[im], log_ksat[ik], log_recession_coef[ir], stor_cap[is], degree_day_factor[id], ref_pot_et_factor[ie]) 
 
 # check if parameters already defined in the previous run
 if (tail(duplicated(rbind(existing_parameters, parameters)),1)) {
@@ -61,6 +63,7 @@ print(paste("The parameter set :",parameters[1],
                                   parameters[3],
                                   parameters[4],
                                   parameters[5],
+                                  parameters[6],
                                  " have been defined/used in previous runs.", sep = " "))
 
 } else {
@@ -70,6 +73,7 @@ print(paste("New parameter set :",parameters[1],
                                   parameters[3],
                                   parameters[4],
                                   parameters[5],
+                                  parameters[6],
                                  ".", sep = " "))
 
 # updating existing parameter table
@@ -78,11 +82,12 @@ existing_parameters = rbind(existing_parameters, parameters)
 # updating new parameter table
 index_folder = index_folder + 1
 folder_name = paste(general_output_folder_name,as.character(index_folder),sep="")
-new_run = c(folder_name, parameters[1], parameters[2], parameters[3], parameters[4], parameters[5])
+new_run = c(folder_name, parameters[1], parameters[2], parameters[3], parameters[4], parameters[5], parameters[6])
 parameters_for_these_runs = rbind(parameters_for_these_runs, new_run)
 
 } # end for if (tail(duplicated(rbind(existing_parameters, parameters)),1)) 
 
+}
 }
 }
 }
@@ -97,6 +102,7 @@ names(parameters_for_these_runs)[3] <- "log_ksat"
 names(parameters_for_these_runs)[4] <- "log_recession_coef"
 names(parameters_for_these_runs)[5] <- "stor_cap"
 names(parameters_for_these_runs)[6] <- "degree_day_factor"
+names(parameters_for_these_runs)[7] <- "ref_pot_et_factor"
 write.table(parameters_for_these_runs, new_parameter_table_file_name, row.names=FALSE, col.names=TRUE,sep=" ", quote=FALSE)
 
 # checking the resulting table
@@ -119,7 +125,7 @@ job_filename = paste(job_general_name,sprintf("%03d",core_1st_job),"-",sprintf("
 
 cat("#!/bin/bash","\n",sep="",file=job_filename,append=FALSE)
 cat("#SBATCH -N 1","\n",sep="",file=job_filename,append=TRUE)
-cat("#SBATCH -t 72:00:00","\n",sep="",file=job_filename,append=TRUE)
+cat("#SBATCH -t 12:00:00","\n",sep="",file=job_filename,append=TRUE)    # duration of jobs 
 cat("#SBATCH -p ",core_type,"\n",sep="",file=job_filename,append=TRUE)
 cat("\n",file=job_filename,append=TRUE)
 }
@@ -136,6 +142,7 @@ parameters_for_these_runs$log_ksat[index_line],
 parameters_for_these_runs$log_recession_coef[index_line],
 parameters_for_these_runs$stor_cap[index_line],
 parameters_for_these_runs$degree_day_factor[index_line],
+parameters_for_these_runs$ref_pot_et_factor[index_line],
 "& ","\n",
 sep=" ")
 

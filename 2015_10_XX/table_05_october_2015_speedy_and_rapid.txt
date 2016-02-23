@@ -1,9 +1,0 @@
-output_folder min_soil_depth_frac log_ksat log_recession_coef stor_cap
-code__a__1 0.5 -1 -1 1
-code__a__2 0.5 -1 1 1
-code__a__3 0.5 1 -1 1
-code__a__4 0.5 1 1 1
-code__a__5 1.5 -1 -1 1
-code__a__6 1.5 -1 1 1
-code__a__7 1.5 1 -1 1
-code__a__8 1.5 1 1 1
