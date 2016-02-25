@@ -85,8 +85,8 @@ river_number = array(river_number, length(parameters$code))
 river_name = array(river[i_river], length(parameters$code))
 
 # loop through all model runs
-#~ for (i_code in seq(1, length(parameters$code), 1)) {
-for (i_code in seq(1, 5, 1)) {
+for (i_code in seq(1, length(parameters$code), 1)) {
+#~ for (i_code in seq(1, 5, 1)) {
 
 # code for this run and their parameter/pre-factor values
 code               [i_code] = parameters$code               [i_code]
@@ -184,15 +184,15 @@ chart_for_log_recession_coef  <- chart_for_log_recession_coef  + annotate("text"
 }
 
 # finalizing the plot
-chart_for_degree_day_factor   <- chart_for_degree_day_factor   + theme(axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0), breaks = seq(0,1,0.05)) + ylab("") + scale_y_continuous(breaks = seq(0, length(river), 1), limits = c(0, length(river) + 1), expand = c(0,0))
-chart_for_min_soil_depth_frac <- chart_for_min_soil_depth_frac + theme(axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0), breaks = seq(0,1,0.05)) + ylab("") + scale_y_continuous(breaks = seq(0, length(river), 1), limits = c(0, length(river) + 1), expand = c(0,0))
-chart_for_log_ksat            <- chart_for_log_ksat            + theme(axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0), breaks = seq(0,1,0.05)) + ylab("") + scale_y_continuous(breaks = seq(0, length(river), 1), limits = c(0, length(river) + 1), expand = c(0,0))
-chart_for_stor_cap            <- chart_for_stor_cap            + theme(axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0), breaks = seq(0,1,0.05)) + ylab("") + scale_y_continuous(breaks = seq(0, length(river), 1), limits = c(0, length(river) + 1), expand = c(0,0))
-chart_for_log_recession_coef  <- chart_for_log_recession_coef  + theme(axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0), breaks = seq(0,1,0.05)) + ylab("") + scale_y_continuous(breaks = seq(0, length(river), 1), limits = c(0, length(river) + 1), expand = c(0,0))
+chart_for_degree_day_factor   <- chart_for_degree_day_factor   + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0), breaks = seq(0,1,0.05)) + ylab("") + scale_y_continuous(breaks = seq(0, length(river), 1), limits = c(0, length(river) + 1), expand = c(0,0))
+chart_for_min_soil_depth_frac <- chart_for_min_soil_depth_frac + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0), breaks = seq(0,1,0.05)) + ylab("") + scale_y_continuous(breaks = seq(0, length(river), 1), limits = c(0, length(river) + 1), expand = c(0,0))
+chart_for_log_ksat            <- chart_for_log_ksat            + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0), breaks = seq(0,1,0.05)) + ylab("") + scale_y_continuous(breaks = seq(0, length(river), 1), limits = c(0, length(river) + 1), expand = c(0,0))
+chart_for_stor_cap            <- chart_for_stor_cap            + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0), breaks = seq(0,1,0.05)) + ylab("") + scale_y_continuous(breaks = seq(0, length(river), 1), limits = c(0, length(river) + 1), expand = c(0,0))
+chart_for_log_recession_coef  <- chart_for_log_recession_coef  + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0), breaks = seq(0,1,0.05)) + ylab("") + scale_y_continuous(breaks = seq(0, length(river), 1), limits = c(0, length(river) + 1), expand = c(0,0))
 
 # plot to files (width and height are in inches)
-page_width  = 5.5 # inches
-page_height = 0.30 * length(river)
+page_width  = 5                    # inches
+page_height = 0.25 * length(river) # inches
 pdf(file = paste(objective_function_type, "_", station_type, "_", "degree_day_factor"  , ".pdf", sep = ""), width = page_width, height = page_height); plot(chart_for_degree_day_factor  ); dev.off()
 pdf(file = paste(objective_function_type, "_", station_type, "_", "min_soil_depth_frac", ".pdf", sep = ""), width = page_width, height = page_height); plot(chart_for_min_soil_depth_frac); dev.off()
 pdf(file = paste(objective_function_type, "_", station_type, "_", "log_ksat"           , ".pdf", sep = ""), width = page_width, height = page_height); plot(chart_for_log_ksat           ); dev.off()
