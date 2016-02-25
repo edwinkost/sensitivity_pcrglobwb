@@ -192,7 +192,7 @@ chart_for_log_recession_coef  <- chart_for_log_recession_coef  + theme(axis.tick
 
 # plot to files (width and height are in inches)
 page_width  = 5                    # inches
-page_height = 0.20 * length(river) # inches
+page_height = 0.275 * length(river) # inches
 pdf(file = paste(objective_function_type, "_", station_type, "_", "degree_day_factor"  , ".pdf", sep = ""), width = page_width, height = page_height); plot(chart_for_degree_day_factor  ); dev.off()
 pdf(file = paste(objective_function_type, "_", station_type, "_", "min_soil_depth_frac", ".pdf", sep = ""), width = page_width, height = page_height); plot(chart_for_min_soil_depth_frac); dev.off()
 pdf(file = paste(objective_function_type, "_", station_type, "_", "log_ksat"           , ".pdf", sep = ""), width = page_width, height = page_height); plot(chart_for_log_ksat           ); dev.off()
