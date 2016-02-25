@@ -5,14 +5,14 @@ rm(list=ls()); # ls()
 # packages needed and clear all available existing objects:
 require('ggplot2');require('RColorBrewer');require(scales);require(grid)
 
+#~ objective_function_type = "kge_2009"
+#~ station_type            = "calibration"
+
 # get the command arguments
 objective_function_type = as.character(commandArgs()[4])
 station_type            = as.character(commandArgs()[5])
 print(objective_function_type)
 print(station_type)
-
-objective_function_type = "kge_2009"
-station_type            = "calibration"
 
 ########################################################################################################################
 # list of parameters
