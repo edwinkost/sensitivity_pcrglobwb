@@ -189,4 +189,4 @@ chart_for_stor_cap            <- chart_for_stor_cap            + theme(axis.tick
 chart_for_log_recession_coef  <- chart_for_log_recession_coef  + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + ylab("") + scale_y_continuous(breaks = NA)
 
 # plot to files (width and height are in inches)
-pdf(file = paste(objective_function_type, "_", station_type, "_", "degree_day_factor", ".pdf, "sep = ""), width = 2.0, height = 10); plot(chart_for_degree_day_factor); dev.off()
+pdf(file = paste(objective_function_type, "_", station_type, "_", "degree_day_factor", ".pdf", sep = ""), width = 2.0, height = 10); plot(chart_for_degree_day_factor); dev.off()
