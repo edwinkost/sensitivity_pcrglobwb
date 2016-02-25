@@ -85,8 +85,8 @@ river_number = array(river_number, length(parameters$code))
 river_name = array(river[i_river], length(parameters$code))
 
 # loop through all model runs
-#~ for (i_code in seq(1, length(parameters$code), 1)) {
-for (i_code in seq(1, 5, 1)) {
+for (i_code in seq(1, length(parameters$code), 1)) {
+#~ for (i_code in seq(1, 5, 1)) {
 
 # code for this run and their parameter/pre-factor values
 code               [i_code] = parameters$code               [i_code]
