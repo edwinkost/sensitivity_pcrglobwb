@@ -150,7 +150,6 @@ one_min_bfdv
 
 
 # plot for kge_2009
-
 # initiate the plots 
 if (i_river == 1) {
 chart_for_degree_day_factor   <- ggplot() 
@@ -159,41 +158,27 @@ chart_for_log_ksat            <- ggplot()
 chart_for_stor_cap            <- ggplot()
 chart_for_log_recession_coef  <- ggplot()
 }
-
 chart_for_degree_day_factor   <- chart_for_degree_day_factor   + geom_point(data = table_for_this_river, aes(x = degree_day_factor,   y = river_number, size = kge_2009), shape = 21)
 chart_for_min_soil_depth_frac <- chart_for_min_soil_depth_frac + geom_point(data = table_for_this_river, aes(x = min_soil_depth_frac, y = river_number, size = kge_2009), shape = 21)
 chart_for_log_ksat            <- chart_for_log_ksat            + geom_point(data = table_for_this_river, aes(x = log_ksat,            y = river_number, size = kge_2009), shape = 21)
 chart_for_stor_cap            <- chart_for_stor_cap            + geom_point(data = table_for_this_river, aes(x = stor_cap,            y = river_number, size = kge_2009), shape = 21)
 chart_for_log_recession_coef  <- chart_for_log_recession_coef  + geom_point(data = table_for_this_river, aes(x = log_recession_coef,  y = river_number, size = kge_2009), shape = 21)
-
 # to the last column add river name
 chart_for_log_recession_coef  <- chart_for_log_recession_coef  + annotate("text", x = 1.25, y = river_number, label = substr(river_name[1], 1, 5), size = 2.50)
 
+
 # plot for one_min_bfdv
 
-#~ # initiate the plots 
-#~ if (i_river == 1) {
-#~ chart_for_degree_day_factor   <- ggplot() 
-#~ chart_for_min_soil_depth_frac <- ggplot() 
-#~ chart_for_log_ksat            <- ggplot()
-#~ chart_for_stor_cap            <- ggplot()
-#~ chart_for_log_recession_coef  <- ggplot()
-#~ }
-#~ 
-#~ chart_for_degree_day_factor   <- chart_for_degree_day_factor   + geom_point(data = table_for_this_river, aes(x = degree_day_factor,   y = river_number, size = kge_2009), shape = 21)
-#~ chart_for_min_soil_depth_frac <- chart_for_min_soil_depth_frac + geom_point(data = table_for_this_river, aes(x = min_soil_depth_frac, y = river_number, size = kge_2009), shape = 21)
-#~ chart_for_log_ksat            <- chart_for_log_ksat            + geom_point(data = table_for_this_river, aes(x = log_ksat,            y = river_number, size = kge_2009), shape = 21)
-#~ chart_for_stor_cap            <- chart_for_stor_cap            + geom_point(data = table_for_this_river, aes(x = stor_cap,            y = river_number, size = kge_2009), shape = 21)
-#~ chart_for_log_recession_coef  <- chart_for_log_recession_coef  + geom_point(data = table_for_this_river, aes(x = log_recession_coef,  y = river_number, size = kge_2009), shape = 21)
 
 
 }
 
-# hide y labels and set limits
-chart_for_degree_day_factor   <- chart_for_degree_day_factor   + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + scale_x_continuous(limits = c( 0.25, 1.75)) + ylab("") + scale_y_continuous(breaks = NA)
-chart_for_min_soil_depth_frac <- chart_for_min_soil_depth_frac + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + scale_x_continuous(limits = c( 0.25, 1.75)) + ylab("") + scale_y_continuous(breaks = NA)
-chart_for_log_ksat            <- chart_for_log_ksat            + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + scale_x_continuous(limits = c(-0.75, 0.75)) + ylab("") + scale_y_continuous(breaks = NA)
-chart_for_stor_cap            <- chart_for_stor_cap            + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + scale_x_continuous(limits = c( 0.25, 1.75)) + ylab("") + scale_y_continuous(breaks = NA)
-chart_for_log_recession_coef  <- chart_for_log_recession_coef  + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + scale_x_continuous(limits = c(-1.25, 1.25)) + ylab("") + scale_y_continuous(breaks = NA)
+# plot for kge_2009
+chart_for_degree_day_factor   <- chart_for_degree_day_factor   + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + scale_x_continuous(limits = c( 0.25, 1.75)) + ylab("") # + scale_y_continuous(breaks = NA)
+chart_for_min_soil_depth_frac <- chart_for_min_soil_depth_frac + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + scale_x_continuous(limits = c( 0.25, 1.75)) + ylab("") # + scale_y_continuous(breaks = NA)
+chart_for_log_ksat            <- chart_for_log_ksat            + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + scale_x_continuous(limits = c(-0.75, 0.75)) + ylab("") # + scale_y_continuous(breaks = NA)
+chart_for_stor_cap            <- chart_for_stor_cap            + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + scale_x_continuous(limits = c( 0.25, 1.75)) + ylab("") # + scale_y_continuous(breaks = NA)
+chart_for_log_recession_coef  <- chart_for_log_recession_coef  + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + scale_x_continuous(limits = c(-1.25, 1.25)) + ylab("") # + scale_y_continuous(breaks = NA)
 
-plot(chart_for_log_recession_coef)
+chart_for_log_ksat <- chart_for_log_ksat + scale_y_continuous(limits = c(0, length(river)), breaks = seq(0, length(river), 1), labels = rev(c("", river)))
+
