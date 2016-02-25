@@ -53,8 +53,8 @@ river = read.table(file_for_list_of_rivers, sep=";", header = T)
 river = as.character(river$river_name[order(-river$grdc_catchment_area_in_km2)])
 
 # loop through all rivers to get model performances from all runs and their corresponding model parameters
-#~ for (i_river in seq(1, length(river), 1)) {
-for (i_river in seq(1, 5, 1)) {
+for (i_river in seq(1, length(river), 1)) {
+#~ for (i_river in seq(1, 5, 1)) {
 
 print("")
 print(i_river)
