@@ -53,8 +53,8 @@ river = read.table(file_for_list_of_rivers, sep=";", header = T)
 river = as.character(river$river_name[order(-river$grdc_catchment_area_in_km2)])
 
 # loop through all rivers to get model performances from all runs and their corresponding model parameters
-for (i_river in seq(1, length(river), 1)) {
-#~ for (i_river in seq(1, 5, 1)) {
+#~ for (i_river in seq(1, length(river), 1)) {
+for (i_river in seq(1, 5, 1)) {
 
 print("")
 print(i_river)
@@ -184,11 +184,11 @@ chart_for_log_recession_coef  <- chart_for_log_recession_coef  + annotate("text"
 }
 
 # finalizing the plot
-chart_for_degree_day_factor   <- chart_for_degree_day_factor   + theme(axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + ylab("") + scale_y_continuous(breaks = seq(0, length(river), 1))
-chart_for_min_soil_depth_frac <- chart_for_min_soil_depth_frac + theme(axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + ylab("") + scale_y_continuous(breaks = seq(0, length(river), 1))
-chart_for_log_ksat            <- chart_for_log_ksat            + theme(axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + ylab("") + scale_y_continuous(breaks = seq(0, length(river), 1))
-chart_for_stor_cap            <- chart_for_stor_cap            + theme(axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + ylab("") + scale_y_continuous(breaks = seq(0, length(river), 1))
-chart_for_log_recession_coef  <- chart_for_log_recession_coef  + theme(axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + ylab("") + scale_y_continuous(breaks = seq(0, length(river), 1))
+chart_for_degree_day_factor   <- chart_for_degree_day_factor   + theme(axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0), breaks = seq(0,1,0.1)) + ylab("") + scale_y_continuous(breaks = seq(0, length(river), 1))
+chart_for_min_soil_depth_frac <- chart_for_min_soil_depth_frac + theme(axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0), breaks = seq(0,1,0.1)) + ylab("") + scale_y_continuous(breaks = seq(0, length(river), 1))
+chart_for_log_ksat            <- chart_for_log_ksat            + theme(axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0), breaks = seq(0,1,0.1)) + ylab("") + scale_y_continuous(breaks = seq(0, length(river), 1))
+chart_for_stor_cap            <- chart_for_stor_cap            + theme(axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0), breaks = seq(0,1,0.1)) + ylab("") + scale_y_continuous(breaks = seq(0, length(river), 1))
+chart_for_log_recession_coef  <- chart_for_log_recession_coef  + theme(axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0), breaks = seq(0,1,0.1)) + ylab("") + scale_y_continuous(breaks = seq(0, length(river), 1))
 
 # plot to files (width and height are in inches)
 pdf(file = paste(objective_function_type, "_", station_type, "_", "degree_day_factor"  , ".pdf", sep = ""), width = 5.0, height = 10); plot(chart_for_degree_day_factor  ); dev.off()
