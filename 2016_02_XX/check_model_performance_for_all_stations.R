@@ -6,8 +6,8 @@ rm(list=ls()); # ls()
 require('ggplot2');require('RColorBrewer');require(scales);require(grid)
 
 # get the command arguments
-objective_function_type = commandArgs()[1]
-station_type            = commandArgs()[2]
+objective_function_type = commandArgs()[3]
+station_type            = commandArgs()[4]
 
 print(objective_function_type)
 print(station_type)
