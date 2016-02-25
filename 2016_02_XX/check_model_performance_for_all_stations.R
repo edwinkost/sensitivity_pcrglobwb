@@ -196,5 +196,6 @@ chart_for_log_ksat            <- chart_for_log_ksat            + theme(axis.text
 chart_for_stor_cap            <- chart_for_stor_cap            + theme(axis.text.y = element_blank()) + scale_size_continuous( limits = c(0.001, 1.0))
 
 chart_for_log_recession_coef  <- chart_for_log_recession_coef  + theme(axis.text.y = element_blank()) + 
-                                                                 scale_size_continuous( limits = c(0.001, 1.0))
+                                                                 scale_size_continuous( limits = c(0.001, 1.0)) +
+                                                                 scale_x_continuous(limits = c(-1,1))
 plot(chart_for_log_recession_coef)
