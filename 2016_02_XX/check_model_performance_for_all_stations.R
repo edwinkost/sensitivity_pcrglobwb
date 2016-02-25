@@ -6,11 +6,13 @@ rm(list=ls()); # ls()
 require('ggplot2');require('RColorBrewer');require(scales);require(grid)
 
 # get the command arguments
-objective_function_type = commandArgs()[4]
-station_type            = commandArgs()[5]
+#~ objective_function_type = commandArgs()[4]
+#~ station_type            = commandArgs()[5]
+#~ print(objective_function_type)
+#~ print(station_type)
 
-print(objective_function_type)
-print(station_type)
+objective_function_type = "kge_2009"
+station_type            = "calibration"
 
 ########################################################################################################################
 # list of parameters
