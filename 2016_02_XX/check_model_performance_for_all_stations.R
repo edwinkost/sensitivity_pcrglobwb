@@ -6,10 +6,10 @@ rm(list=ls()); # ls()
 require('ggplot2');require('RColorBrewer');require(scales);require(grid)
 
 # get the command arguments
-#~ objective_function_type = commandArgs()[4]
-#~ station_type            = commandArgs()[5]
-#~ print(objective_function_type)
-#~ print(station_type)
+objective_function_type = as.character(commandArgs()[4])
+station_type            = as.character(commandArgs()[5])
+print(objective_function_type)
+print(station_type)
 
 objective_function_type = "kge_2009"
 station_type            = "calibration"
@@ -184,11 +184,15 @@ chart_for_log_recession_coef  <- chart_for_log_recession_coef  + annotate("text"
 }
 
 # finalizing the plot
-chart_for_degree_day_factor   <- chart_for_degree_day_factor   + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + ylab("") + scale_y_continuous(breaks = NA)
-chart_for_min_soil_depth_frac <- chart_for_min_soil_depth_frac + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + ylab("") + scale_y_continuous(breaks = NA)
-chart_for_log_ksat            <- chart_for_log_ksat            + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + ylab("") + scale_y_continuous(breaks = NA)
-chart_for_stor_cap            <- chart_for_stor_cap            + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + ylab("") + scale_y_continuous(breaks = NA)
-chart_for_log_recession_coef  <- chart_for_log_recession_coef  + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + ylab("") + scale_y_continuous(breaks = NA)
+chart_for_degree_day_factor   <- chart_for_degree_day_factor   + theme(axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + ylab("") + scale_y_continuous(breaks = seq(0, length(river), 1))
+chart_for_min_soil_depth_frac <- chart_for_min_soil_depth_frac + theme(axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + ylab("") + scale_y_continuous(breaks = seq(0, length(river), 1))
+chart_for_log_ksat            <- chart_for_log_ksat            + theme(axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + ylab("") + scale_y_continuous(breaks = seq(0, length(river), 1))
+chart_for_stor_cap            <- chart_for_stor_cap            + theme(axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + ylab("") + scale_y_continuous(breaks = seq(0, length(river), 1))
+chart_for_log_recession_coef  <- chart_for_log_recession_coef  + theme(axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + ylab("") + scale_y_continuous(breaks = seq(0, length(river), 1))
 
 # plot to files (width and height are in inches)
-pdf(file = paste(objective_function_type, "_", station_type, "_", "degree_day_factor", ".pdf", sep = ""), width = 2.0, height = 10); plot(chart_for_degree_day_factor); dev.off()
+pdf(file = paste(objective_function_type, "_", station_type, "_", "degree_day_factor"  , ".pdf", sep = ""), width = 5.0, height = 10); plot(chart_for_degree_day_factor  ); dev.off()
+pdf(file = paste(objective_function_type, "_", station_type, "_", "min_soil_depth_frac", ".pdf", sep = ""), width = 5.0, height = 10); plot(chart_for_min_soil_depth_frac); dev.off()
+pdf(file = paste(objective_function_type, "_", station_type, "_", "log_ksat"           , ".pdf", sep = ""), width = 5.0, height = 10); plot(chart_for_log_ksat           ); dev.off()
+pdf(file = paste(objective_function_type, "_", station_type, "_", "stor_cap"           , ".pdf", sep = ""), width = 5.0, height = 10); plot(chart_for_stor_cap           ); dev.off()
+pdf(file = paste(objective_function_type, "_", station_type, "_", "log_recession_coef" , ".pdf", sep = ""), width = 5.0, height = 10); plot(chart_for_log_recession_coef ); dev.off()
