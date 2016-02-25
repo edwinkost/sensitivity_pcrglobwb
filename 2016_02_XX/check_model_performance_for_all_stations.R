@@ -191,8 +191,10 @@ chart_for_stor_cap            <- chart_for_stor_cap            + theme(axis.text
 chart_for_log_recession_coef  <- chart_for_log_recession_coef  + theme(axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0), breaks = seq(0,1,0.05)) + ylab("") + scale_y_continuous(breaks = seq(0, length(river), 1))
 
 # plot to files (width and height are in inches)
-pdf(file = paste(objective_function_type, "_", station_type, "_", "degree_day_factor"  , ".pdf", sep = ""), width = 5.0, height = 12.5); plot(chart_for_degree_day_factor  ); dev.off()
-pdf(file = paste(objective_function_type, "_", station_type, "_", "min_soil_depth_frac", ".pdf", sep = ""), width = 5.0, height = 12.5); plot(chart_for_min_soil_depth_frac); dev.off()
-pdf(file = paste(objective_function_type, "_", station_type, "_", "log_ksat"           , ".pdf", sep = ""), width = 5.0, height = 12.5); plot(chart_for_log_ksat           ); dev.off()
-pdf(file = paste(objective_function_type, "_", station_type, "_", "stor_cap"           , ".pdf", sep = ""), width = 5.0, height = 12.5); plot(chart_for_stor_cap           ); dev.off()
-pdf(file = paste(objective_function_type, "_", station_type, "_", "log_recession_coef" , ".pdf", sep = ""), width = 5.0, height = 12.5); plot(chart_for_log_recession_coef ); dev.off()
+page_width  = 5.0 # inches
+page_height = 0.25 * length(river)
+pdf(file = paste(objective_function_type, "_", station_type, "_", "degree_day_factor"  , ".pdf", sep = ""), width = page_width, height = page_height); plot(chart_for_degree_day_factor  ); dev.off()
+pdf(file = paste(objective_function_type, "_", station_type, "_", "min_soil_depth_frac", ".pdf", sep = ""), width = page_width, height = page_height); plot(chart_for_min_soil_depth_frac); dev.off()
+pdf(file = paste(objective_function_type, "_", station_type, "_", "log_ksat"           , ".pdf", sep = ""), width = page_width, height = page_height); plot(chart_for_log_ksat           ); dev.off()
+pdf(file = paste(objective_function_type, "_", station_type, "_", "stor_cap"           , ".pdf", sep = ""), width = page_width, height = page_height); plot(chart_for_stor_cap           ); dev.off()
+pdf(file = paste(objective_function_type, "_", station_type, "_", "log_recession_coef" , ".pdf", sep = ""), width = page_width, height = page_height); plot(chart_for_log_recession_coef ); dev.off()
