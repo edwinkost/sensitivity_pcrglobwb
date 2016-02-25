@@ -174,11 +174,19 @@ chart_for_log_recession_coef  <- chart_for_log_recession_coef  + annotate("text"
 }
 
 # plot for kge_2009
-chart_for_degree_day_factor   <- chart_for_degree_day_factor   + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + scale_x_continuous(limits = c( 0.25, 1.75)) + ylab("") # + scale_y_continuous(breaks = NA)
-chart_for_min_soil_depth_frac <- chart_for_min_soil_depth_frac + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + scale_x_continuous(limits = c( 0.25, 1.75)) + ylab("") # + scale_y_continuous(breaks = NA)
-chart_for_log_ksat            <- chart_for_log_ksat            + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + scale_x_continuous(limits = c(-0.75, 0.75)) + ylab("") # + scale_y_continuous(breaks = NA)
-chart_for_stor_cap            <- chart_for_stor_cap            + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + scale_x_continuous(limits = c( 0.25, 1.75)) + ylab("") # + scale_y_continuous(breaks = NA)
-chart_for_log_recession_coef  <- chart_for_log_recession_coef  + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + scale_x_continuous(limits = c(-1.25, 1.25)) + ylab("") # + scale_y_continuous(breaks = NA)
+#~ chart_for_degree_day_factor   <- chart_for_degree_day_factor   + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + scale_x_continuous(limits = c( 0.25, 1.75)) + ylab("") # + scale_y_continuous(breaks = NA)
+#~ chart_for_min_soil_depth_frac <- chart_for_min_soil_depth_frac + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + scale_x_continuous(limits = c( 0.25, 1.75)) + ylab("") # + scale_y_continuous(breaks = NA)
+#~ chart_for_log_ksat            <- chart_for_log_ksat            + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + scale_x_continuous(limits = c(-0.75, 0.75)) + ylab("") # + scale_y_continuous(breaks = NA)
+#~ chart_for_stor_cap            <- chart_for_stor_cap            + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + scale_x_continuous(limits = c( 0.25, 1.75)) + ylab("") # + scale_y_continuous(breaks = NA)
+#~ chart_for_log_recession_coef  <- chart_for_log_recession_coef  + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank()) + scale_size_continuous(limits = c(0.001, 1.0)) + scale_x_continuous(limits = c(-1.25, 1.25)) + ylab("") # + scale_y_continuous(breaks = NA)
 
-chart_for_log_ksat <- chart_for_log_ksat + scale_y_continuous(limits = c(0, length(river)), breaks = seq(0, length(river), 1), labels = rev(c("", river)))
+chart_for_degree_day_factor   <- chart_for_degree_day_factor   + scale_size_continuous(limits = c(0.001, 1.0)) + scale_x_continuous(limits = c( 0.25, 1.75)) + ylab("") # + scale_y_continuous(breaks = NA)
+chart_for_min_soil_depth_frac <- chart_for_min_soil_depth_frac + scale_size_continuous(limits = c(0.001, 1.0)) + scale_x_continuous(limits = c( 0.25, 1.75)) + ylab("") # + scale_y_continuous(breaks = NA)
+chart_for_log_ksat            <- chart_for_log_ksat            + scale_size_continuous(limits = c(0.001, 1.0)) + scale_x_continuous(limits = c(-0.75, 0.75)) + ylab("") # + scale_y_continuous(breaks = NA)
+chart_for_stor_cap            <- chart_for_stor_cap            + scale_size_continuous(limits = c(0.001, 1.0)) + scale_x_continuous(limits = c( 0.25, 1.75)) + ylab("") # + scale_y_continuous(breaks = NA)
+chart_for_log_recession_coef  <- chart_for_log_recession_coef  + scale_size_continuous(limits = c(0.001, 1.0)) + scale_x_continuous(limits = c(-1.25, 1.25)) + ylab("") # + scale_y_continuous(breaks = NA)
+
+
+chart_for_log_ksat <- chart_for_log_ksat + scale_y_discrete(limits = c(0, length(river)), breaks = seq(0, length(river), 1), labels = rev(c("", river)))
+plot(chart_for_log_ksat)
 
