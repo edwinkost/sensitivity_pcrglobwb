@@ -168,11 +168,11 @@ chart_for_log_recession_coef  <- ggplot()
 }
 
 # add the plot for each river
-chart_for_degree_day_factor   <- chart_for_degree_day_factor   + geom_point(data = table_for_this_river, aes_string(x = "degree_day_factor",   y = "river_number", size = "objective_function_type"), shape = 21)
-chart_for_min_soil_depth_frac <- chart_for_min_soil_depth_frac + geom_point(data = table_for_this_river, aes_string(x = "min_soil_depth_frac", y = "river_number", size = "objective_function_type"), shape = 21)
-chart_for_log_ksat            <- chart_for_log_ksat            + geom_point(data = table_for_this_river, aes_string(x = "log_ksat",            y = "river_number", size = "objective_function_type"), shape = 21)
-chart_for_stor_cap            <- chart_for_stor_cap            + geom_point(data = table_for_this_river, aes_string(x = "stor_cap",            y = "river_number", size = "objective_function_type"), shape = 21)
-chart_for_log_recession_coef  <- chart_for_log_recession_coef  + geom_point(data = table_for_this_river, aes_string(x = "log_recession_coef",  y = "river_number", size = "objective_function_type"), shape = 21)
+chart_for_degree_day_factor   <- chart_for_degree_day_factor   + geom_point(data = table_for_this_river, aes_string(x = "degree_day_factor",   y = "river_number", size = objective_function_type), shape = 21)
+chart_for_min_soil_depth_frac <- chart_for_min_soil_depth_frac + geom_point(data = table_for_this_river, aes_string(x = "min_soil_depth_frac", y = "river_number", size = objective_function_type), shape = 21)
+chart_for_log_ksat            <- chart_for_log_ksat            + geom_point(data = table_for_this_river, aes_string(x = "log_ksat",            y = "river_number", size = objective_function_type), shape = 21)
+chart_for_stor_cap            <- chart_for_stor_cap            + geom_point(data = table_for_this_river, aes_string(x = "stor_cap",            y = "river_number", size = objective_function_type), shape = 21)
+chart_for_log_recession_coef  <- chart_for_log_recession_coef  + geom_point(data = table_for_this_river, aes_string(x = "log_recession_coef",  y = "river_number", size = objective_function_type), shape = 21)
 
 # to the last column add river names (on the right)
 chart_for_degree_day_factor   <- chart_for_degree_day_factor   + annotate("text", x = 1.75, y = river_number, label = substr(river_name[1], 1, 7), size = 2.00)
