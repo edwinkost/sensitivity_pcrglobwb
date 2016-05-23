@@ -8,9 +8,9 @@ require('ggplot2');require('RColorBrewer');require(scales);require(grid)
 #~ station_type            = "calibration"
 #~ selected_river_name     = "MISSISSIPPIRIVER"
 
-#~ # get the command arguments
-#~ station_type            = as.character(commandArgs()[4])
-#~ selected_river_name     = as.character(commandArgs()[5])
+# get the command arguments
+station_type            = as.character(commandArgs()[4])
+selected_river_name     = as.character(commandArgs()[5])
 
 ########################################################################################################################
 # list of parameters
