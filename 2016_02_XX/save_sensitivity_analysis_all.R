@@ -27,7 +27,7 @@ parameters[,2:ncol(parameters)] <- lapply(parameters[,2:ncol(parameters)], as.nu
 ########################################################################################################################
 
 # path of output folder
-main_path = "/scratch-shared/edwin/30min_sensitivity_analysis_non_natural/2016_02_XX/"
+main_path = "/scratch-shared/edwinhs/30min_sensitivity_analysis_non_natural/2016_02_XX/"
 
 ########################################################################################################################
 # make table of average values 
