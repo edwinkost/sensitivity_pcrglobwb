@@ -374,6 +374,7 @@ average_values[,2:ncol(average_values)] <- lapply(average_values[,2:ncol(average
 
 # merge two data frames
 complete_table = merge(parameters, average_values, by = "code")
+write.table(complete_table, file = "complete_table.txt", sep = ";", row.names = FALSE, col.names = TRUE)
 
 # function to make scatter plots
 sensitivity_scatter_plot_per_row <- function(data_frame, selected_column_name, selected_objective_function, y_axis_title = NA, y_limit = NA) {
