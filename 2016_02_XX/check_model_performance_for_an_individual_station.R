@@ -113,27 +113,27 @@ performance_table = read.table(file_name, sep=";", header = T)
 bfdev_relative_value = performance_table$avg_baseflow_deviation[which(performance_table$river_name == river[i_river])]/performance_table$average_iwmi_opt_baseflow[which(performance_table$river_name == river[i_river])]
 one_min_bfdv[i_code] = 1 - bfdev_relative_value
 
-# set minimum value of model performance indicator
-ns_eff      [i_code][which(ns_eff       [i_code] < 0.0)] = 0.0
-ns_log      [i_code][which(ns_log       [i_code] < 0.0)] = 0.0
-kge_2009    [i_code][which(kge_2009     [i_code] < 0.0)] = 0.0
-kge_2012    [i_code][which(kge_2012     [i_code] < 0.0)] = 0.0
-R2          [i_code][which(R2           [i_code] < 0.0)] = 0.0 
-one_min_bfdv[i_code][which(one_min_bfdv [i_code] < 0.0)] = 0.0
-
-# set all NA and NaN to 0.0
-ns_eff      [i_code][is.nan(ns_eff      [i_code])]       = 0.0
-ns_log      [i_code][is.nan(ns_log      [i_code])]       = 0.0
-kge_2009    [i_code][is.nan(kge_2009    [i_code])]       = 0.0
-kge_2012    [i_code][is.nan(kge_2012    [i_code])]       = 0.0
-R2          [i_code][is.nan(R2          [i_code])]       = 0.0
-one_min_bfdv[i_code][is.nan(one_min_bfdv[i_code])]       = 0.0
-ns_eff      [i_code][ is.na(ns_eff      [i_code])]       = 0.0
-ns_log      [i_code][ is.na(ns_log      [i_code])]       = 0.0
-kge_2009    [i_code][ is.na(kge_2009    [i_code])]       = 0.0
-kge_2012    [i_code][ is.na(kge_2012    [i_code])]       = 0.0
-R2          [i_code][ is.na(R2          [i_code])]       = 0.0
-one_min_bfdv[i_code][ is.na(one_min_bfdv[i_code])]       = 0.0
+#~ # set minimum value of model performance indicator
+#~ ns_eff      [i_code][which(ns_eff       [i_code] < 0.0)] = 0.0
+#~ ns_log      [i_code][which(ns_log       [i_code] < 0.0)] = 0.0
+#~ kge_2009    [i_code][which(kge_2009     [i_code] < 0.0)] = 0.0
+#~ kge_2012    [i_code][which(kge_2012     [i_code] < 0.0)] = 0.0
+#~ R2          [i_code][which(R2           [i_code] < 0.0)] = 0.0 
+#~ one_min_bfdv[i_code][which(one_min_bfdv [i_code] < 0.0)] = 0.0
+#~ 
+#~ # set all NA and NaN to 0.0
+#~ ns_eff      [i_code][is.nan(ns_eff      [i_code])]       = 0.0
+#~ ns_log      [i_code][is.nan(ns_log      [i_code])]       = 0.0
+#~ kge_2009    [i_code][is.nan(kge_2009    [i_code])]       = 0.0
+#~ kge_2012    [i_code][is.nan(kge_2012    [i_code])]       = 0.0
+#~ R2          [i_code][is.nan(R2          [i_code])]       = 0.0
+#~ one_min_bfdv[i_code][is.nan(one_min_bfdv[i_code])]       = 0.0
+#~ ns_eff      [i_code][ is.na(ns_eff      [i_code])]       = 0.0
+#~ ns_log      [i_code][ is.na(ns_log      [i_code])]       = 0.0
+#~ kge_2009    [i_code][ is.na(kge_2009    [i_code])]       = 0.0
+#~ kge_2012    [i_code][ is.na(kge_2012    [i_code])]       = 0.0
+#~ R2          [i_code][ is.na(R2          [i_code])]       = 0.0
+#~ one_min_bfdv[i_code][ is.na(one_min_bfdv[i_code])]       = 0.0
 
 }
 
