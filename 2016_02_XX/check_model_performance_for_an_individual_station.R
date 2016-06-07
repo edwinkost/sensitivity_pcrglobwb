@@ -162,7 +162,7 @@ write.table(table_for_this_river, file_name, sep = ";", col.names = TRUE, row.na
 
 
 # sort based on the selected objective function
-chosen_column = which(names(table_for_this_river) == "ns_eff")
+chosen_column = which(names(table_for_this_river) == "kge_2009")
 table_for_this_river_sorted <- table_for_this_river[order(-table_for_this_river[, chosen_column]), ] 
 # - print the first five rows
 print(table_for_this_river_sorted[1:5, ])
