@@ -5,12 +5,12 @@ rm(list=ls()); # ls()
 # packages needed and clear all available existing objects:
 require('ggplot2');require('RColorBrewer');require(scales);require(grid)
 
-#~ station_type            = "calibration"
-#~ selected_river_name     = "MISSISSIPPIRIVER"
+#~ station_type          = "validation"
+#~ selected_river_id     = 3629001
 
 # get the command arguments
 station_type            = as.character(commandArgs()[4])
-selected_river_name     = as.character(commandArgs()[5])
+selected_river_id       = as.integer(as.character(commandArgs()[5]))
 
 ########################################################################################################################
 # list of parameters
@@ -44,7 +44,7 @@ file_for_list_of_rivers = paste(main_path, "code__a__", as.character(0), "/", ty
 river = read.table(file_for_list_of_rivers, sep=";", header = T)
 
 # select a certain river
-river = river[which(river$river_name == selected_river_name), ]
+river = river[which(river$id_from_grdc == selected_river_id), ]
 
 # sort river based on grdc catchment area and use only the river name
 river = as.character(river$river_name[order(-river$grdc_catchment_area_in_km2)])
@@ -153,14 +153,15 @@ kge_2012           ,
 R2                 , 
 one_min_bfdv       
 )
+
 # write data frame for this river to a file
-file_name = paste("table_for_the_river_", river_name[1], ".txt", sep = "")
+file_name = paste("table_for_the_river_", as.character(selected_river_id), "_",  as.character(river$river_name[1]), "_",  as.character(river_name$station_name[1]), ".txt", sep = "")
 print(file_name)
 write.table(table_for_this_river, file_name, sep = ";", col.names = TRUE)
 
 
 # sort based on the selected objective function
-chosen_column = which(names(table_for_this_river) == "kge_2009")
+chosen_column = which(names(table_for_this_river) == "ns_eff")
 table_for_this_river_sorted <- table_for_this_river[order(-table_for_this_river[, chosen_column]), ] 
 # - print the first five rows
 print(table_for_this_river_sorted[1:5, ])
