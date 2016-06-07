@@ -153,6 +153,11 @@ kge_2012           ,
 R2                 , 
 one_min_bfdv       
 )
+# write data frame for this river to a file
+file_name = paste("table_for_the_river_", river_name[1], ".txt", sep = "")
+print(file_name)
+write.table(table_for_this_river, file_name, sep = ";", col.names = TRUE)
+
 
 # sort based on the selected objective function
 chosen_column = which(names(table_for_this_river) == "kge_2009")
