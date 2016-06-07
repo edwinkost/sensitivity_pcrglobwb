@@ -47,6 +47,7 @@ river = read.table(file_for_list_of_rivers, sep=";", header = T)
 river = river[which(river$id_from_grdc == selected_river_id), ]
 
 # sort river based on grdc catchment area and use only the river name
+river_table = river
 river = as.character(river$river_name[order(-river$grdc_catchment_area_in_km2)])
 
 i_river = 1
@@ -155,7 +156,7 @@ one_min_bfdv
 )
 
 # write data frame for this river to a file
-file_name = paste("table_for_the_river_", as.character(selected_river_id), "_",  as.character(river$river_name[1]), "_",  as.character(river_name$station_name[1]), ".txt", sep = "")
+file_name = paste("table_for_the_river_", as.character(selected_river_id), "_",  as.character(river_table$river_name[1]), "_",  as.character(river_table$station_name[1]), ".txt", sep = "")
 print(file_name)
 write.table(table_for_this_river, file_name, sep = ";", col.names = TRUE)
 
