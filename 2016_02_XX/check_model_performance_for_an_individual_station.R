@@ -158,7 +158,7 @@ one_min_bfdv
 # write data frame for this river to a file
 file_name = paste("table_for_the_river_", as.character(selected_river_id), "_",  as.character(river_table$river_name[1]), "_",  as.character(river_table$station_name[1]), ".txt", sep = "")
 print(file_name)
-write.table(table_for_this_river, file_name, sep = ";", col.names = TRUE)
+write.table(table_for_this_river, file_name, sep = ";", col.names = TRUE, row.names = FALSE)
 
 
 # sort based on the selected objective function
