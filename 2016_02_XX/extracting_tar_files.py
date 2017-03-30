@@ -12,7 +12,7 @@ end_number   = int(sys.argv[2])
 location_of_archive_files = "/scratch-shared/edwinwce/iwmi_runs/"
 front_file_name           = "code__a__"
 file_name_extension       = ".tar"
-target_folder             = "/scratch-shared/edwinhs/iwmi_runs/"
+target_folder             = "/scratch-shared/edwin/iwmi_runs/"
 
 for i in range(start_number, end_number + 1, 1):
     # make the output folder
